@@ -1,8 +1,11 @@
 import React from 'react'
-import MainNavBar from '../../component/main/MainNavBar'
-import MainIcons from '../../component/main/MainIcons'
-import AccomLIST from '../../component/main/AccomLIST'
-import Inspiration from '../../component/main/Inspiration'
+import MainNavBar from '../../components/home-page/main-navbar/MainNavBar'
+import MainIcons from '../../components/home-page/MainIcons'
+import AccomLIST from '../../components/home-page/accommodation/AccomLIST'
+import Inspiration from '../../components/home-page/inspiration/Inspiration'
+
+
+
 
 function HomePage() {
     return (

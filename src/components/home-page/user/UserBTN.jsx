@@ -1,24 +1,25 @@
 import { AlignJustify } from 'lucide-react'
 import React, { useEffect, useRef, useState } from 'react'
 import { SignedIn, SignedOut } from '@clerk/clerk-react'
-import SignoutBTN from './SignoutBTN'
-import SignupLoginLIST from './SignupLoginLIST'
+import SignupLoginLIST from './SignupLoginLIST';
+import SignoutBTN from './SignoutBTN';
+
 
 function UserBTN() {
 
     const [showLIST, setShowLIST] = useState(false)
     const menuRef = useRef(null);
-    // ปิด popup ถ้าคลิกข้างนอก
+    //close popup when click outside:
     useEffect(() => {
-        const handleClickOutside = (event) => {
+        const hdlClickOutside = (event) => {
             if (menuRef.current && !menuRef.current.contains(event.target)) {
                 setShowLIST(false);
             }
         };
 
-        document.addEventListener("mousedown", handleClickOutside);
+        document.addEventListener("mousedown", hdlClickOutside);
         return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
+            document.removeEventListener("mousedown", hdlClickOutside);
         };
     }, []);
 

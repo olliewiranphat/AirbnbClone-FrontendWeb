@@ -1,5 +1,5 @@
 import React from 'react'
-import ReloadLink from '../../utils/ReloadLink'
+import ReloadLink from '../../../utils/ReloadLink'
 import { SignInButton, SignUpButton } from '@clerk/clerk-react'
 
 function SignupLoginLIST() {

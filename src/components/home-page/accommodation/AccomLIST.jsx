@@ -1,6 +1,7 @@
 import React from 'react'
 import AccomITEM from './AccomITEM'
 
+
 function AccomLIST() {
     return (<>
         <div className='px-[40px] flex gap-4 flex-wrap py-4'>
