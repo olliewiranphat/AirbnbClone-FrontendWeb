@@ -8,7 +8,7 @@ function AccomLIST() {
             <AccomITEM />
         </div>
         <div className='flex flex-col gap-4 items-center'>
-            <span className='text-[18px] text-[#222222] font-semibold'>Continue exploring rooms</span>
+            <span className='text-[18px] text-[#222222] strong'>Continue exploring amazing views</span>
             <button className='rounded-lg py-3 px-6 text-white bg-[#222222] hover:bg-black hover:duration-300 cursor-pointer'>Show more</button>
         </div>
     </>
