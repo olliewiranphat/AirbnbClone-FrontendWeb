@@ -12,14 +12,14 @@ function EXPNav() {
             {/* Date */}
             <div className='flex-1 justify-between w-full py-2 pl-6 h-full hover:rounded-full flex items-center cursor-pointer hover:bg-[#e8e8e8] hover:duration-300'>
                 <div className='flex flex-col'>
-                    <span className='text-[12px] font-semibold'>Date</span>
+                    <span className='text-[12px] strong'>Date</span>
                     <span className='text-[14px] text-[#6a6a6a]'>Add dates</span>
                 </div>
                 <div className='w-[5px] h-[30px] border-r-[1px] border-gray-300'></div>
             </div>
             {/* WHOGUEST */}
             <div className='flex-1 justify-center flex-col pl-6 h-full hover:rounded-full flex items-start cursor-pointer hover:bg-[#e8e8e8] hover:duration-300'>
-                <span className='text-[12px] font-semibold'>Who</span>
+                <span className='text-[12px] strong'>Who</span>
                 <span className='text-[14px] text-[#6a6a6a]'>Add guests</span>
             </div>
             <button className='rounded-full mr-2 bg-[#FF385C] hover:bg-[#dd1062] flex  justify-center items-center h-[47px] w-[47px]'>

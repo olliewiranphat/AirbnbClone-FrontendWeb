@@ -21,7 +21,7 @@ function WhereDest() {
 
     return (<>
         <div className='flex flex-col' ref={menuRef}>
-            <span className='text-[12px] font-semibold'>Where</span>
+            <span className='text-[12px] strong'>Where</span>
             <button onClick={() => setShowSuggest(!showSuggest)}>
                 <input className='relative text-[14px] text-[#6a6a6a] bg-transparent outline-none' placeholder='Search destinations' />
             </button>

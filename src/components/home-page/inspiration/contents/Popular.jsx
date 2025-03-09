@@ -91,9 +91,9 @@ function Popular() {
                     <span className='text-[14px] text-[#6a6a6a]'>Vacation rentals</span>
                 </ReloadLink>
             </div>
-            <div className='absolute bottom-0 right-24 flex items-center cursor-pointer'>
+            <div className='absolute bottom-0 right-[90px] flex items-center cursor-pointer'>
                 <span className='text-[14px] font-semibold'>Show more</span>
-                <ChevronDown className='h-[16px] font-semibold' />
+                <ChevronDown className='h-[16px] header' />
             </div>
         </div >
     )
