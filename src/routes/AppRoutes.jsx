@@ -40,7 +40,8 @@ function AppRoutes() {
             <Route path='/' element={<PublicLayout />}>
                 <Route index element={<HomePage />} />
                 <Route path='search/accommodation' element={<SearchAccom />} />
-                <Route path='search/accommodation-detail/:accommodationID' element={<AccomDetail />} />
+                {/* <Route path='search/accommodation-detail/:accommodationID' element={<AccomDetail />} /> */}
+                <Route path='search/accommodation-detail' element={<AccomDetail />} />
             </Route>
 
             {/* Utill Pages */}
