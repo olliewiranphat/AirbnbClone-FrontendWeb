@@ -3,8 +3,10 @@ import SwichHostNav from '../../components/homehost-page/SwichHostNav'
 import Footer from '../../components/Footer';
 import ContentStayit from '../../components/homehost-page/contentStayit';
 
+
 function HostHomes() {
-    const [value, setValue] = useState(40); // เริ่มต้นค่าเริ่มต้นที่ 50
+    const [value, setValue] = useState(40); 
+
 
     const handleChange = (event) => {
     setValue(event.target.value);
@@ -12,11 +14,11 @@ function HostHomes() {
     return (
         <div>
             {/* navbar */}
-            <div >
+            <div className="w-full fixed top-0 left-0 right-0 bg-white  z-50">
                <SwichHostNav/>
             </div>
             {/* text+map */}
-            <div className='px-[40px] flex flex-1 bg-gray-400 w-500  h-500 gap-4 p-2'>
+            <div className='px-[40px] flex flex-1 bg-gray-400 w-500  h-500 gap-4 p-2 mt-28'>
                 <div className='flex  h-[300px] w-full justify-center flex-col text-center items-center bg-white p-4'>
                     <h1 className='text-4xl font-bold text-[#FF385C] pb-2'>Stayzy it. </h1>
                     <h1 className='text-3xl font-bold text-[#2222222] pb-2'>You cloud learn</h1>
