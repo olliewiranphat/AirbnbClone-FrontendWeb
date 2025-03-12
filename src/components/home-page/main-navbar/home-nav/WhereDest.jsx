@@ -23,7 +23,7 @@ function WhereDest() {
         <div className='flex flex-col' ref={menuRef}>
             <span className='text-[12px] strong'>Where</span>
             <button onClick={() => setShowSuggest(!showSuggest)}>
-                <input className='relative text-[14px] text-[#6a6a6a] bg-transparent outline-none' placeholder='Search destinations' />
+                <input className='relative text-[14px] text-[#6a6a6a] bg-transparent outline-hidden' placeholder='Search destinations' />
             </button>
         </div>
         <div className='w-[5px] h-[30px] border-r-[1px] border-gray-300'></div>

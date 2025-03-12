@@ -62,7 +62,7 @@ function AccomDetail() {
                </div>
 
                {/* Price Card */}
-               <div className="border rounded-lg p-4 shadow-sm w-80">
+               <div className="border rounded-lg p-4 shadow-xs w-80">
                   <div className="flex justify-between items-start mb-4">
                      <div>
                         <span className="font-semibold text-lg">$44</span>

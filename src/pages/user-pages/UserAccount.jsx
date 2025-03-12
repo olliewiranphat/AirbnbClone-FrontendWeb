@@ -89,7 +89,7 @@ function UserAccount() {
                                 <textarea
                                     placeholder="Write something fun and punchy."
                                     rows={3}
-                                    className="w-full mt-[12px] p-[12px] border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-gray-200"
+                                    className="w-full mt-[12px] p-[12px] border border-gray-300 rounded-md focus:outline-hidden focus:ring-3 focus:ring-gray-200"
                                 ></textarea>
                                 <button className="mt-[12px] text-sm text-blue-500">Add intro</button>
                             </div>
@@ -100,7 +100,7 @@ function UserAccount() {
                             {/* Toggle Switch */}
                             <label htmlFor="toggle" className="flex items-center cursor-pointer">
                                 <input type="checkbox" id="toggle" className="sr-only" />
-                                <div className="w-[40px] h-[20px] bg-gray-300 rounded-full relative peer-focus:ring peer-focus:ring-blue-300 peer checked:bg-blue-500 transition">
+                                <div className="w-[40px] h-[20px] bg-gray-300 rounded-full relative peer-focus:ring-3 peer-focus:ring-blue-300 peer checked:bg-blue-500 transition">
                                     <div className="absolute left-[2px] top-[2px] w-[16px] h-[16px] bg-white rounded-full transition peer-checked:translate-x-[20px]"></div>
                                 </div>
                             </label>
@@ -143,7 +143,7 @@ function UserAccount() {
                                 ].map((tag, index) => (
                                     <div
                                         key={index}
-                                        className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-full shadow-sm"
+                                        className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-full shadow-xs"
                                     >
                                         <tag.icon className="w-5 h-5 text-gray-500" />
                                         <span className="text-sm font-medium text-gray-700">{tag.label}</span>
