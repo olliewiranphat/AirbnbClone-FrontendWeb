@@ -32,16 +32,16 @@ function Footer() {
 
             {/* Bottom Modal */}
             {isOpen && (
-                <div className="fixed inset-x-0 bottom-0 bg-white border-t border-gray-300 z-[1000]">
-                    {/* Close Button */}
-                    <div className="flex justify-between items-center px-[40px] py-[20px] border-b border-gray-300">
-                        <button
-                            onClick={handleClose}
-                            className="text-xl text-gray-500 hover:text-black"
-                        >
-                            ✕
-                        </button>
-                    </div>
+          <div className="fixed inset-x-0 bottom-0 bg-white border-t border-grey-300 z-[1000] rounded-t-[30px] shadow-lg">
+          {/* Close Button */}
+          <div className="flex justify-between items-center px-[40px] py-[20px] ">
+              <button
+                  onClick={handleClose}
+                  className="text-xl text-gray-500 hover:text-black"
+              >
+                  ✕
+              </button>
+          </div>
 
                     {/* Content */}
                     <div className="grid grid-cols-3 gap-6 px-[40px] py-[20px]">
