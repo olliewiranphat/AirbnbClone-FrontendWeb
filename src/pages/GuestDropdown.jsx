@@ -13,7 +13,7 @@ export default function GuestDropdown() {
       <div className="relative w-64 border-none m-0 p-0">
          <p className="text-xs font-bold">GUESTS</p>
          <button
-            className="w-full border-none rounded p-0 flex justify-between items-center"
+            className="w-full border-none rounded-sm p-0 flex justify-between items-center"
             onClick={() => setIsOpen(!isOpen)}
          >
             <span>{guests.adults + guests.children + guests.infants + guests.pets} guest{guests.adults + guests.children + guests.infants + guests.pets > 1 ? "s" : ""}</span>
@@ -21,7 +21,7 @@ export default function GuestDropdown() {
          </button>
 
          {isOpen && (
-            <div className="absolute w-full bg-white border rounded shadow-lg p-4 mt-2 z-10">
+            <div className="absolute w-full bg-white border rounded-sm shadow-lg p-4 mt-2 z-10">
                {[
                   { label: "Adults", sub: "Age 13+", key: "adults" },
                   { label: "Children", sub: "Ages 2–12", key: "children" },

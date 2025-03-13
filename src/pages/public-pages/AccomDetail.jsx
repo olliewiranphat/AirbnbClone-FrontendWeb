@@ -170,6 +170,7 @@ function AccomDetail() {
                </div>
 
                {/* Price Card */}
+
                <div className="border rounded-lg p-4 shadow-sm w-80 sticky h-[460px]">
                   <div className="flex justify-between items-start mb-4">
                      <div>

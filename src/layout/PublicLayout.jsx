@@ -10,7 +10,7 @@ function PublicLayout() {
                 <MainNavBar />
 
             </div>
-            <div className='pt-[20%] w-full'>
+            <div className='pt-[280px] w-full'>
                 <Outlet />
                 <Footer />
             </div>
