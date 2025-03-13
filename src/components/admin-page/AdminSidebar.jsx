@@ -8,10 +8,10 @@ function AdminSidebar() {
     const [active, setActive] = useState("Dashboard");
     return (
 
-        <div className="h-full w-[20%]  shadow-lg p-4 flex flex-col bg-white items-center">
+        <div className="h-full w-[20%]  shadow-lg p-6 flex flex-col bg-white items-center ">
             <h1 className="text-2xl font-bold text-[#FF385C] pb-6">Admin Panel</h1>
             <nav className="flex flex-col gap-6 ">
-                <div className='flex gap-4'>
+                <div className='flex gap-4 pt-2'>
                     <Home />
                     <Link to='/admin' className='block pb-1 w-auto cursor-pointer border-transparent hover:border-b-2  hover:border-[#FF385C] hover:duration-200'>Dashboard</Link>
                 </div>
@@ -19,7 +19,7 @@ function AdminSidebar() {
                     <List className='' />
                     <span className=' absolute pl-10 bottom-[-3px]'>Management</span>
                 </div>
-                <ul className='pl-10 flex flex-col gap-4 text-[14px]'>
+                <ul className='pl-10 flex flex-col gap-6 text-[14px]'>
                     <Link to='/admin/management/all-accommodations' className='inline-block  pb-1 w-auto cursor-pointer border-transparent hover:border-b-2  hover:border-[#FF385C] hover:duration-200'>
                         <span>Manage Accomodation</span>
                     </Link>
@@ -34,7 +34,7 @@ function AdminSidebar() {
                     <Calendar className='' />
                     <span className=' absolute pl-10 bottom-[-3px]'>Reservations</span>
                 </div>
-                <ul className='pl-10 flex flex-col gap-4 mb-2 text-[14px]'>
+                <ul className='pl-10 flex flex-col gap-6 mb-2 text-[14px]'>
                     <Link to='/booking' className='inline-block w-auto cursor-pointer border-transparent hover:border-b-2  hover:border-[#FF385C] hover:duration-200'>
                         <span>Booking</span>
                     </Link>

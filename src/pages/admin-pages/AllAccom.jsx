@@ -31,7 +31,7 @@ const accommodations = [
 
 function AllAccom() {
   return (
-    <div className="p-6">
+    <div className="p-4 mr-4">
       <h2 className="text-2xl font-bold mb-4">All Accommodations</h2>
       <div className="overflow-auto rounded-lg shadow">
         <table className="w-full border-collapse bg-white text-left text-sm text-gray-600">
