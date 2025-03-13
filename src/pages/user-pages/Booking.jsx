@@ -59,7 +59,7 @@ import React, { useState } from "react";
 
 //          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 //             <div className="md:col-span-2">
-//                <div className="border p-5 rounded-lg shadow-sm">
+//                <div className="border p-5 rounded-lg shadow-xs">
 //                   <h3 className="text-lg font-semibold">Your trip</h3>
 //                   <div className="mt-3 text-sm">
 //                      <p><strong>Dates:</strong> Apr 21 – 26 <span className="text-blue-500 cursor-pointer">Edit</span></p>
@@ -78,25 +78,25 @@ import React, { useState } from "react";
 //                   </div>
 //                </div>
 
-//                <div className="border p-5 rounded-lg shadow-sm mt-5">
+//                <div className="border p-5 rounded-lg shadow-xs mt-5">
 //                   <h3 className="text-lg font-semibold">Log in or sign up to book</h3>
 //                   <label className="mt-3 block text-sm font-medium" htmlFor="phone">Country code</label>
-//                   <select id="phone" className="w-full mt-1 border rounded p-2">
+//                   <select id="phone" className="w-full mt-1 border rounded-sm p-2">
 //                      <option>Thailand (+66)</option>
 //                   </select>
 //                   <label className="mt-3 block text-sm font-medium" htmlFor="phone-number">Phone number</label>
-//                   <input id="phone-number" type="text" className="w-full mt-1 border rounded p-2" placeholder="Phone number" />
-//                   <button className="w-full mt-4 bg-pink-500 text-white py-2 rounded">Continue</button>
+//                   <input id="phone-number" type="text" className="w-full mt-1 border rounded-sm p-2" placeholder="Phone number" />
+//                   <button className="w-full mt-4 bg-pink-500 text-white py-2 rounded-sm">Continue</button>
 //                   <div className="flex justify-center gap-4 mt-3">
-//                      <button className="bg-gray-200 py-2 px-4 rounded">Facebook</button>
-//                      <button className="bg-gray-200 py-2 px-4 rounded">Google</button>
-//                      <button className="bg-gray-200 py-2 px-4 rounded">Apple</button>
+//                      <button className="bg-gray-200 py-2 px-4 rounded-sm">Facebook</button>
+//                      <button className="bg-gray-200 py-2 px-4 rounded-sm">Google</button>
+//                      <button className="bg-gray-200 py-2 px-4 rounded-sm">Apple</button>
 //                   </div>
-//                   <button className="w-full mt-3 border border-gray-300 py-2 rounded">Continue with email</button>
+//                   <button className="w-full mt-3 border border-gray-300 py-2 rounded-sm">Continue with email</button>
 //                </div>
 //             </div>
 
-//             <div className="border p-5 rounded-lg shadow-sm">
+//             <div className="border p-5 rounded-lg shadow-xs">
 //                <h3 className="text-lg font-semibold">Nice equipped room in a family flat</h3>
 //                <p className="text-sm text-gray-500">Room in rental unit ★ 4.87 (197 reviews) • Superhost</p>
 //                <div className="mt-4 text-sm">
@@ -233,9 +233,9 @@ function Booking() {
                   </button>
 
                   <div className="flex items-center justify-center mb-4">
-                     <div className="border-t flex-grow"></div>
+                     <div className="border-t grow"></div>
                      <span className="px-4 text-gray-500">or</span>
-                     <div className="border-t flex-grow"></div>
+                     <div className="border-t grow"></div>
                   </div>
 
                   <div className="grid grid-cols-3 gap-3 mb-4">

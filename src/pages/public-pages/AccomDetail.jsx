@@ -1,7 +1,37 @@
-import { Grip, Heart, Share } from 'lucide-react'
+import { Bed, Grip, Heart, Share, Sofa, Toilet } from 'lucide-react'
 import React from 'react'
 import GuestDropdown from '../GuestDropdown'
+import CalendarBooking from '../CalendarBooking'
+import Pic1 from "../../../image/bg-01.jpg"
+import Pic2 from "../../../image/bg-payment.jpg"
 
+import {
+   SprayCan,
+   CheckCircle,
+   Key,
+   MessageSquare,
+   MapPin,
+   Tag,
+} from 'lucide-react';
+
+const ratings = {
+   cleanliness: 5.0,
+   accuracy: 5.0,
+   checkIn: 5.0,
+   communication: 5.0,
+   location: 4.9,
+   value: 5.0,
+};
+
+function RatingItem({ title, value, icon }) {
+   return (
+      <div className="flex flex-col border-l-2">
+         <div className="mb-2">{icon}</div>
+         <h4 className="text-sm font-semibold">{title}</h4>
+         <p className="text-lg font-bold">{value}</p>
+      </div>
+   );
+}
 
 function AccomDetail() {
 
@@ -29,40 +59,119 @@ function AccomDetail() {
             {/* Image Gallery */}
             <div className="grid grid-cols-2 gap-2 my-4 rounded-lg overflow-hidden">
                <div className="row-span-2 h-80 bg-gray-200 relative">
+                  <img src={Pic1} alt="" />
                   {/* <div className="absolute bottom-4 right-4 bg-white rounded-md px-2 py-1 text-xs">
                             Show all photos
                         </div> */}
-                  <button className="btn btn-outline absolute bottom-4 right-4 bg-white rounded-md px-2 py-1 text-xs">
+                  <button className="btn btn-outline absolute bottom-0 right-4 bg-white rounded-md px-2 py-1 text-xs">
                      <Grip className='w-4 h-4' />
                      Show all photos
                   </button>
                </div>
                <div className="grid grid-cols-2 gap-2">
-                  <div className="h-[9.5rem] bg-gray-200"></div>
-                  <div className="h-[9.5rem] bg-gray-200"></div>
-                  <div className="h-[9.5rem] bg-gray-200"></div>
-                  <div className="h-[9.5rem] bg-gray-200"></div>
+                  <div className="h-[9.5rem] bg-gray-200 mb-8">
+                     <img src={Pic2} alt="" />
+                  </div>
+                  <div className="h-[9.5rem] bg-gray-200">
+                     <img src={Pic2} alt="" />
+                  </div>
+                  <div className="h-[9.5rem] bg-gray-200">
+                     <img src={Pic2} alt="" />
+                  </div>
+                  <div className="h-[9.5rem] bg-gray-200">
+                     <img src={Pic2} alt="" />
+                  </div>
+
                </div>
             </div>
 
             {/* Location and Host */}
             <div className="flex justify-between">
-               <div>
+               <div className='flex flex-col'>
                   <h2 className="font-medium">Room in Villefranche, France</h2>
                   <div className="text-sm text-gray-500">
                      <span>2 beds · Private bathroom</span>
                   </div>
-                  <div className="flex items-center mt-2">
+                  <div className="flex items-center mt-3">
                      <div className="flex">
                         <span className="text-sm">★ 4.87</span>
                         <span className="text-sm text-gray-500 mx-1">·</span>
                         <span className="text-sm text-gray-500">157 reviews</span>
                      </div>
                   </div>
+
+                  {/* Avatar */}
+                  <div className='mt-5 flex gap-5 border-t border-b'>
+                     <div className='flex gap-5 mt-5 mb-5'>
+                        <div className="avatar">
+                           <div className="w-14 rounded-full">
+                              <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                           </div>
+                        </div>
+                        <div>
+                           <p className='font-bold'>Host Name</p>
+                           <p className='text-slate-400'>Host Name</p>
+                        </div>
+                     </div>
+
+                  </div>
+
+                  {/* Detail room */}
+                  <div>
+                     <div className='mt-5 flex gap-5 items-center'>
+                        <Bed />
+                        <div className='flex flex-col'>
+                           <p className='font-bold'>Bedroom</p>
+                           <p className='text-slate-400'>Bedroom : 2</p>
+                        </div>
+                     </div>
+                     <div className='mt-5 flex gap-5 items-center'>
+                        <Sofa />
+                        <div className='flex flex-col'>
+                           <p className='font-bold'>Livingroom</p>
+                           <p className='text-slate-400'>Livingroom : 2</p>
+                        </div>
+                     </div>
+                     <div className='mt-5 flex gap-5 items-center'>
+                        <Toilet />
+                        <div className='flex flex-col'>
+                           <p className='font-bold'>Toiletroom</p>
+                           <p className='text-slate-400'>Toiletroom : 2</p>
+                        </div>
+                     </div>
+                  </div>
+
+                  {/* Description room */}
+                  <div className='mt-5 border-t w-[750px]'>
+                     <p className='mt-6'>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste maiores veritatis, quia consequuntur nemo quisquam nostrum ad mollitia, commodi quo eveniet asperiores delectus facere cum, itaque temporibus quae porro labore? Quos, magni? A possimus doloremque praesentium impedit. Sunt, velit? Iste delectus itaque quibusdam a iusto fugiat illum culpa! Laboriosam reiciendis commodi distinctio eaque neque pariatur consectetur quasi harum, dolore consequatur? Possimus, odit beatae consequuntur enim incidunt minus veritatis vitae non officia rerum! Excepturi inventore quisquam nulla illo, quae provident praesentium repudiandae, totam veritatis debitis atque voluptate cum iure tempora maiores voluptatem sed sint architecto, non voluptas consequuntur accusamus? Animi, nisi?
+                     </p>
+                  </div>
+
+                  <div className='mt-5 border-t w-[750px]'>
+                     <p className='mt-6 font-bold text-[22px]'>Where you’ll sleep</p>
+                     <div className='flex gap-10 mt-8'>
+                        <div className='w-[400px] h-full'>
+                           <img src={Pic1} alt="" className='rounded-lg' />
+                           <p className='mt-4 ml-2 font-medium text-[17px]'>
+                              Bedroom 1
+                           </p>
+                           <p className='mt-1 ml-2 text-[16px]'>1 queen bed</p>
+                        </div>
+                        <div className='w-[400px] h-full'>
+                           <img src={Pic1} alt="" className='rounded-lg' />
+                           <p className='mt-4 ml-2 font-medium text-[17px]'>
+                              Bedroom 1
+                           </p>
+                           <p className='mt-1 ml-2 text-[16px]'>1 queen bed</p>
+                        </div>
+                     </div>
+                  </div>
                </div>
 
                {/* Price Card */}
-               <div className="border rounded-lg p-4 shadow-sm w-80">
+
+               <div className="border rounded-lg p-4 shadow-sm w-80 sticky h-[460px]">
                   <div className="flex justify-between items-start mb-4">
                      <div>
                         <span className="font-semibold text-lg">$44</span>
@@ -77,22 +186,10 @@ function AccomDetail() {
 
                   {/* overflow-hidden */}
                   <div className="border rounded-lg mb-4">
-                     <div className="grid grid-cols-2 divide-x">
-                        <div className="p-2">
-                           <div className="text-xs font-bold">CHECK-IN</div>
-                           <div className="text-sm">4/29/2023</div>
-                        </div>
-                        <div className="p-2">
-                           <div className="text-xs font-bold">CHECKOUT</div>
-                           <div className="text-sm">5/4/2023</div>
-                        </div>
-                     </div>
-
+                     <CalendarBooking />
                      <div className="border-t p-2">
-                        {/* <p className="text-xs font-semibold">GUESTS</p> */}
                         <GuestDropdown />
                      </div>
-
                   </div>
 
                   <button className="w-full bg-rose-500 text-white py-3 rounded-lg font-medium mb-4">
@@ -126,8 +223,12 @@ function AccomDetail() {
             </div>
 
             {/* Host Info */}
-            <div className="flex items-center mt-6 border-t pt-6">
-               <div className="w-12 h-12 rounded-full bg-gray-300 mr-3"></div>
+            <div className="flex items-center mt-6 border-t pt-6 gap-4">
+               <div className="avatar">
+                  <div className="w-14 rounded-full">
+                     <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                  </div>
+               </div>
                <div>
                   <div className="font-medium">Hosted by Nathan</div>
                   <div className="text-sm text-gray-500">Joined in October 2016</div>
@@ -172,7 +273,7 @@ function AccomDetail() {
 
             {/* Calendar */}
             <div className="mt-8">
-               <h2 className="text-xl font-medium mb-4">8 nights in Villefranche</h2>
+               {/* <h2 className="text-xl font-medium mb-4">8 nights in Villefranche</h2>
                <div className="text-sm text-gray-500 mb-4">Apr 29, 2023 - May 7, 2023</div>
 
                <div className="flex space-x-8">
@@ -211,7 +312,8 @@ function AccomDetail() {
                         ))}
                      </div>
                   </div>
-               </div>
+               </div> */}
+
             </div>
 
             {/* Reviews */}
@@ -220,48 +322,58 @@ function AccomDetail() {
                   <span className="text-xl font-medium">★ 4.87 · 157 reviews</span>
                </div>
 
-               <div className="grid grid-cols-2 gap-8 mb-8">
-                  <div className="space-y-1">
-                     <div className="flex justify-between">
-                        <span>Cleanliness</span>
-                        <div className="flex items-center">
-                           <div className="w-24 h-1 bg-gray-300 rounded-full mr-2">
-                              <div className="w-[90%] h-1 bg-gray-800 rounded-full"></div>
+               {/* className="grid grid-cols-2 gap-8 mb-8" */}
+               <div >
+                  <div className="flex items-center justify-center p-4 mb-4">
+                     <div className="bg-white p-6 w-[1900px] border-b border-t">
+                        <div className="flex items-center mb-6">
+                           <div className="mr-8">
+                              <h3 className="text-lg font-semibold mb-2">Overall rating</h3>
+                              <div className="space-y-1">
+                                 {[5, 4, 3, 2, 1].map((num) => (
+                                    <div key={num} className="flex items-center">
+                                       <div className={`w-14 h-1 bg-gray-300 rounded-r-full ${num === 5 ? 'bg-black' : ''}`}></div>
+                                       <span className="ml-2 text-sm">{num}</span>
+                                    </div>
+                                 ))}
+                              </div>
                            </div>
-                           <span>4.8</span>
-                        </div>
-                     </div>
-                     <div className="flex justify-between">
-                        <span>Accuracy</span>
-                        <div className="flex items-center">
-                           <div className="w-24 h-1 bg-gray-300 rounded-full mr-2">
-                              <div className="w-[95%] h-1 bg-gray-800 rounded-full"></div>
+                           <div className="grid grid-cols-6 gap-4 w-full">
+                              <RatingItem
+                                 title="Cleanliness"
+                                 value={ratings.cleanliness}
+                                 icon={<SprayCan size={24} />}
+                              />
+                              <RatingItem
+                                 title="Accuracy"
+                                 value={ratings.accuracy}
+                                 icon={<CheckCircle size={24} />}
+                              />
+                              <RatingItem
+                                 title="Check-in"
+                                 value={ratings.checkIn}
+                                 icon={<Key size={24} />}
+                              />
+                              <RatingItem
+                                 title="Communication"
+                                 value={ratings.communication}
+                                 icon={<MessageSquare size={24} />}
+                              />
+                              <RatingItem
+                                 title="Location"
+                                 value={ratings.location}
+                                 icon={<MapPin size={24} />}
+                              />
+                              <RatingItem
+                                 title="Value"
+                                 value={ratings.value}
+                                 icon={<Tag size={24} />}
+                              />
                            </div>
-                           <span>4.9</span>
                         </div>
                      </div>
                   </div>
 
-                  <div className="space-y-1">
-                     <div className="flex justify-between">
-                        <span>Communication</span>
-                        <div className="flex items-center">
-                           <div className="w-24 h-1 bg-gray-300 rounded-full mr-2">
-                              <div className="w-[95%] h-1 bg-gray-800 rounded-full"></div>
-                           </div>
-                           <span>4.9</span>
-                        </div>
-                     </div>
-                     <div className="flex justify-between">
-                        <span>Location</span>
-                        <div className="flex items-center">
-                           <div className="w-24 h-1 bg-gray-300 rounded-full mr-2">
-                              <div className="w-[90%] h-1 bg-gray-800 rounded-full"></div>
-                           </div>
-                           <span>4.8</span>
-                        </div>
-                     </div>
-                  </div>
                </div>
 
                {/* Review Cards */}
