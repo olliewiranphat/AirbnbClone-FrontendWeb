@@ -6,7 +6,7 @@ import RecentOrders from "../../components/admin-page/admin-dashboard/RecentOrde
 
 function AdminDashboard() {
   return (
-    <div className="w-full min-h-screen bg-gray-100 p-6">
+    <div className="w-full min-h-screen bg-gray-100 p-4">
       {/* Header */}
       <h2 className="text-2xl font-bold text-gray-800 mb-4">Admin Dashboard</h2>
 

@@ -10,7 +10,7 @@ function AdminLayout() {
             <div className='fixed w-full z-50'>
                 <MainNavBar />
             </div>
-            <div className='pt-[11%] w-full flex gap-8'>
+            <div className='mx-2 pt-[11%] w-full flex gap-6'>
                 <AdminSidebar />
                 <div className='w-full'>
                     <Outlet />
