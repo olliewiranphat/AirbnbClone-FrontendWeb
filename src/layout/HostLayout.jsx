@@ -4,10 +4,10 @@ import { Outlet } from 'react-router'
 
 function HostLayout() {
     return (
-        <>HostLayout
+        <div>
             <Outlet/>
             <Footer />
-        </>
+        </div>
     )
 }
 
