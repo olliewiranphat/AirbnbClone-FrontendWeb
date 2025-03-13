@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import AirbnbLOGO from "../home-page/main-navbar/AirbnbLOGO";
 import HostNavProfile from "./HostNavProfile";
+import ReloadLink from "../../utils/ReloadLink";
 
 
 function HostNav() {
@@ -21,10 +22,11 @@ function HostNav() {
         <AirbnbLOGO/>
         {/* HOME/EXP */}
         <div className='flex gap-9 text-[17px] text-[#6a6a6a] justify-center flex-1 pl-32'>
-                    <button onClick={hdlClickHome} className={`${showEXP === false ? 'text-[#222222] strong' : ""}`}>DashBoard</button>
-                    <button onClick={hdlClickEXP} className={`${showEXP === true ? 'text-[#222222] strong' : ""}`}>Add your Home</button>
-                    <button>Massage</button>
-                    <button>Reservations</button>
+                    <ReloadLink to='/host-center'
+                    onClick={hdlClickHome} className={`${showEXP === false ? 'text-[#222222] strong' : ""}`}>Dashboard</ReloadLink>
+                    <ReloadLink to='/host-center/host/accommodations/add'
+                    onClick={hdlClickEXP} className={`${showEXP === true ? 'text-[#222222] strong' : ""}`}>Listing</ReloadLink>
+                    <button onClick={hdlClickEXP} className={`${showEXP === true ? 'text-[#222222] strong' : ""}`}>Massage</button>
                 </div>
         {/* USER Nav */}
         <HostNavProfile/>
