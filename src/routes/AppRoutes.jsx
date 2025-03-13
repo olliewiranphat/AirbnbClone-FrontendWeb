@@ -21,8 +21,6 @@ import Booking from "../pages/user-pages/Booking"
 import BookingHistory from "../pages/user-pages/BookingHistory"
 import Messages from "../pages/user-pages/Messages"
 import Notifications from "../pages/user-pages/Notifications"
-import Payment from "../pages/user-pages/Payment"
-import PaymentComplete from "../pages/user-pages/PaymentComplete"
 import Trips from "../pages/user-pages/Trips"
 import UserAccount from "../pages/user-pages/UserAccount"
 import WishLists from "../pages/user-pages/WishLists"
@@ -30,6 +28,10 @@ import ProtectRoutes from "./ProtectRoutes"
 import { Route, Routes } from "react-router"
 import HostAccom from "../pages/host-pages/HostAccom"
 import AllUsers from "../pages/admin-pages/AllUsers"
+import Payment from "../pages/user-pages/payment/Payment"
+import PaymentSuccess from "../pages/user-pages/payment/PaymentSuccess"
+import PaymentCancel from "../pages/user-pages/payment/PaymentCancel"
+import PaymentComplete from "../pages/user-pages/payment/PaymentComplete"
 
 
 function AppRoutes() {
@@ -63,6 +65,8 @@ function AppRoutes() {
 
                 {/* PAYMENT */}
                 <Route path='booking/payment' element={<Payment />} />
+                <Route path='booking/payment-success' element={<PaymentSuccess />} />
+                <Route path='booking/payment-cancel' element={<PaymentCancel />} />
                 {/* <Route path='booking/payment-complete/:session' element={<PaymentComplete />} /> */}
                 <Route path='booking/payment-complete' element={<PaymentComplete />} />
             </Route>

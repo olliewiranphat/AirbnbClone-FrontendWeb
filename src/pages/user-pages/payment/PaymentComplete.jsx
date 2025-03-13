@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router'
-import SwipeCards from '../SwipCards';
+import SwipeCards from '../../SwipCards';
 
 function PaymentComplete() {
 
