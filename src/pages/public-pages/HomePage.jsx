@@ -8,7 +8,7 @@ import MainIcons from '../../components/home-page/MainIcons'
 function HomePage() {
     return (
         <>
-            <MainIcons />
+            {/* <MainIcons /> */}
             <AccomLIST />
             <Inspiration />
         </>

@@ -72,7 +72,7 @@ function AppRoutes() {
             </Route>
 
             {/* HOST */}
-            <Route path='host-center' element={<ProtectRoutes el={<HostLayout />} allows={["HOST"]} />}>
+            <Route path='host-center' element={<HostLayout />} >
                 <Route index element={<HostDashboard />} />
                 <Route path='host/accommodations' element={<HostAccom />} />
                 <Route path='host/accommodations/add' element={<AddAccom />} />

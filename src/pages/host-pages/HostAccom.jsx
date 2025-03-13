@@ -1,8 +1,15 @@
 import React from 'react'
+import HostNav from '../../components/homehost-page/HostNav'
 
 function HostAccom() {
     return (
-        <div>HostAccom</div>
+        <div>
+            {/* Nav */}
+            <div><HostNav/></div>
+            {/* content */}
+            
+
+        </div>
     )
 }
 
