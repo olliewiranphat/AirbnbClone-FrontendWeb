@@ -4,34 +4,8 @@ import GuestDropdown from '../GuestDropdown'
 import CalendarBooking from '../CalendarBooking'
 import Pic1 from "../../../image/bg-01.jpg"
 import Pic2 from "../../../image/bg-payment.jpg"
-
-import {
-   SprayCan,
-   CheckCircle,
-   Key,
-   MessageSquare,
-   MapPin,
-   Tag,
-} from 'lucide-react';
-
-const ratings = {
-   cleanliness: 5.0,
-   accuracy: 5.0,
-   checkIn: 5.0,
-   communication: 5.0,
-   location: 4.9,
-   value: 5.0,
-};
-
-function RatingItem({ title, value, icon }) {
-   return (
-      <div className="flex flex-col border-l-2">
-         <div className="mb-2">{icon}</div>
-         <h4 className="text-sm font-semibold">{title}</h4>
-         <p className="text-lg font-bold">{value}</p>
-      </div>
-   );
-}
+import HostCard from '../HostCard'
+import RatingCard from '../Rating'
 
 function AccomDetail() {
 
@@ -170,7 +144,6 @@ function AccomDetail() {
                </div>
 
                {/* Price Card */}
-
                <div className="border rounded-lg p-4 shadow-sm w-80 sticky h-[460px]">
                   <div className="flex justify-between items-start mb-4">
                      <div>
@@ -192,7 +165,10 @@ function AccomDetail() {
                      </div>
                   </div>
 
-                  <button className="w-full bg-rose-500 text-white py-3 rounded-lg font-medium mb-4">
+                  {/* <button className="w-full bg-rose-500 text-white py-3 rounded-lg font-medium mb-4">
+                     Reserve
+                  </button> */}
+                  <button className="btn btn-secondary w-full bg-rose-500 text-white py-4 rounded-lg font-medium mb-4">
                      Reserve
                   </button>
 
@@ -324,63 +300,18 @@ function AccomDetail() {
 
                {/* className="grid grid-cols-2 gap-8 mb-8" */}
                <div >
-                  <div className="flex items-center justify-center p-4 mb-4">
-                     <div className="bg-white p-6 w-[1900px] border-b border-t">
-                        <div className="flex items-center mb-6">
-                           <div className="mr-8">
-                              <h3 className="text-lg font-semibold mb-2">Overall rating</h3>
-                              <div className="space-y-1">
-                                 {[5, 4, 3, 2, 1].map((num) => (
-                                    <div key={num} className="flex items-center">
-                                       <div className={`w-14 h-1 bg-gray-300 rounded-r-full ${num === 5 ? 'bg-black' : ''}`}></div>
-                                       <span className="ml-2 text-sm">{num}</span>
-                                    </div>
-                                 ))}
-                              </div>
-                           </div>
-                           <div className="grid grid-cols-6 gap-4 w-full">
-                              <RatingItem
-                                 title="Cleanliness"
-                                 value={ratings.cleanliness}
-                                 icon={<SprayCan size={24} />}
-                              />
-                              <RatingItem
-                                 title="Accuracy"
-                                 value={ratings.accuracy}
-                                 icon={<CheckCircle size={24} />}
-                              />
-                              <RatingItem
-                                 title="Check-in"
-                                 value={ratings.checkIn}
-                                 icon={<Key size={24} />}
-                              />
-                              <RatingItem
-                                 title="Communication"
-                                 value={ratings.communication}
-                                 icon={<MessageSquare size={24} />}
-                              />
-                              <RatingItem
-                                 title="Location"
-                                 value={ratings.location}
-                                 icon={<MapPin size={24} />}
-                              />
-                              <RatingItem
-                                 title="Value"
-                                 value={ratings.value}
-                                 icon={<Tag size={24} />}
-                              />
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-
+                  <RatingCard />
                </div>
 
                {/* Review Cards */}
-               <div className="grid grid-cols-2 gap-8">
+               <div className="grid grid-cols-2 gap-8 mt-7">
                   <div className="mb-6">
-                     <div className="flex items-center mb-2">
-                        <div className="w-10 h-10 rounded-full bg-gray-300 mr-2"></div>
+                     <div className="flex items-center mb-2 gap-3">
+                        <div className="avatar">
+                           <div className="w-14 rounded-full">
+                              <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                           </div>
+                        </div>
                         <div>
                            <div className="font-medium">Daniel</div>
                            <div className="text-sm text-gray-500">October 2022</div>
@@ -391,8 +322,12 @@ function AccomDetail() {
                   </div>
 
                   <div className="mb-6">
-                     <div className="flex items-center mb-2">
-                        <div className="w-10 h-10 rounded-full bg-gray-300 mr-2"></div>
+                     <div className="flex items-center mb-2 gap-3">
+                        <div className="avatar">
+                           <div className="w-14 rounded-full">
+                              <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                           </div>
+                        </div>
                         <div>
                            <div className="font-medium">Emma</div>
                            <div className="text-sm text-gray-500">September 2022</div>
@@ -410,8 +345,8 @@ function AccomDetail() {
 
             {/* Location */}
             <div className="mt-8 border-t pt-8">
-               <h2 className="text-xl font-medium mb-4">Where you'll be</h2>
-               <div className="text-sm mb-4">Villefranche-sur-Mer, Provence-Alpes-Côte d'Azur, France</div>
+               <h2 className="text-2xl font-semibold mb-4">Where you'll be</h2>
+               <div className="text-m mb-4">Villefranche-sur-Mer, Provence-Alpes-Côte d'Azur, France</div>
 
                <div className="h-80 bg-gray-200 rounded-lg mb-4 relative">
                   <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-white rounded-full p-2">
@@ -425,7 +360,7 @@ function AccomDetail() {
 
             {/* Host */}
             <div className="mt-8 border-t pt-8">
-               <h2 className="text-xl font-medium mb-4">Meet your host</h2>
+               {/* <h2 className="text-2xl font-semibold mb-4">Meet your host</h2>
 
                <div className="border rounded-lg p-6 flex">
                   <div className="mr-6">
@@ -455,7 +390,8 @@ function AccomDetail() {
                         <span>Response time: within an hour</span>
                      </div>
                   </div>
-               </div>
+               </div> */}
+               <HostCard />
             </div>
 
             {/* Things to know */}
