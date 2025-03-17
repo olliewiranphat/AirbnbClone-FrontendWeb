@@ -5,7 +5,7 @@ import SwipeCards from '../SwipCards';
 function PaymentComplete() {
 
     const { session } = useParams()
-
+    console.log("BAMBAM BA")
     const checkSession = async () => {
         if (!session) return;
         try {
