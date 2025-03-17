@@ -25,8 +25,7 @@ function ContentStayit() {
                 </div>
             </div>
 
-<<<<<<< HEAD
-    {/* new */ }
+            {/* new */}
             <h2 className='text-2xl font-bold mb-4'>Need a place where you can host?
                 Try Airbnb-friendly apartments</h2>
             <div>Photo2</div>
@@ -39,11 +38,6 @@ function ContentStayit() {
             <div><TableCheck /></div>
         </div >
     )
-=======
-        <div><TableCheck/></div>
-    </div>
-  )
->>>>>>> 9c76bc69459f289dfdb68a9398baebf96dfae61f
 }
 
 export default ContentStayit
