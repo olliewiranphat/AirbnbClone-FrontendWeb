@@ -4,7 +4,7 @@ import { CorrectIcon, WrongIcon } from './IndexIcon'
 function TableCheck() {
   return (
     <div>
-        <h1>Stayzy it with top‑to‑bottom protection</h1>
+        <h1 className='text-2xl font-bold mb-4'>Stayzy it with top‑to‑bottom protection</h1>
     {/* table */}
     <div className="overflow-x-auto">
   <table className="table">
