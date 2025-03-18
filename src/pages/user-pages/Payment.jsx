@@ -12,6 +12,7 @@ function Payment() {
       const token = await getToken()
       const resPayment = await payment(token, userCart)
       console.log('resPayment', resPayment);
+      console.log("PaymentPage")
       return resPayment.data.clientSecret
    })
    const options = { fetchClientSecret } //= resPayment.data.clientSecret
