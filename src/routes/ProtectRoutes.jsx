@@ -5,10 +5,12 @@ import { Loader } from "lucide"
 function ProtectRoutes({ el, allows }) {
 
     const { user } = useUser()
-    // console.log('user', user);
+    // // console.log('user', user);
 
     const role = user?.publicMetadata.role
-    // console.log('role', role);
+    // const role = "ADMIN"
+    
+    // // console.log('role', role);
 
 
     const { isSignedIn, isLoaded } = useAuth()

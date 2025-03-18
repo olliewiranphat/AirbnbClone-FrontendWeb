@@ -108,14 +108,14 @@ function AccomLIST() {
             </div>
 
             {/* ส่วนปุ่มด้านล่าง */}
-            <div className='flex flex-col gap-4 items-center'>
-                <span className='text-[18px] text-[#222222] font-semibold'>
-                    Continue exploring amazing views
-                </span>
+            {/* <div className='flex flex-col gap-4 items-center'>
+                <span className='text-[18px] text-[#222222] font-semibold'> */}
+                    {/* Continue exploring amazing views */}
+                {/* </span>
                 <button className='rounded-lg py-3 px-6 text-white bg-[#222222] hover:bg-black duration-300 cursor-pointer'>
                     Show more
-                </button>
-            </div>
+                </button> */}
+            {/* </div> */}
         </>
     );
 }

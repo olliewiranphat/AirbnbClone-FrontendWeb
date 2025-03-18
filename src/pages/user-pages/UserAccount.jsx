@@ -1,63 +1,36 @@
 import React, { useState } from "react";
 import { CameraIcon, LockClosedIcon, PencilIcon, EyeIcon } from "@heroicons/react/outline";
-import axios from "axios";
 
 function UserAccount() {
-    const [open, setOpen] = useState(false); // State สำหรับควบคุมการเปิด/ปิด Modal
-    const [dialogType, setDialogType] = useState(""); // State สำหรับระบุว่าเป็น Add หรือ Edit
-    const [formData, setFormData] = useState(""); // State สำหรับข้อมูลในฟอร์ม
-    const [profilePicture, setProfilePicture] = useState(""); // URL ของรูปโปรไฟล์
-    const [imageFile, setImageFile] = useState(null); // ไฟล์รูปภาพที่เลือก
+    const [profilePicture, setProfilePicture] = useState("");
+    const [imageFile, setImageFile] = useState(null);
+    const [showEditModal, setShowEditModal] = useState(false);
+    const [editField, setEditField] = useState("");
+    const [editValue, setEditValue] = useState("");
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
 
-    // ฟังก์ชันเปิด Modal
-    const handleOpen = (type, value) => {
-        setDialogType(type);
-        setFormData(value || "");
-        setOpen(true);
-    };
 
-    // ฟังก์ชันปิด Modal
-    const handleClose = () => {
-        setOpen(false);
-        setFormData("");
-    };
-
-    // ฟังก์ชัน Submit ข้อมูล
-    const handleSubmit = () => {
-        console.log(dialogType === "Add" ? "Adding:" : "Editing:", formData);
-        handleClose();
-    };
-
-    // ฟังก์ชันจัดการการเลือกไฟล์รูปภาพ
     const handleFileChange = (e) => {
         const file = e.target.files[0];
         if (file) {
             setImageFile(file);
-            setProfilePicture(URL.createObjectURL(file)); 
+            setProfilePicture(URL.createObjectURL(file));
         }
     };
 
-    // ฟังก์ชัน Upload รูปภาพไปยัง API
-    const handleUpload = async () => {
-        if (!imageFile) return;
+    const handleEditClick = (field, value) => {
+        setEditField(field);
+        setEditValue(value);
+        setShowEditModal(true);
+    };
 
-        const formData = new FormData();
-        formData.append("profilePicture", imageFile);
-
-        try {
-            const response = await axios.post("https://api.example.com/profile/upload", formData, {
-                headers: { "Content-Type": "multipart/form-data" },
-            });
-            alert("Image uploaded successfully!");
-            setProfilePicture(response.data.profilePicture); // อัปเดต URL รูปภาพจาก API
-        } catch (error) {
-            console.error("Error uploading image:", error);
-        }
+    const handleSaveEdit = () => {
+        console.log(`Saving ${editField}: ${editValue}`);
+        setShowEditModal(false);
     };
 
     return (
         <div className="min-h-screen bg-white px-10 py-10">
-            {/* Header */}
             <div className="max-w-[1360px] mx-auto mb-8">
                 <h1 className="text-3xl font-semibold">Personal info</h1>
                 <p className="text-gray-500 text-sm mt-2">
@@ -68,9 +41,8 @@ function UserAccount() {
                 </p>
             </div>
 
-            {/* Main Content */}
             <div className="max-w-[1360px] mx-auto flex gap-10">
-                {/* Profile Picture */}
+                {/* รูปโปรไฟล์ */}
                 <div className="flex-shrink-0 w-[150px] h-[150px] bg-gray-300 rounded-full flex items-center justify-center text-white text-[48px] font-bold relative overflow-hidden">
                     {profilePicture ? (
                         <img src={profilePicture} alt="Profile" className="w-full h-full object-cover" />
@@ -84,19 +56,7 @@ function UserAccount() {
                     </label>
                 </div>
 
-                {/* ปุ่ม Upload */}
-                {imageFile && (
-                    <div className="mt-4">
-                        <button
-                            onClick={handleUpload}
-                            className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
-                        >
-                            Save Profile Picture
-                        </button>
-                    </div>
-                )}
-
-                {/* Personal Info */}
+                {/* ข้อมูลส่วนตัว */}
                 <div className="flex-grow">
                     {[
                         { label: "Fullname", value: "Wathanyu Thirinat", action: "Edit" },
@@ -114,27 +74,106 @@ function UserAccount() {
                             </div>
                             <button
                                 className="text-sm text-blue-500 hover:text-blue-700"
-                                onClick={() => handleOpen(item.action, item.value)}
+                                onClick={() => handleEditClick(item.label, item.value)}
                             >
                                 {item.action}
                             </button>
                         </div>
                     ))}
+                    {/* ปุ่ม Delete Account */}
+                    <div className="mt-8">
+                    <button
+  className="bg-[#FF385C] text-white px-4 py-2 rounded-lg hover:bg-[#FF385C]/80 transition"
+  onClick={() => setShowDeleteModal(true)}
+>
+  Delete Account
+</button>
+
+
+                        {showDeleteModal && (
+                            <div
+                                style={{
+                                    position: "fixed",
+                                    top: 0,
+                                    left: 0,
+                                    right: 0,
+                                    bottom: 0,
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    zIndex: 1000,
+                                    backgroundColor: "rgba(255, 255, 255, 0.8)",
+                                }}
+                            >
+                                <div
+                                    style={{
+                                        backgroundColor: "#fff",
+                                        padding: "20px",
+                                        borderRadius: "10px",
+                                        boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+                                        maxWidth: "400px",
+                                        width: "100%",
+                                    }}
+                                >
+                                    <h2 style={{ fontSize: "18px", fontWeight: "bold", marginBottom: "10px" }}>
+                                        Delete Account
+                                    </h2>
+                                    <p style={{ fontSize: "14px", color: "#555", marginBottom: "20px" }}>
+                                        Are you sure you want to delete your account? This action cannot be undone.
+                                    </p>
+                                    <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                                        <button
+                                            onClick={() => setShowDeleteModal(false)}
+                                            style={{
+                                                padding: "8px 16px",
+                                                fontSize: "14px",
+                                                color: "#555",
+                                                backgroundColor: "#f5f5f5",
+                                                borderRadius: "5px",
+                                                border: "none",
+                                                marginRight: "10px",
+                                            }}
+                                        >
+                                            Cancel
+                                        </button>
+                                        <button
+                                            onClick={() => {
+                                                console.log("Account deleted");
+                                                setShowDeleteModal(false);
+                                            }}
+                                            style={{
+                                                padding: "8px 16px",
+                                                fontSize: "14px",
+                                                color: "#fff",
+                                                backgroundColor: "#e53e3e",
+                                                borderRadius: "5px",
+                                                border: "none",
+                                            }}
+                                        >
+                                            Delete Account
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
+
+                    </div>
                 </div>
 
-                {/* Help Section */}
+                {/* ส่วนช่วยเหลือ */}
                 <div className="flex-shrink-0 w-[300px] bg-gray-50 border border-gray-200 rounded-lg p-6 space-y-6">
                     {[
                         {
-                            title: "Why isn’t my info shown here?",
+                            title: "Why isn't my info shown here?",
                             description:
-                                "We’re hiding some account details to protect your identity.",
+                                "We're hiding some account details to protect your identity.",
                             icon: <LockClosedIcon className="w-6 h-6 text-pink-500" />,
                         },
                         {
                             title: "Which details can be edited?",
                             description:
-                                "Contact info and personal details can be edited. If this info was used to verify your identity, you’ll need to get verified again the next time you book – or to continue hosting.",
+                                "Contact info and personal details can be edited. If this info was used to verify your identity, you'll need to get verified again the next time you book – or to continue hosting.",
                             icon: <PencilIcon className="w-6 h-6 text-pink-500" />,
                         },
                         {
@@ -145,9 +184,7 @@ function UserAccount() {
                         },
                     ].map((item, index) => (
                         <div key={index} className="flex items-start space-x-4">
-                            {/* Icon */}
                             <div>{item.icon}</div>
-                            {/* Text */}
                             <div>
                                 <h3 className="text-sm font-medium text-gray-800">{item.title}</h3>
                                 <p className="text-sm text-gray-500">{item.description}</p>
@@ -157,48 +194,86 @@ function UserAccount() {
                 </div>
             </div>
 
-            {/* Modal */}
-            {open && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[1000]">
-                    <div className="bg-white rounded-lg w-[400px] p-[20px] shadow-lg relative">
-                        {/* Header */}
-                        <h2 className="text-lg font-semibold mb-[10px]">{dialogType}</h2>
-                        <button
-                            onClick={handleClose}
-                            className="absolute top-[10px] right-[10px] text-gray-500 hover:text-black"
-                        >
-                            ✕
-                        </button>
-                        <p className="text-sm text-gray-500 mb-[20px]">
-                            Update your {dialogType.toLowerCase()} below.{" "}
-                            <a href="#" className="text-blue-500 underline">
+            {/* Popup Edit Modal */}
+            {showEditModal && (
+                <div
+                    style={{
+                        position: "fixed",
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        zIndex: 1000,
+                        backgroundColor: "rgba(255, 255, 255, 0.8)", // โปร่งใส
+                    }}
+                >
+                    <div
+                        style={{
+                            backgroundColor: "#fff",
+                            padding: "20px",
+                            borderRadius: "10px",
+                            boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+                            maxWidth: "400px",
+                            width: "100%",
+                        }}
+                    >
+                        <h2 style={{ fontSize: "18px", fontWeight: "bold", marginBottom: "10px" }}>
+                            Edit
+                        </h2>
+                        <p style={{ fontSize: "14px", color: "#555", marginBottom: "20px" }}>
+                            Update your edit below.{" "}
+                            <a href="#" style={{ color: "#007BFF", textDecoration: "underline" }}>
                                 Learn more
                             </a>
                         </p>
 
-                        {/* Input Field */}
+                        {/* Input สำหรับแก้ไข */}
                         <input
                             type="text"
-                            placeholder={`${dialogType} (optional)`}
-                            value={formData}
-                            onChange={(e) => setFormData(e.target.value)}
-                            className="w-full border border-gray-300 rounded-lg px-[10px] py-[8px] mb-[20px]"
+                            value={editValue}
+                            onChange={(e) => setEditValue(e.target.value)}
+                            style={{
+                                width: "100%",
+                                padding: "8px",
+                                borderRadius: "5px",
+                                borderWidth: 1,
+                                borderColor: "#ddd",
+                                marginBottom: "20px",
+                            }}
                         />
 
-                        {/* Actions */}
-                        <div className="flex justify-between items-center">
+                        {/* ปุ่ม Save และ Cancel */}
+                        <div style={{ display: "flex", justifyContent: "space-between" }}>
+                            {/* ปุ่ม Cancel */}
                             <button
-                                onClick={handleClose}
-                                className="text-sm text-blue-500 hover:text-blue-700"
-                            >
-                                Cancel
-                            </button>
+                                onClick={() => setShowEditModal(false)}
+                                style={{
+                                    padding: "8px 16px",
+                                    fontSize: "14px",
+                                    color: "#555",
+                                    backgroundColor: "#f5f5f5",
+                                    borderRadius: "5px",
+                                    borderWidth: "0"
+                                }}
+                            >Cancel</button>
+
+                            {/* ปุ่ม Save */}
                             <button
-                                onClick={handleSubmit}
-                                className="bg-black text-white px-[20px] py-[8px] rounded-lg hover:bg-gray-800 transition"
-                            >
-                                Save
-                            </button>
+                                onClick={handleSaveEdit}
+                                style={{
+                                    padding: "8px 16px",
+                                    fontSize: "14px",
+                                    color: "#fff",
+                                    backgroundColor: "#000",
+                                    borderRadius: "5px",
+                                    borderWidth: "0"
+                                }}
+                            >Save</button>
+
+
                         </div>
                     </div>
                 </div>

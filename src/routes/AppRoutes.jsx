@@ -21,8 +21,6 @@ import Booking from "../pages/user-pages/Booking"
 import BookingHistory from "../pages/user-pages/BookingHistory"
 import Messages from "../pages/user-pages/Messages"
 import Notifications from "../pages/user-pages/Notifications"
-import Payment from "../pages/user-pages/Payment"
-import PaymentComplete from "../pages/user-pages/PaymentComplete"
 import Trips from "../pages/user-pages/Trips"
 import UserAccount from "../pages/user-pages/UserAccount"
 import WishLists from "../pages/user-pages/WishLists"
@@ -65,13 +63,15 @@ function AppRoutes() {
 
                 {/* PAYMENT */}
                 <Route path='booking/payment' element={<Payment />} />
+                <Route path='booking/payment-success' element={<PaymentSuccess />} />
+                <Route path='booking/payment-cancel' element={<PaymentCancel />} />
                 {/* <Route path='booking/payment-complete/:session' element={<PaymentComplete />} /> */}
                 <Route path='booking/payment-success' element={<PaymentSuccess />} />
                 <Route path='booking/payment-cancel' element={<PaymentCancel />} />
             </Route>
 
             {/* HOST */}
-            <Route path='host-center' element={<ProtectRoutes el={<HostLayout />} allows={["HOST"]} />}>
+            <Route path='host-center' element={<HostLayout />} >
                 <Route index element={<HostDashboard />} />
                 <Route path='host/accommodations' element={<HostAccom />} />
                 <Route path='host/accommodations/add' element={<AddAccom />} />
