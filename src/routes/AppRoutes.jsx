@@ -30,6 +30,8 @@ import ProtectRoutes from "./ProtectRoutes"
 import { Route, Routes } from "react-router"
 import HostAccom from "../pages/host-pages/HostAccom"
 import AllUsers from "../pages/admin-pages/AllUsers"
+import PaymentSuccess from "../pages/user-pages/PaymentSuccess"
+import PaymentCancel from "../pages/user-pages/PaymentCancel"
 
 
 function AppRoutes() {
@@ -64,7 +66,8 @@ function AppRoutes() {
                 {/* PAYMENT */}
                 <Route path='booking/payment' element={<Payment />} />
                 {/* <Route path='booking/payment-complete/:session' element={<PaymentComplete />} /> */}
-                <Route path='booking/payment-complete' element={<PaymentComplete />} />
+                <Route path='booking/payment-success' element={<PaymentSuccess />} />
+                <Route path='booking/payment-cancel' element={<PaymentCancel />} />
             </Route>
 
             {/* HOST */}
