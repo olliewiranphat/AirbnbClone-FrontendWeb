@@ -1,28 +1,20 @@
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
+import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+import { useState } from "react";
+
+const containerStyle = { width: "100%", height: "400px" };
+const center = { lat: 13.736717, lng: 100.523186 }; // พิกัดกรุงเทพฯ
 
 const MapComponent = () => {
-    // const [markers, setMarkers] = useState([]);
-    // const MapClickHandler = () => {
-    //     useMapEvents({
-    //       click(e) {
-    //         setMarkers([...markers, e.latlng]);
-    //       }
-    //     });
-    //     return null;
-    //   };
-    
-    const position = [13.736717, 100.523186]; // พิกัดกรุงเทพฯ
+    const [markers, setMarkers] = useState([center]);
+    console.log(markers);
+    const onMapClick = (e) => setMarkers([...markers, { lat: e.latLng.lat(), lng: e.latLng.lng() }]);
 
   return (
-    <MapContainer center={position} zoom={13} style={{ height: "400px", width: "100%" }}>
-      <TileLayer
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
-      <Marker position={position}>
-        <Popup>Bangkok</Popup>
-      </Marker>
-    </MapContainer>
+    <LoadScript googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
+      <GoogleMap onClick={onMapClick} mapContainerStyle={containerStyle} center={center} zoom={13}>
+      {markers.map((pos, i) => <Marker key={i} position={pos} />)}
+      </GoogleMap>
+    </LoadScript>
   );
 };
 

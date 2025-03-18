@@ -2,6 +2,8 @@ import React, { useRef, useState } from 'react'
 import HostNav from '../../components/homehost-page/HostNav'
 import axios from 'axios';
 
+
+//copypage not change
 function AddAccom() {
     const initInput = {
         title: "",
