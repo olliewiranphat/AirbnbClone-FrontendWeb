@@ -55,6 +55,7 @@ function HostAccom() {
                 <th>Quantity</th>
                 <th>Price</th>
                 <th>Address</th>
+                <th>Country</th>
                 <th></th>
             </tr>
             </thead>
@@ -67,7 +68,8 @@ function HostAccom() {
                     <td>{accom.typeOfAccommodation}</td>
                     <td>{accom.quantityrooms} Rooms</td>
                     <td>{accom.price}/night</td>
-                    <td>{accom.address}{accom.city}{accom.country}</td>
+                    <td>{accom.address}{accom.city}</td>
+                    <td>{accom.country}</td>
                     <td>
                     <button className='bg-blue-500 text-white p-2 rounded-md mr-2'
                         onClick={() => handleEdit(accom.id)}>Edit</button>
