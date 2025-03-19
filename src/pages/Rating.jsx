@@ -1,84 +1,53 @@
 import React from 'react';
-import {
-   SprayCan,
-   CheckCircle,
-   Key,
-   MessageSquare,
-   MapPin,
-   Tag,
-} from 'lucide-react';
+import { CheckCircle, MessageSquare, SprayCan, Map, Tag, KeyRound } from 'lucide-react';
 
-function RatingCard() {
-   const ratings = {
-      cleanliness: 5.0,
-      accuracy: 5.0,
-      checkIn: 5.0,
-      communication: 5.0,
-      location: 4.9,
-      value: 5.0,
-   };
+const RatingCard = () => {
+   const ratings = [
+      { category: 'Overall rating', score: 5.0, showBars: true },
+      { category: 'Cleanliness', score: 5.0, icon: <SprayCan size={20} className='w-9 h-9'/> },
+      { category: 'Accuracy', score: 5.0, icon: <CheckCircle size={20} className='w-9 h-9'/> },
+      { category: 'Check-in', score: 5.0, icon: <KeyRound size={20} className='w-9 h-9'/> },
+      { category: 'Communication', score: 5.0, icon: <MessageSquare size={20} className='w-9 h-9'/> },
+      { category: 'Location', score: 4.9, icon: <Map size={20} className='w-9 h-9'/> },
+      { category: 'Value', score: 5.0, icon: <Tag size={20} className='w-9 h-9'/> },
+   ];
 
    return (
-      <div className="flex items-center justify-center p-4">
-         <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-4xl">
-            <div className="flex items-center mb-6">
-               <div className="mr-8">
-                  <h3 className="text-lg font-semibold mb-2">Overall rating</h3>
-                  <div className="space-y-1">
-                     {[5, 4, 3, 2, 1].map((num) => (
-                        <div key={num} className="flex items-center">
-                           <div className={`w-8 h-1 bg-gray-300 rounded-r-full ${num === 5 ? 'bg-black' : ''}`}></div>
-                           <span className="ml-2 text-sm">{num}</span>
+      <div className="max-w-6xl mx-auto font-sans ">
+         <div className="flex flex-wrap items-center justify-between border-b pb-4">
+            {ratings.map((item, index) => (
+               <div key={index} className={`p-4  ${index > 0 ? 'border-l' : ''}`}>
+                  {item.showBars ? (
+                     <div className='flex flex-col gap-5'>
+                        <div className="text-lg font-medium">{item.category}</div>
+                        <div className="flex items-end">
+                           <div className="text-2xl font-bold mr-3">{item.score}</div>
+                           <div className="space-y-1 w-24">
+                              {[5, 4, 3, 2, 1].map(rating => (
+                                 <div key={rating} className="flex items-center">
+                                    <span className="w-3 text-right mr-1 text-xs">{rating}</span>
+                                    <div className="flex-grow h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                                       <div
+                                          className={`h-full bg-black rounded-full ${rating === 5 ? 'w-full' : 'w-0'}`}
+                                       ></div>
+                                    </div>
+                                 </div>
+                              ))}
+                           </div>
                         </div>
-                     ))}
-                  </div>
+                     </div>
+                  ) : (
+                     <div className="flex flex-col items-center justify-center text-center">
+                        <div className="text-xl font-semibold mb-1">{item.score}</div>
+                        <div className="mb-2 mt-2">{item.icon}</div>
+                        <div className="text-m font-semibold">{item.category}</div>
+                     </div>
+                  )}
                </div>
-               <div className="grid grid-cols-6 gap-4 w-full">
-                  <RatingItem
-                     title="Cleanliness"
-                     value={ratings.cleanliness}
-                     icon={<SprayCan size={24} />}
-                  />
-                  <RatingItem
-                     title="Accuracy"
-                     value={ratings.accuracy}
-                     icon={<CheckCircle size={24} />}
-                  />
-                  <RatingItem
-                     title="Check-in"
-                     value={ratings.checkIn}
-                     icon={<Key size={24} />}
-                  />
-                  <RatingItem
-                     title="Communication"
-                     value={ratings.communication}
-                     icon={<MessageSquare size={24} />}
-                  />
-                  <RatingItem
-                     title="Location"
-                     value={ratings.location}
-                     icon={<MapPin size={24} />}
-                  />
-                  <RatingItem
-                     title="Value"
-                     value={ratings.value}
-                     icon={<Tag size={24} />}
-                  />
-               </div>
-            </div>
+            ))}
          </div>
       </div>
    );
-}
-
-function RatingItem({ title, value, icon }) {
-   return (
-      <div className="text-center">
-         <div className="mb-2">{icon}</div>
-         <h4 className="text-sm font-semibold">{title}</h4>
-         <p className="text-lg font-bold">{value}</p>
-      </div>
-   );
-}
+};
 
 export default RatingCard;
