@@ -28,11 +28,17 @@ import ProtectRoutes from "./ProtectRoutes"
 import { Route, Routes } from "react-router"
 import HostAccom from "../pages/host-pages/HostAccom"
 import AllUsers from "../pages/admin-pages/AllUsers"
+<<<<<<< HEAD
 import Payment from "../pages/user-pages/payment/Payment"
 import PaymentSuccess from "../pages/user-pages/payment/PaymentSuccess"
 import PaymentCancel from "../pages/user-pages/payment/PaymentCancel"
 import AllAmenities from "../pages/admin-pages/AllAmenities"
 import AllAccomCate from "../pages/admin-pages/AllAccomCate"
+=======
+import PaymentSuccess from "../pages/user-pages/PaymentSuccess"
+import PaymentCancel from "../pages/user-pages/PaymentCancel"
+import Payment from "../pages/user-pages/Payment"
+>>>>>>> bc1d0332aa4ff020eee44c83a3b1eae848f43ad0
 
 
 function AppRoutes() {
@@ -50,7 +56,7 @@ function AppRoutes() {
             {/* Utill Pages */}
             <Route path="host/homes" element={<HostHomes />} />
             <Route path="giftcards" element={<GiftCards />} />
-            <Route path="host/experiences" element={<HostEXP />} />
+            {/* <Route path="host/experiences" element={<HostEXP />} /> */}
             <Route path="help" element={<HelpCenter />} />
 
             {/* USER - LOGINED: HomePage.jsx*/}
@@ -60,10 +66,16 @@ function AppRoutes() {
                 <Route path='booking' element={<Booking />} />
                 <Route path='trips' element={<BookingHistory />} />
                 <Route path='guest/messages' element={<Messages />} />
+<<<<<<< HEAD
                 <Route path='notifications' element={<Notifications />} />
+=======
+                {/* <Route path='notifications' element={<Notifications />} /> */}
+                <Route path='trips' element={<Trips />} />
+>>>>>>> bc1d0332aa4ff020eee44c83a3b1eae848f43ad0
 
                 {/* PAYMENT */}
-                <Route path='booking/payment' element={<Payment />} />
+                {/* <Route path='booking/payment' element={<Payment />} /> */}
+
                 <Route path='booking/payment-success' element={<PaymentSuccess />} />
                 <Route path='booking/payment-cancel' element={<PaymentCancel />} />
                 {/* <Route path='booking/payment-complete/:session' element={<PaymentComplete />} /> */}
@@ -73,8 +85,13 @@ function AppRoutes() {
 
             {/* HOST */}
             <Route path='host-center' element={<ProtectRoutes el={<HostLayout />} allows={["HOST"]} />} >
+<<<<<<< HEAD
                 <Route index element={<HostAccom />} />
                 <Route path="host/dashboard" element={<HostDashboard />} />
+=======
+                <Route index element={<HostDashboard />} />
+                <Route path='host/accommodations' element={<HostAccom />} />
+>>>>>>> bc1d0332aa4ff020eee44c83a3b1eae848f43ad0
                 <Route path='host/accommodations/add' element={<AddAccom />} />
                 <Route path='host/accommodations/update/:accommodationID' element={<UpdateAccom />} />
             </Route>

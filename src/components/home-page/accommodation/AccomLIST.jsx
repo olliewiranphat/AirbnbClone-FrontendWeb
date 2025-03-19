@@ -1,6 +1,8 @@
 import React from 'react';
 import AccomITEM from './AccomITEM';
+import { accommodations } from './accommodation.data';
 
+<<<<<<< HEAD
 function AccomLIST({ allAccommodatons }) {
 
     // ข้อมูลรายการที่พัก
@@ -91,13 +93,16 @@ function AccomLIST({ allAccommodatons }) {
 
 
 
+=======
+function AccomLIST() {
+>>>>>>> bc1d0332aa4ff020eee44c83a3b1eae848f43ad0
     return (
         <>
-            {/* ส่วนแสดงรายการ */}
             <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 px-[40px] py-6'>
-                {accommodations.map((item, index) => (
+                {accommodations.map((item) => (
                     <AccomITEM
-                        key={index}
+                        key={item.id}
+                        id={item.id}
                         image={item.image}
                         location={item.location}
                         rating={item.rating}
@@ -107,6 +112,7 @@ function AccomLIST({ allAccommodatons }) {
                     />
                 ))}
             </div>
+<<<<<<< HEAD
 
             {/* ส่วนปุ่มด้านล่าง */}
             {/* <div className='flex flex-col gap-4 items-center'>
@@ -117,6 +123,8 @@ function AccomLIST({ allAccommodatons }) {
                     Show more
                 </button> */}
             {/* </div> */}
+=======
+>>>>>>> bc1d0332aa4ff020eee44c83a3b1eae848f43ad0
         </>
     );
 }

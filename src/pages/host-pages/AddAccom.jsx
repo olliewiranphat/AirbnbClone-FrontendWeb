@@ -4,6 +4,7 @@ import axios from 'axios';
 import AccomStep1 from '../../components/homehost-page/AccomStep1';
 import AccomStep2 from '../../components/homehost-page/AccomStep2';
 import AccomStep3 from '../../components/homehost-page/AccomStep3';
+import { addAccommodation } from '../../api/accomApi';
 
 function AddAccom() {
     const initInput = {
@@ -48,7 +49,7 @@ function AddAccom() {
             return;
         }
           try {
-              const response = await axios.post('http://your-backend-api-url.com/accommodation', formData);
+              const response = await addAccommodation(formData);
               if (response.status === 200) {
                   alert('Accommodation added successfully');
                   setFormData(initInput); // Reset form
@@ -64,14 +65,14 @@ function AddAccom() {
          <div><HostNav/></div>
          {/* content */}
         <div className='flex  flex-col items-center'>
-        <div className='account font-bold text-2xl ml-8'>Create Your House</div>
+        <div className='account font-bold text-2xl ml-8 mt-10 mb-8'>Create Your House</div>
 
         {/* Timeline Progress */}
-            <div className='flex justify-between w-3/4 my-4'>
-                <div className={`w-1/3 text-center ${step >= 1 ? 'font-bold' : 'text-gray-400'}`}>Step 1</div>
-                <div className={`w-1/3 text-center ${step >= 2 ? 'font-bold' : 'text-gray-400'}`}>Step 2</div>
-                <div className={`w-1/3 text-center ${step >= 3 ? 'font-bold' : 'text-gray-400'}`}>Step 3</div>
-            </div>
+            <ul className='flex justify-center w-3/4 my-4 steps steps-horizontal'>
+                <li className={`w-[200px]  text-center step ${step >= 1 ? 'font-bold step step-secondary' : 'text-gray-400 step-neutral'}`}>Step 1</li>
+                <li className={`w-[200px]  text-center step ${step >= 2 ? 'font-bold step step-secondary' : 'text-gray-400 '}`}>Step 2</li>
+                <li className={`w-[200px] text-center step ${step >= 3 ? 'font-bold step step-secondary' : 'text-gray-400 '}`}>Step 3</li>
+            </ul>
                 
         {/* Render Step Components */}
             {step === 1 && <AccomStep1 />}
@@ -79,14 +80,15 @@ function AddAccom() {
             {step === 3 && <AccomStep3 />}
 
         {/* Navigation Buttons */}
-        <div className='flex mt-9 gap-2 w-[90%] justify-center'>
+        <div className='flex mt-9 gap-2 w-[90%] justify-around'>
             {step > 1 && (
             <button onClick={prevStep} className='px-4 py-2 bg-gray-400 text-white rounded hover:bg-gray-500'>Back</button>
             )}
             {step < totalSteps ? (
             <button onClick={nextStep} className='px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600'>Next</button>
             ) : (
-            <button type='submit' className='px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600'>Save</button>
+            <button type='submit'onSubmit={handleSubmit} 
+            onClick={handleSubmit} className='px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600'>Save</button>
             )}
         </div>
             

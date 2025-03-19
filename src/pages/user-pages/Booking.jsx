@@ -2,11 +2,51 @@ import React, { useState } from "react";
 import { Apple, Diamond, Facebook, Google } from "../../icon/Icon";
 import PhoneInput from "../PhoneInput";
 import { ChevronLeft } from "lucide-react";
+import { DateRange } from "react-date-range";
+import "react-date-range/dist/styles.css";
+import "react-date-range/dist/theme/default.css";
+import { format } from "date-fns";
+import GuestModal from "../GuestModal"; // Import the new component
 
 function Booking() {
-   // const [paymentOption, setPaymentOption] = React.useState('full');
    const [paymentOption, setPaymentOption] = useState('full');
-   // const [phoneNumber, setPhoneNumber] = React.useState('');
+   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
+   const [isGuestModalOpen, setIsGuestModalOpen] = useState(false);
+   const [selectionRange, setSelectionRange] = useState({
+      startDate: new Date(),
+      endDate: new Date(),
+      key: "selection",
+   });
+   const [guestDetails, setGuestDetails] = useState({
+      adults: 1,
+      children: 0,
+      infants: 0,
+      pets: 0
+   });
+
+   const handleSelect = (ranges) => {
+      setSelectionRange(ranges.selection);
+   };
+
+   const handleGuestSave = (newGuestDetails) => {
+      setGuestDetails(newGuestDetails);
+   };
+
+   // Calculate total guest count
+   const getTotalGuestCount = () => {
+      const total = guestDetails.adults + guestDetails.children;
+      let guestText = `${total} guest${total !== 1 ? 's' : ''}`;
+
+      if (guestDetails.infants > 0) {
+         guestText += `, ${guestDetails.infants} infant${guestDetails.infants !== 1 ? 's' : ''}`;
+      }
+
+      if (guestDetails.pets > 0) {
+         guestText += `, ${guestDetails.pets} pet${guestDetails.pets !== 1 ? 's' : ''}`;
+      }
+
+      return guestText;
+   };
 
    return (
       <div className="w-[1100px] mx-auto p-4 font-sans">
@@ -34,23 +74,82 @@ function Booking() {
                <div className="mb-6 mt-5">
                   <h2 className="mb-4 text-2xl font-semibold">Your trip</h2>
 
+                  {/* Date Range Picker */}
                   <div className="flex justify-between py-3 border-b">
                      <div>
                         <h3 className="font-medium">Dates</h3>
-                        <p className="text-gray-600">Apr 21 - 26</p>
+                        <p className="text-gray-600">
+                           {format(selectionRange.startDate, "MM/dd/yyyy")} -{" "}
+                           {format(selectionRange.endDate, "MM/dd/yyyy")}
+                        </p>
                      </div>
-                     <button className="text-gray-800 underline font-medium">Edit</button>
+                     <button
+                        className="text-gray-800 underline font-medium"
+                        onClick={() => setIsDatePickerOpen(!isDatePickerOpen)}
+                     >
+                        Edit
+                     </button>
                   </div>
+
+                  {isDatePickerOpen && (
+                     <div className="fixed inset-0 flex items-center justify-center bg-gray-300 bg-opacity-50 z-20">
+                        <div className="bg-white p-5 rounded-lg shadow-lg">
+                           <h2 className="text-xl font-semibold mb-4">Select Dates</h2>
+                           <DateRange
+                              ranges={[selectionRange]}
+                              onChange={handleSelect}
+                              moveRangeOnFirstSelection={false}
+                              rangeColors={["#ff385c"]}
+                           />
+                           <div className="flex justify-between mt-4">
+                              <button
+                                 className="text-gray-600 underline"
+                                 onClick={() =>
+                                    setSelectionRange({
+                                       startDate: new Date(),
+                                       endDate: new Date(),
+                                       key: "selection",
+                                    })
+                                 }
+                              >
+                                 Clear dates
+                              </button>
+                              <button
+                                 className="bg-rose-500 text-white py-2 px-4 rounded"
+                                 onClick={() => setIsDatePickerOpen(false)}
+                              >
+                                 Save
+                              </button>
+                           </div>
+                        </div>
+                     </div>
+                  )}
 
                   <div className="flex justify-between py-3 border-b">
                      <div>
                         <h3 className="font-medium">Guests</h3>
-                        <p className="text-gray-600">1 guest</p>
+                        <p className="text-gray-600">{getTotalGuestCount()}</p>
                      </div>
-                     <button className="text-gray-800 underline font-medium">Edit</button>
+                     <button
+                        className="text-gray-800 underline font-medium"
+                        onClick={() => setIsGuestModalOpen(true)}
+                     >
+                        Edit
+                     </button>
                   </div>
                </div>
 
+               {/* Rest of the component remains the same */}
+               {/* ... */}
+
+               {/* Guest Modal */}
+               <GuestModal
+                  isOpen={isGuestModalOpen}
+                  onClose={() => setIsGuestModalOpen(false)}
+                  onSave={handleGuestSave}
+               />
+
+               {/* Continue with the rest of your component */}
                <div className="mb-6">
                   <h2 className="mb-4 text-2xl font-semibold">Choose how to pay</h2>
 
@@ -99,9 +198,6 @@ function Booking() {
                      <a href="#" className="underline ml-1">Privacy Policy</a>
                   </p>
 
-                  {/* <button className="w-full bg-rose-500 text-white py-3 rounded-lg font-medium mb-4">
-                     Continue
-                  </button> */}
                   <button className="btn btn-secondary w-full h-12 bg-rose-500 text-white py-3 rounded-lg font-medium mb-4">Continue</button>
 
                   <div className="flex items-center justify-center mb-4">
@@ -128,8 +224,11 @@ function Booking() {
                </div>
             </div>
 
+            {/* Price details sidebar */}
             <div className="md:col-span-2">
                <div className="border rounded-xl p-4 sticky top-4">
+                  {/* Content of the sidebar remains the same */}
+                  {/* ... */}
                   <div className="flex mb-4">
                      <div className="w-24 h-20 bg-gray-200 rounded-lg mr-3"></div>
                      <div>
@@ -177,6 +276,8 @@ function Booking() {
          </div>
 
          <footer className="mt-12 pt-6 border-t text-sm text-gray-600">
+            {/* Footer content remains the same */}
+            {/* ... */}
             <div className="flex flex-wrap justify-between items-center">
                <div className="flex items-center space-x-2">
                   <span>© 2025 Airbnb, Inc.</span>
@@ -208,4 +309,5 @@ function Booking() {
       </div>
    );
 }
-export default Booking
+
+export default Booking;

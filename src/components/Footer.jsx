@@ -3,17 +3,19 @@ import ContentFooter from "./ContentFooter";
 import { useAuth, useUser } from "@clerk/clerk-react";
 
 function Footer() {
+<<<<<<< HEAD
     const { isSignedIn } = useAuth()
     // console.log(isSignedIn, isSignedIn);
 
     const [isOpen, setIsOpen] = useState(false); // State สำหรับควบคุมการเปิด/ปิด Modal
+=======
+    const [isOpen, setIsOpen] = useState(false); 
+>>>>>>> bc1d0332aa4ff020eee44c83a3b1eae848f43ad0
 
-    // ฟังก์ชันเปิด Modal
     const handleOpen = () => {
         setIsOpen(true);
     };
 
-    // ฟังก์ชันปิด Modal
     const handleClose = () => {
         setIsOpen(false);
     };

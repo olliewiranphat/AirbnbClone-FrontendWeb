@@ -1,5 +1,5 @@
 import { Bed, Grip, Heart, Share, Sofa, Toilet } from 'lucide-react'
-import React from 'react'
+import React, { useState } from 'react'
 import GuestDropdown from '../GuestDropdown'
 import CalendarBooking from '../CalendarBooking'
 import Pic1 from "../../../image/bg-01.jpg"
