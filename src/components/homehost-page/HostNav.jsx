@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import AirbnbLOGO from "../home-page/main-navbar/AirbnbLOGO";
 import HostNavProfile from "./HostNavProfile";
 import ReloadLink from "../../utils/ReloadLink";
+import { Link } from "react-router";
 
 
 function HostNav() {
-    // HomeNav/EXPNav
+  // Dashboard, Listing ,Massage
     const [activeTab, setActiveTab] = useState("Dashboard");
     const hdlTabClick = (tabName) => {
       setActiveTab(tabName);
@@ -18,12 +19,12 @@ function HostNav() {
         <AirbnbLOGO/>
         {/* Nav */}
         <div className='flex gap-9 text-[17px] text-[#6a6a6a] justify-center flex-1 pl-32'>
-                    <ReloadLink to="/host-center"
-                    onClick={() => hdlTabClick("Dashboard")} className={`${activeTab === "Dashboard" ? 'text-[#222222] strong' :"text-[#6a6a6a]"}`}>Dashboard</ReloadLink>
-                    <ReloadLink to='/host-center/host/accommodations/add'
-                    onClick={() => hdlTabClick("Listing")} className={`${activeTab === "Listing" ? 'text-[#222222] strong' : "text-[#6a6a6a]"}`}>Listing</ReloadLink>
-                    <ReloadLink to="/host-center"
-                     onClick={() => hdlTabClick("Massage")} className={`${activeTab === "Massage" ? 'text-[#222222] strong' : "text-[#6a6a6a]"}`}>Massage</ReloadLink>
+                    <Link to="/host-center"
+                    onClick={() => hdlTabClick("Dashboard")} className={`${activeTab === "Dashboard" ? 'text-[#222222] strong' :"text-[#6a6a6a]"}`}>Dashboard</Link>
+                    <Link to='/host-center/host/accommodations'
+                    onClick={() => hdlTabClick("Listing")} className={`${activeTab === "Listing" ? 'text-[#222222] strong' : "text-[#6a6a6a]"}`}>Listing</Link>
+                    <Link to="/host-center/host/message"
+                     onClick={() => hdlTabClick("Massage")} className={`${activeTab === "Massage" ? 'text-[#222222] strong' : "text-[#6a6a6a]"}`}>Massage</Link>
                 </div>
         {/* USER Nav */}
         <HostNavProfile/>
