@@ -1,9 +1,106 @@
-import React from 'react'
+import React, {  useState } from 'react'
+import HostNav from '../../components/homehost-page/HostNav'
+import axios from 'axios';
+import AccomStep1 from '../../components/homehost-page/AccomStep1';
+import AccomStep2 from '../../components/homehost-page/AccomStep2';
+import AccomStep3 from '../../components/homehost-page/AccomStep3';
 
 function AddAccom() {
-    return (
-        <div>AddAccom</div>
-    )
+    const initInput = {
+        title: "",
+        description: "",
+        typeOfAccom: "",
+        img:[],
+        availQTY: "",
+        numBedrooms: "",
+        numBathrooms: "",
+        maxGuests: "",
+        pricePerNight: "",
+        addressDetail: "",
+        city: "",
+        country: "",
+        latitude: "",
+        longitude: "",
+      };
+    const [formData, setFormData] = useState(initInput);
+
+    const handleChange = (e) => {
+          const { name, value } = e.target;
+          setFormData({ ...formData, [name]: value });
+      };
+      
+      const [step, setStep] = useState(1);
+      const totalSteps = 3;
+      
+      const nextStep = () => {
+          if (step < totalSteps) setStep(step + 1);
+      };
+  
+      const prevStep = () => {
+          if (step > 1) setStep(step - 1);
+      };
+
+    
+      const handleSubmit = async (e) => {
+          e.preventDefault();
+          if (!formData.title || !formData.description || !formData.typeofAccommodation || formData.img.length === 0) {
+            alert("Please fill in all required fields.");
+            return;
+        }
+          try {
+              const response = await axios.post('http://your-backend-api-url.com/accommodation', formData);
+              if (response.status === 200) {
+                  alert('Accommodation added successfully');
+                  setFormData(initInput); // Reset form
+              }
+          } catch (err) {
+              console.error('Error adding accommodation:', err);
+          }
+      };
+
+  return (
+    <div className='h-full w-full flex flex-col  gap-2 p-5 mb-20'>
+         {/* Nav */}
+         <div><HostNav/></div>
+         {/* content */}
+        <div className='flex  flex-col items-center'>
+        <div className='account font-bold text-2xl ml-8'>Create Your House</div>
+
+        {/* Timeline Progress */}
+            <div className='flex justify-between w-3/4 my-4'>
+                <div className={`w-1/3 text-center ${step >= 1 ? 'font-bold' : 'text-gray-400'}`}>Step 1</div>
+                <div className={`w-1/3 text-center ${step >= 2 ? 'font-bold' : 'text-gray-400'}`}>Step 2</div>
+                <div className={`w-1/3 text-center ${step >= 3 ? 'font-bold' : 'text-gray-400'}`}>Step 3</div>
+            </div>
+                
+        {/* Render Step Components */}
+            {step === 1 && <AccomStep1 />}
+            {step === 2 && <AccomStep2 />}
+            {step === 3 && <AccomStep3 />}
+
+        {/* Navigation Buttons */}
+        <div className='flex mt-9 gap-2 w-[90%] justify-center'>
+            {step > 1 && (
+            <button onClick={prevStep} className='px-4 py-2 bg-gray-400 text-white rounded hover:bg-gray-500'>Back</button>
+            )}
+            {step < totalSteps ? (
+            <button onClick={nextStep} className='px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600'>Next</button>
+            ) : (
+            <button type='submit' className='px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600'>Save</button>
+            )}
+        </div>
+            
+            
+            {/* <form className=' mt-4' onSubmit={handleSubmit}> */}
+
+        {/* submit
+            <div className='flex mt-9 gap-2 w-[90%] justify-center'>
+                <button type='submit' className='transition-transform duration-300  hover:scale-125 px-4 py-2 my-3 rounded-sm bg-[#0a1421] text-white hover:bg-[#FF385C] hover:text-black hover:duration-300'>Save</button>
+            </div> */}
+        {/* </form> */}
+        </div>
+    </div>
+  );
 }
 
-export default AddAccom
+export default AddAccom;
