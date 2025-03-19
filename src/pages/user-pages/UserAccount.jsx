@@ -158,7 +158,7 @@ function UserAccount() {
                             className="bg-[#FF385C] text-white px-4 py-2 rounded-lg hover:bg-[#FF385C]/80 transition"
                             onClick={() => setShowDeleteModal(true)}
                         >
-                            Delete Account
+                            Inactive Account
                         </button>
                         {showDeleteModal && (
                             <div
@@ -186,7 +186,7 @@ function UserAccount() {
                                     }}
                                 >
                                     <h2 style={{ fontSize: "18px", fontWeight: "bold", marginBottom: "10px" }}>
-                                        Delete Account
+                                        InActive Account
                                     </h2>
                                     <p style={{ fontSize: "14px", color: "#555", marginBottom: "20px" }}>
                                         Are you sure you want to delete your account? This action cannot be undone.
@@ -217,7 +217,7 @@ function UserAccount() {
                                                 border: "none",
                                             }}
                                         >
-                                            Delete Account
+                                            Inactive Account
                                         </button>
                                     </div>
                                 </div>

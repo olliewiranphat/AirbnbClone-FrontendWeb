@@ -30,6 +30,7 @@ import HostAccom from "../pages/host-pages/HostAccom"
 import AllUsers from "../pages/admin-pages/AllUsers"
 import PaymentSuccess from "../pages/user-pages/PaymentSuccess"
 import PaymentCancel from "../pages/user-pages/PaymentCancel"
+import Payment from "../pages/user-pages/Payment"
 
 
 function AppRoutes() {
@@ -47,7 +48,7 @@ function AppRoutes() {
             {/* Utill Pages */}
             <Route path="host/homes" element={<HostHomes />} />
             <Route path="giftcards" element={<GiftCards />} />
-            <Route path="host/experiences" element={<HostEXP />} />
+            {/* <Route path="host/experiences" element={<HostEXP />} /> */}
             <Route path="help" element={<HelpCenter />} />
 
             {/* USER */}
@@ -58,7 +59,7 @@ function AppRoutes() {
                 <Route path='booking' element={<Booking />} />
                 <Route path='booking-history' element={<BookingHistory />} />
                 <Route path='guest/messages' element={<Messages />} />
-                <Route path='notifications' element={<Notifications />} />
+                {/* <Route path='notifications' element={<Notifications />} /> */}
                 <Route path='trips' element={<Trips />} />
 
                 {/* PAYMENT */}

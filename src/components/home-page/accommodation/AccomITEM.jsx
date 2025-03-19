@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Heart, ChevronLeft, ChevronRight, Star } from 'lucide-react';
 import useWishlistStore from "../../../store/wishlistStore";
+import {useAuth } from '@clerk/clerk-react'
 
 function AccomITEM({ id, image, location, rating, stayDetails, dateRange, price }) {
     const [isHovered, setIsHovered] = useState(false);
     const [currentSlide, setCurrentSlide] = useState(0);
     const { wishlist, toggleWishlistItem } = useWishlistStore();
+    const {getToken} = useAuth()
 
     const isLiked = wishlist.some((item) => item.id === id);
 
@@ -17,7 +19,8 @@ function AccomITEM({ id, image, location, rating, stayDetails, dateRange, price 
         setCurrentSlide((prev) => (prev > 0 ? prev - 1 : prev));
     };
 
-    const handleToggleHeart = () => {
+    const handleToggleHeart = async () => {
+        const token = await getToken()
         toggleWishlistItem({ 
             id, 
             image, 
@@ -26,7 +29,7 @@ function AccomITEM({ id, image, location, rating, stayDetails, dateRange, price 
             stayDetails, 
             dateRange, 
             price 
-        });
+        },token);
         console.log("Item added to wishlist:", { id, image, location, rating, stayDetails, dateRange, price });
     };
 

@@ -10,7 +10,8 @@ const useWishlistStore = create(
         status: 'idle',
         error: null,
   
-        toggleWishlistItem: async (item) => {
+        toggleWishlistItem: async (item,token) => {
+            
           const originalState = get().wishlist;
           set(
             produce((state) => {
@@ -24,17 +25,16 @@ const useWishlistStore = create(
           );
   
           try {
-            await get().createUnlistWishlist(item);
+            await get().actionCreateUnlistWishlist(token, item);
           } catch (error) {
             console.error('Error syncing with server:', error);
             set({ wishlist: originalState, error: error.message });
           }
         },
   
-        createUnlistWishlist: async (item) => {
+        actionCreateUnlistWishlist: async (token,item) => {
           try {
             set({ status: 'loading' });
-            const token = localStorage.getItem('authToken');
             console.log('Token retrieved in createUnlistWishlist:', token ? 'Token found' : 'Token not found');
             if (!token) throw new Error('Authentication token not found');
   
