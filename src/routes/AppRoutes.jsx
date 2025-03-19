@@ -62,7 +62,6 @@ function AppRoutes() {
                 <Route path='trips' element={<Trips />} />
 
                 {/* PAYMENT */}
-                <Route path='booking/payment' element={<Payment />} />
                 <Route path='booking/payment-success' element={<PaymentSuccess />} />
                 <Route path='booking/payment-cancel' element={<PaymentCancel />} />
                 {/* <Route path='booking/payment-complete/:session' element={<PaymentComplete />} /> */}
