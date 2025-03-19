@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-
+import { uploadImage } from "../../api/accomApi";
+import { useAuth } from "@clerk/clerk-react";
 
 function AccomStep1() {
+    const {getToken}=useAuth()
     const initInput = {
         title: "",
         description: "",
@@ -19,37 +21,59 @@ function AccomStep1() {
         longitude: "",
           };
     const [formData, setFormData] = useState(initInput);
+    const [uploading, setUploading] = useState(false);
+    const [uploadError, setUploadError] = useState(null);
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
+        console.log(e.target.value  )
     };
-    const handleImagesChange = (images) => {
-        // const files = Array.from(e.target.files);
-        // setFormData({ ...formData, img: [...formData.img, ...files] });
-        setFormData({ ...formData, img: images });
+
+    const handleImagesChange = async (e) => {
+        setUploading(true);
+        setUploadError(null);
+        const files = Array.from(e.target.files);
+        let uploadedUrls = [];
+
+        for (const file of files) {
+           
+                const token = await getToken();
+                console.log(token);
+                const imageUrl = await uploadImage(token,file);
+                if (imageUrl) uploadedUrls.push(imageUrl);
+                console.log(uploadedUrls);
+        }
+
+        setFormData((prevData) => ({ ...prevData, img: [...prevData.img, ...uploadedUrls] }));
+        setUploading(false);
     };
-    const handleRemoveImage = (index) => {
-        const newImages = [...formData.img];
-        newImages.splice(index, 1); // ลบรูปที่เลือก
-        setFormData({ ...formData, img: newImages });
+
+     // ลบรูปที่อัปโหลดแล้ว
+     const handleRemoveImage = (index) => {
+        setFormData((prevData) => {
+            const newImages = [...prevData.img];
+            newImages.splice(index, 1); // ลบรูปที่เลือก
+            return { ...prevData, img: newImages };
+        });
     };
   return (
     <div>
-        <div className='flex flex-col gap-2 mt-2'>
+        <div className='flex flex-col gap-2 mt-8 w-100'>
             <span className='text-xs'><span className='text-red-700 mr-1'>*</span>Accommodation Name</span>
-            <input type="text" name="title" defaultValue={formData.title} onChange={handleChange} placeholder='What is the name of your accommodation?' className="input input-bordered border-[#a4a5a5] w-full textarea-xs mb-2 " />
+            <input type="text" name="title" value={formData.title} onChange={handleChange} placeholder='What is the name of your accommodation?' className="input input-bordered border-[#a4a5a5] w-full textarea-xs mb-2 " />
         </div>
                 
         <div className='flex flex-col gap-2 mt-2 mb-2'>
             <span className='text-xs'><span className='text-red-700 mr-1'>*</span>Description</span>
-            <textarea name='description' defaultValue={formData.description} onChange={handleChange} placeholder='Please describe the details of your accommodation.'
+            <textarea name='description' value={formData.description} onChange={handleChange} placeholder='Please describe the details of your accommodation.'
                 className="textarea textarea-bordered border-[#a4a5a5] textarea-xs w-full "></textarea>
         </div>
 
         {/* type room */}
         <div className='flex flex-col gap-2 mt-2'>
             <span className='text-xs'><span className='text-red-700 mr-1'>*</span>Type of Accommodation</span>
-            <select  name="typeOfAccommodation" defaultValue={formData.typeOfAccommodation} onChange={handleChange} className="select select-bordered border-[#a4a5a5] w-full textarea-xs ">
+            <select  name="typeOfAccommodation" defaultValue={formData.typeOfAccom} onChange={handleChange} className="select select-bordered border-[#a4a5a5] w-full textarea-xs ">
                 <option value=""  selected >What type of Accommodation are available?</option>
                 <option>ENTIREHOME</option>
                 <option>PRIVATEROOM</option>
@@ -82,19 +106,13 @@ function AccomStep1() {
             formData.img.map((image, index) => (
               <div key={index} className="relative">
                 <img
-                  src={
-                    typeof image === "string"
-                      ? image
-                      : URL.createObjectURL(image)
-                  }
-                  alt={`uploaded ${index}`}
-                  className="w-30 h-30 object-cover rounded-md"
+                    src={image}
+                    alt={`uploaded ${index}`}
+                    className="w-30 h-30 object-cover rounded-md"
                 />
-                <button
-                  type="button"
+                <button type="button"
                   onClick={() => handleRemoveImage(index)}
-                  className="absolute top-0 right-0 text-white text-xs  rounded-full p-2"
-                >
+                  className="absolute top-0 right-0 text-white text-xs  rounded-full p-2">
                   ✕
                 </button>
               </div>
@@ -103,9 +121,11 @@ function AccomStep1() {
         {/* ใส่รูป */}
         <span className="text-xs"><span className="text-red-700 mr-1">*</span>Upload photos of the accommodation.</span>
         <input type="file" multiple
-        onChange={(e) =>handleImagesChange([...formData.img, ...e.target.files])}
+        onChange={handleImagesChange}
         className="file-input file-input-bordered border-[#a4a5a5] file-input-secondary w-full mb-2"
         />
+         {uploading && <span className="text-xs text-gray-500">กำลังอัปโหลดรูปภาพ...</span>}
+         {uploadError && <span className="text-xs text-red-500">{uploadError}</span>}
       </div>
     </div>
   );

@@ -64,6 +64,7 @@ function AppRoutes() {
 
                 {/* PAYMENT */}
                 {/* <Route path='booking/payment' element={<Payment />} /> */}
+
                 <Route path='booking/payment-success' element={<PaymentSuccess />} />
                 <Route path='booking/payment-cancel' element={<PaymentCancel />} />
                 {/* <Route path='booking/payment-complete/:session' element={<PaymentComplete />} /> */}
@@ -72,7 +73,7 @@ function AppRoutes() {
             </Route>
 
             {/* HOST */}
-            <Route path='host-center' element={<HostLayout />} >
+            <Route path='host-center' element={<ProtectRoutes el={<HostLayout />} allows={["HOST"]} />} >
                 <Route index element={<HostDashboard />} />
                 <Route path='host/accommodations' element={<HostAccom />} />
                 <Route path='host/accommodations/add' element={<AddAccom />} />
