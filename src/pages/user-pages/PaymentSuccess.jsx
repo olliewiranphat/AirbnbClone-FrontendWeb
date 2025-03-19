@@ -1,9 +1,10 @@
 import React from 'react'
+import { TextParallaxContentExample } from './payment/TextParallaxContentExample'
 
 function PaymentSuccess() {
   return (
     <div>
-      jusyuysuysuj
+      <TextParallaxContentExample/>
     </div>
   )
 }

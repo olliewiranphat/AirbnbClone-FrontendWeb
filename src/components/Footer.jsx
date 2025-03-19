@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 
 function Footer() {
-    const [isOpen, setIsOpen] = useState(false); // State สำหรับควบคุมการเปิด/ปิด Modal
+    const [isOpen, setIsOpen] = useState(false); 
 
-    // ฟังก์ชันเปิด Modal
     const handleOpen = () => {
         setIsOpen(true);
     };
 
-    // ฟังก์ชันปิด Modal
     const handleClose = () => {
         setIsOpen(false);
     };

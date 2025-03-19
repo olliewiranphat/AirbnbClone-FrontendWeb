@@ -1,57 +1,89 @@
 import React, { useState } from 'react';
+import { Heart, ChevronLeft, ChevronRight, Star } from 'lucide-react';
+import useWishlistStore from "../../../store/wishlistStore";
+import {useAuth } from '@clerk/clerk-react'
 
-function AccomITEM({ image, location, rating, stayDetails, dateRange, price }) {
-    const [isLiked, setIsLiked] = useState(false);
+function AccomITEM({ id, image, location, rating, stayDetails, dateRange, price }) {
+    const [isHovered, setIsHovered] = useState(false);
+    const [currentSlide, setCurrentSlide] = useState(0);
+    const { wishlist, toggleWishlistItem } = useWishlistStore();
+    const {getToken} = useAuth()
 
-    const toggleHeart = () => {
-        setIsLiked(!isLiked);
+    const isLiked = wishlist.some((item) => item.id === id);
+
+    const handleNextSlide = () => {
+        setCurrentSlide((prev) => prev + 1);
+    };
+
+    const handlePrevSlide = () => {
+        setCurrentSlide((prev) => (prev > 0 ? prev - 1 : prev));
+    };
+
+    const handleToggleHeart = async () => {
+        const token = await getToken()
+        toggleWishlistItem({ 
+            id, 
+            image, 
+            location, 
+            rating, 
+            stayDetails, 
+            dateRange, 
+            price 
+        },token);
+        console.log("Item added to wishlist:", { id, image, location, rating, stayDetails, dateRange, price });
     };
 
     return (
         <div className="w-full flex flex-col gap-2 p-4 bg-white rounded-lg shadow-md">
-         
-            <div className="relative">
-                <img 
-                    src={image} 
-                    alt={location} 
-                    className="rounded-2xl bg-gray-300 w-full h-[290px] object-cover" 
+            <div
+                className="relative"
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+            >
+                <img
+                    src={image}
+                    alt={location}
+                    className="rounded-2xl bg-gray-300 w-full h-[290px] object-cover"
                 />
-             
-                <span className="absolute top-2 left-2 bg-white text-black text-[12px] px-2 py-1 rounded-md font-medium">
-                    Guest favourite
-                </span>
-             
                 <span 
-                    className="absolute top-2 right-2 bg-white p-1 rounded-full shadow-md cursor-pointer"
-                    onClick={toggleHeart}
+                    className="absolute top-2 right-2 bg-white p-1 rounded-full shadow-md cursor-pointer" 
+                    onClick={handleToggleHeart}
                 >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
+                    <Heart 
+                        size={20} 
                         fill={isLiked ? "red" : "none"} 
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.5}
                         stroke={isLiked ? "red" : "black"} 
-                        className="w-5 h-5"
-                    >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3c3.08 0 5.5 2.42 5.5 5.5 0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
-                        />
-                    </svg>
+                    />
                 </span>
+
+                {isHovered && currentSlide > 0 && (
+                    <button
+                        onClick={handlePrevSlide}
+                        className="absolute left-4 top-[50%] transform -translate-y-[50%] bg-white p-2 rounded-full shadow-md cursor-pointer"
+                    >
+                        <ChevronLeft size={24} />
+                    </button>
+                )}
+
+                {isHovered && (
+                    <button
+                        onClick={handleNextSlide}
+                        className="absolute right-4 top-[50%] transform -translate-y-[50%] bg-white p-2 rounded-full shadow-md cursor-pointer"
+                    >
+                        <ChevronRight size={24} />
+                    </button>
+                )}
             </div>
 
-            <span className="text-[16px] font-semibold">{location}</span>
-            
-            <span className="text-[14px] text-[#6a6a6a]">⭐ {rating}</span>
-            
-            <span className="text-[14px] text-[#6a6a6a]'">{stayDetails}</span>
-            
-           
-            <span className="text-[14px] text-[#6a6a6a]'">{dateRange}</span>
-            
-           
+            <div className="flex justify-between items-center">
+                <span className="text-[16px] font-semibold">{location}</span>
+                <div className="flex items-center text-[#6a6a6a]">
+                    <Star size={14} color="#6a6a6a" />
+                    <span className="ml-1 text-[14px]">{rating}</span>
+                </div>
+            </div>
+            <span className="text-[14px] text-[#6a6a6a]">{stayDetails}</span>
+            <span className="text-[14px] text-[#6a6a6a]">{dateRange}</span>
             <span className="text-[14px] font-bold">£{price} / night</span>
         </div>
     );
