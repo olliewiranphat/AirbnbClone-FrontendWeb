@@ -31,17 +31,18 @@ import AllUsers from "../pages/admin-pages/AllUsers"
 import Payment from "../pages/user-pages/payment/Payment"
 import PaymentSuccess from "../pages/user-pages/payment/PaymentSuccess"
 import PaymentCancel from "../pages/user-pages/payment/PaymentCancel"
-import PaymentComplete from "../pages/user-pages/payment/PaymentComplete"
+import AllAmenities from "../pages/admin-pages/AllAmenities"
+import AllAccomCate from "../pages/admin-pages/AllAccomCate"
 
 
 function AppRoutes() {
+
     return (
 
         <Routes>
-            {/* PUBLIC */}
+            {/* PUBLIC - หน้า HomePage แสดงเสมอ*/}
             <Route path='/' element={<PublicLayout />}>
                 <Route index element={<HomePage />} />
-                {/* <Route path='search/accommodation-detail/:accommodationID' element={<AccomDetail />} /> */}
                 <Route path='search/accommodation' element={<SearchAccom />} />
                 <Route path='search/accommodation-detail' element={<AccomDetail />} />
             </Route>
@@ -52,29 +53,25 @@ function AppRoutes() {
             <Route path="host/experiences" element={<HostEXP />} />
             <Route path="help" element={<HelpCenter />} />
 
-            {/* USER */}
+            {/* USER - LOGINED: HomePage.jsx*/}
             <Route path='/' element={<UserLayout />}>
-                <Route index element={<HomePage />} />
                 <Route path='account-settings' element={<UserAccount />} />
                 <Route path='wishlists' element={<WishLists />} />
                 <Route path='booking' element={<Booking />} />
-                <Route path='booking-history' element={<BookingHistory />} />
+                <Route path='trips' element={<BookingHistory />} />
                 <Route path='guest/messages' element={<Messages />} />
                 <Route path='notifications' element={<Notifications />} />
-                <Route path='trips' element={<Trips />} />
 
                 {/* PAYMENT */}
                 <Route path='booking/payment' element={<Payment />} />
                 <Route path='booking/payment-success' element={<PaymentSuccess />} />
                 <Route path='booking/payment-cancel' element={<PaymentCancel />} />
-                {/* <Route path='booking/payment-complete/:session' element={<PaymentComplete />} /> */}
-                <Route path='booking/payment-complete' element={<PaymentComplete />} />
             </Route>
 
             {/* HOST */}
-            <Route path='host-center' element={<HostLayout />} >
-                <Route index element={<HostDashboard />} />
-                <Route path='host/accommodations' element={<HostAccom />} />
+            <Route path='host-center' element={<ProtectRoutes el={<HostLayout />} allows={["HOST"]} />} >
+                <Route index element={<HostAccom />} />
+                <Route path="host/dashboard" element={<HostDashboard />} />
                 <Route path='host/accommodations/add' element={<AddAccom />} />
                 <Route path='host/accommodations/update/:accommodationID' element={<UpdateAccom />} />
             </Route>
@@ -82,9 +79,11 @@ function AppRoutes() {
             {/* ADMIN */}
             <Route path='admin' element={<ProtectRoutes el={<AdminLayout />} allows={["ADMIN"]} />}>
                 <Route index element={<AdminDashboard />} />
-                <Route path='management/all-accommodations' element={<AllAccom />} />
-                <Route path='management/all-hosts' element={<AllHosts />} />
                 <Route path='management/all-users' element={<AllUsers />} />
+                <Route path='management/all-hosts' element={<AllHosts />} />
+                <Route path='management/all-accommodations' element={<AllAccom />} />
+                <Route path='management/accommodations/all-categories' element={<AllAccomCate />} />
+                <Route path='management/accommodations/all-amenities' element={<AllAmenities />} />
             </Route>
 
             {/* Not found page */}

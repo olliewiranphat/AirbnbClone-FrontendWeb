@@ -7,7 +7,7 @@ const UserStore = (set) => ({
     actionGetMyAccount: async (token) => {
         try {
             const getMyAccountZustand = await getMyAccount(token)
-            console.log('getMyAccountZustand', getMyAccountZustand);
+            // console.log('getMyAccountZustand', getMyAccountZustand);
             set({ userData: getMyAccountZustand.data.results })
         } catch (error) {
             console.log("getMyAccount, ERROR", error);

@@ -7,7 +7,7 @@ function SignupLoginLIST() {
         <div className='absolute top-[50px] right-0 rounded-md flex flex-col text-[14px] w-[230px] bg-white z-50'>
             <div className='p-4 border-b-[1px] border-gray-300 flex flex-col gap-4 items-start'>
                 <SignUpButton mode='modal' className='header cursor-pointer'>Sign up</SignUpButton>
-                <SignInButton mode='modal' className='cursor-pointer'>Log in</SignInButton>
+                <SignInButton forceRedirectUrl={'/admin'} mode='modal' className='cursor-pointer'>Log in</SignInButton>
             </div>
             <div className='p-4 flex flex-col gap-4 items-start'>
                 <ReloadLink to='/giftcards' className='cursor-pointer'>Gift cards</ReloadLink>

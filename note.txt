@@ -1,0 +1,8 @@
+           {/* ADMIN */}
+            <Route path='admin' element={<ProtectRoutes el={<AdminLayout />} allows={["ADMIN"]} />}>
+                <Route index element={<AdminDashboard />} />
+                <Route path='management/all-accommodations' element={<AllAccom />} />
+                <Route path='management/all-hosts' element={<AllHosts />} />
+                <Route path='management/all-users' element={<AllUsers />} />
+            </Route>
+

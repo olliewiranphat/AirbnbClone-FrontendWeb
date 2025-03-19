@@ -1,35 +1,38 @@
 import { SignInButton, useAuth, useUser } from "@clerk/clerk-react"
-import { Loader } from "lucide"
+import { useNavigate } from "react-router"
+import useUserStore from "../store/UserStore"
+import { useEffect } from "react"
+import ReloadLink from "../utils/ReloadLink"
 
 
 function ProtectRoutes({ el, allows }) {
 
-    const { user } = useUser()
-    // // console.log('user', user);
+    const userData = useUserStore(state => state.userData) //use Database Store instead of Clerk
 
-    const role = user?.publicMetadata.role
-    // const role = "ADMIN"
-    
+    ///// CLERK : 
+    // const { user } = useUser()
+    // console.log('user', user);
+    // const role = user?.publicMetadata.role
     // // console.log('role', role);
 
+    // const { isSignedIn, isLoaded } = useAuth()
+    // if (!isLoaded) {
+    //     return <Loader className='m-auto mt-[22%] animate-spin text-gray-400 font-semibold' />
+    // }
+    // // if (!isSignedIn) {
+    // //     return (
+    // //         <SignInButton mode='madal'>
+    // //         </SignInButton >
+    // //     )
+    // // }
 
-    const { isSignedIn, isLoaded } = useAuth()
-    if (!isLoaded) {
-        return <Loader className='m-auto mt-[22%] animate-spin text-gray-400 font-semibold' />
-    }
 
-    if (!isSignedIn) {
+
+    if (!allows.includes(userData?.role)) {
         return (
-            <SignInButton mode='madal'>
-            </SignInButton >
-        )
-    }
-
-    if (!allows.includes(role)) {
-        return (
-            <div className='flex flex-col gap-2 m-auto mt-[20%]'>
+            <div className='flex flex-col gap-2 m-auPto mt-[20%]'>
                 <span className="font-semibold">Access Denied!!</span>
-                <Link to='/' className='py-2 px-4 rounded-md bg-[#FF385C] text-white hover:font-semibold hover:bg-[#dd1062]'>Go to Home</Link>
+                <ReloadLink to='/' className='py-2 px-4 rounded-md bg-[#FF385C] text-white hover:font-semibold hover:bg-[#dd1062]'>Go to Home</ReloadLink>
             </div>
         )
     }

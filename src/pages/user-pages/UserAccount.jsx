@@ -12,7 +12,7 @@ import useUserStore from "../../store/UserStore";
 
 function UserAccount() {
     const { user } = useUser()
-    // console.log('user', user);
+    console.log('user', user);
 
     const userData = useUserStore(state => state.userData)
     // console.log('userData', userData);

@@ -19,7 +19,7 @@ function UserAccountLIST() {
             <div className='px-4 py-5 flex flex-col gap-5 items-start'>
                 <ReloadLink to='/giftcards' className='cursor-pointer'>Gift cards</ReloadLink>
                 <ReloadLink to='/help cursor-pointer' className='cursor-pointer'>Help Center</ReloadLink>
-                <SignOutButton className='cursor-pointer'>Log out</SignOutButton>
+                <SignOutButton className='cursor-pointer' redirectUrl='/'>Log out</SignOutButton>
             </div>
         </div>
     )
