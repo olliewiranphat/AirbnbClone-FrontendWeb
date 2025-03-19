@@ -1,22 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import AirbnbLOGO from "../home-page/main-navbar/AirbnbLOGO";
 import ReloadLink from "../../utils/ReloadLink";
-import { HousePlusIcon } from "lucide-react";
+import { HousePlusIcon, Loader } from "lucide-react";
 import { useAuth, useUser } from "@clerk/clerk-react";
 import { updateToHOST } from "../../api-server/hostController";
 import useUserStore from "../../store/UserStore";
 import { useNavigate } from "react-router";
 
 function SwichHostNav() {
-  const userData = useUserStore(state => state.userData)
-  // console.log('userData', userData);
+  const [loading, setLoading] = useState(false)
+
 
   const navigate = useNavigate()
   const actionGetMyAccount = useUserStore(state => state.actionGetMyAccount)
-  const { user } = useUser()
-  // console.log('user', user);
+
   const { getToken } = useAuth()
   const hdlChangeToHOST = async () => {
+    setLoading(true)
     try {
       const token = await getToken()
       // console.log('token', token);
@@ -24,6 +24,7 @@ function SwichHostNav() {
       // console.log('updateStatusUserHOST', updateStatusUserHOST);
       actionGetMyAccount(token) //ROLE=HOST
       navigate('/host-center') //ProtectRoute CHECKUP
+      setLoading(false)
     } catch (error) {
       console.log("UpdateHOST, ERROR", error);
 
@@ -31,7 +32,7 @@ function SwichHostNav() {
   }
 
   return (
-    <div className="flex justify-between items-center px-[40px] w-full h-[80px]">
+    <div className="flex justify-between items-center px-[40px] w-full h-[80px] relative">
       {/* LOGO */}
 
       <AirbnbLOGO />
@@ -49,8 +50,13 @@ function SwichHostNav() {
           <span className="text-white">Stayzy Setup</span>
         </button>
       </div>
-
-
+      {
+        loading && (
+          <div class="bg-[rgba(255,255,255,0.8)] h-screen w-screen absolute top-0 flex items-center">
+            <Loader className="animate-spin ml-[45%]" />
+          </div>
+        )
+      }
     </div>
   );
 }

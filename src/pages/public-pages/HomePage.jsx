@@ -17,6 +17,8 @@ function HomePage() {
 
 
     const { user } = useUser()
+    console.log('user', user);
+
     console.log(user?.publicMetadata?.role);
     const { getToken, isSignedIn } = useAuth()
 

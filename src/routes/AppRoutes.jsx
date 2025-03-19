@@ -28,16 +28,11 @@ import ProtectRoutes from "./ProtectRoutes"
 import { Route, Routes } from "react-router"
 import HostAccom from "../pages/host-pages/HostAccom"
 import AllUsers from "../pages/admin-pages/AllUsers"
-<<<<<<< HEAD
 import Payment from "../pages/user-pages/payment/Payment"
 import PaymentSuccess from "../pages/user-pages/payment/PaymentSuccess"
 import PaymentCancel from "../pages/user-pages/payment/PaymentCancel"
 import AllAmenities from "../pages/admin-pages/AllAmenities"
 import AllAccomCate from "../pages/admin-pages/AllAccomCate"
-=======
-import PaymentSuccess from "../pages/user-pages/PaymentSuccess"
-import PaymentCancel from "../pages/user-pages/PaymentCancel"
->>>>>>> 05917e3a588d02687def603c5ec3948303ca9cd4
 
 
 function AppRoutes() {
