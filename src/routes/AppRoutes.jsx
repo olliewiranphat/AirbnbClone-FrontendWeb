@@ -56,13 +56,13 @@ function AppRoutes() {
                 <Route path='account-settings' element={<UserAccount />} />
                 <Route path='wishlists' element={<WishLists />} />
                 <Route path='booking' element={<Booking />} />
-                <Route path='booking-history' element={<BookingHistory />} />
+                <Route path='trips' element={<BookingHistory />} />
                 <Route path='guest/messages' element={<Messages />} />
                 <Route path='notifications' element={<Notifications />} />
                 <Route path='trips' element={<Trips />} />
 
                 {/* PAYMENT */}
-                <Route path='booking/payment' element={<Payment />} />
+                {/* <Route path='booking/payment' element={<Payment />} /> */}
                 <Route path='booking/payment-success' element={<PaymentSuccess />} />
                 <Route path='booking/payment-cancel' element={<PaymentCancel />} />
                 {/* <Route path='booking/payment-complete/:session' element={<PaymentComplete />} /> */}
