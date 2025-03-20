@@ -29,7 +29,7 @@ export const updateImageUrl = async (token, data) => {
 
 export const createUpdateAccount = async (token, updateData) => {
     console.log("Token used in createUpdateAccount:", token);
-    return await axios.put(`${BASE_URL}/create-update`, updateData, getHeaders(token));
+    return await axios.patch(`${BASE_URL}/create-update`, updateData, getHeaders(token));
 };
 
 export const inactiveAccount = async (token) => {

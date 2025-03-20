@@ -6,9 +6,13 @@ import { DateRange } from "react-date-range";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { format } from "date-fns";
-import GuestModal from "../GuestModal"; // Import the new component
+import GuestModal from "../GuestModal"; 
+import bookingStore from "../../store/bookingStore";
 
 function Booking() {
+    const {
+      bookingSelect, setBookingSelect
+       } = bookingStore();
    const [paymentOption, setPaymentOption] = useState('full');
    const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
    const [isGuestModalOpen, setIsGuestModalOpen] = useState(false);
@@ -25,6 +29,8 @@ function Booking() {
    });
 
    const handleSelect = (ranges) => {
+      console.log("ranges", ranges)
+      setBookingSelect(ranges.selection)
       setSelectionRange(ranges.selection);
    };
 
@@ -47,7 +53,7 @@ function Booking() {
 
       return guestText;
    };
-
+console.log(bookingSelect)
    return (
       <div className="w-[1100px] mx-auto p-4 font-sans">
          <div className="flex items-center mb-6 mt-6">

@@ -5,6 +5,7 @@ import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { House, Timer, MessageSquareText } from "lucide-react";
 
 function ContentStayit() {
+
   return (
     <div className="px-[40px] text-center gap-4 place-items-center p-2">
       <h1 className="text-2xl font-bold mb-10">
@@ -50,6 +51,8 @@ function ContentStayit() {
       </div>
     </div>
   );
+
+
 }
 
 export default ContentStayit;
