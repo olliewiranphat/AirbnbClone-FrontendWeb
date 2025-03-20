@@ -13,14 +13,12 @@ import AccomDetail from "../pages/public-pages/AccomDetail"
 import GiftCards from "../pages/public-pages/GiftCards"
 import HelpCenter from "../pages/public-pages/HelpCenter"
 import HomePage from "../pages/public-pages/HomePage"
-import HostEXP from "../pages/public-pages/HostEXP"
 import HostHomes from "../pages/public-pages/HostHomes"
 import NotFound from "../pages/public-pages/NotFound"
 import SearchAccom from "../pages/public-pages/SearchAccom"
 import Booking from "../pages/user-pages/Booking"
 import BookingHistory from "../pages/user-pages/BookingHistory"
 import Messages from "../pages/user-pages/Messages"
-import Notifications from "../pages/user-pages/Notifications"
 import Trips from "../pages/user-pages/Trips"
 import UserAccount from "../pages/user-pages/UserAccount"
 import WishLists from "../pages/user-pages/WishLists"
@@ -28,17 +26,11 @@ import ProtectRoutes from "./ProtectRoutes"
 import { Route, Routes } from "react-router"
 import HostAccom from "../pages/host-pages/HostAccom"
 import AllUsers from "../pages/admin-pages/AllUsers"
-<<<<<<< HEAD
 import Payment from "../pages/user-pages/payment/Payment"
 import PaymentSuccess from "../pages/user-pages/payment/PaymentSuccess"
 import PaymentCancel from "../pages/user-pages/payment/PaymentCancel"
 import AllAmenities from "../pages/admin-pages/AllAmenities"
 import AllAccomCate from "../pages/admin-pages/AllAccomCate"
-=======
-import PaymentSuccess from "../pages/user-pages/PaymentSuccess"
-import PaymentCancel from "../pages/user-pages/PaymentCancel"
-import Payment from "../pages/user-pages/Payment"
->>>>>>> bc1d0332aa4ff020eee44c83a3b1eae848f43ad0
 
 
 function AppRoutes() {
@@ -66,32 +58,19 @@ function AppRoutes() {
                 <Route path='booking' element={<Booking />} />
                 <Route path='trips' element={<BookingHistory />} />
                 <Route path='guest/messages' element={<Messages />} />
-<<<<<<< HEAD
-                <Route path='notifications' element={<Notifications />} />
-=======
                 {/* <Route path='notifications' element={<Notifications />} /> */}
                 <Route path='trips' element={<Trips />} />
->>>>>>> bc1d0332aa4ff020eee44c83a3b1eae848f43ad0
 
                 {/* PAYMENT */}
-                {/* <Route path='booking/payment' element={<Payment />} /> */}
-
-                <Route path='booking/payment-success' element={<PaymentSuccess />} />
-                <Route path='booking/payment-cancel' element={<PaymentCancel />} />
-                {/* <Route path='booking/payment-complete/:session' element={<PaymentComplete />} /> */}
+                <Route path='booking/payment' element={<Payment />} />
                 <Route path='booking/payment-success' element={<PaymentSuccess />} />
                 <Route path='booking/payment-cancel' element={<PaymentCancel />} />
             </Route>
 
             {/* HOST */}
             <Route path='host-center' element={<ProtectRoutes el={<HostLayout />} allows={["HOST"]} />} >
-<<<<<<< HEAD
-                <Route index element={<HostAccom />} />
-                <Route path="host/dashboard" element={<HostDashboard />} />
-=======
                 <Route index element={<HostDashboard />} />
                 <Route path='host/accommodations' element={<HostAccom />} />
->>>>>>> bc1d0332aa4ff020eee44c83a3b1eae848f43ad0
                 <Route path='host/accommodations/add' element={<AddAccom />} />
                 <Route path='host/accommodations/update/:accommodationID' element={<UpdateAccom />} />
             </Route>

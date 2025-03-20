@@ -10,18 +10,13 @@ import useAdminStore from '../../store/AdminStore'
 
 
 function HomePage() {
+    const { getToken, isSignedIn } = useAuth()
+    const actionGetMyAccount = useUserStore(state => state.actionGetMyAccount)
     const actionGetAllAccommodations = useAdminStore(state => state.actionGetAllAccommodations)
     const allAccommodatons = useAdminStore(state => state.allAccommodatons)
     // console.log('allAccommodatons', allAccommodatons);
-    const actionGetMyAccount = useUserStore(state => state.actionGetMyAccount)
-
-
-    const { user } = useUser()
-    console.log('user', user);
-
-    console.log(user?.publicMetadata?.role);
-    const { getToken, isSignedIn } = useAuth()
-
+    const userData = useUserStore(state => state.userData)
+    console.log('.role', userData?.role);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -29,6 +24,7 @@ function HomePage() {
             if (isSignedIn) {
                 const token = await getToken()
                 actionGetMyAccount(token)
+
             }
         }
         fetchData()

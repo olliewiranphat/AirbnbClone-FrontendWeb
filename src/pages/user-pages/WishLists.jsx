@@ -1,14 +1,13 @@
 import React from 'react';
-import AccomITEM from '../../components/home-page/accommodation/AccomITEM';
-import useWishlistStore from '../../store/wishlistStore';
+
 
 
 function WishLists() {
-    const { wishlist } = useWishlistStore();
+    // const { wishlist } = useWishlistStore();
 
     return (
         <>
-            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 px-[40px] py-6'>
+            {/* <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 px-[40px] py-6'>
                 {wishlist.length === 0 ? (
                     <p className="text-gray-500 col-span-full text-center">Your wishlist is empty.</p>
                 ) : (
@@ -25,7 +24,7 @@ function WishLists() {
                         />
                     ))
                 )}
-            </div>
+            </div> */}
         </>
     );
 }
