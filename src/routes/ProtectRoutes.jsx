@@ -1,5 +1,6 @@
 import { SignInButton, useAuth, useUser } from "@clerk/clerk-react"
-import { Loader } from "lucide"
+import { Loader2 } from "lucide-react"
+import { Link } from "react-router"
 
 
 function ProtectRoutes({ el, allows }) {
@@ -7,15 +8,15 @@ function ProtectRoutes({ el, allows }) {
     const { user } = useUser()
     // // console.log('user', user);
 
-    const role = user?.publicMetadata.role
     // const role = "ADMIN"
     
     // // console.log('role', role);
+    
 
 
     const { isSignedIn, isLoaded } = useAuth()
     if (!isLoaded) {
-        return <Loader className='m-auto mt-[22%] animate-spin text-gray-400 font-semibold' />
+        return <Loader2 className='m-auto mt-[22%] animate-spin text-gray-400 font-semibold' />
     }
 
     if (!isSignedIn) {
@@ -24,7 +25,7 @@ function ProtectRoutes({ el, allows }) {
             </SignInButton >
         )
     }
-
+    const role = user?.publicMetadata.role //host
     if (!allows.includes(role)) {
         return (
             <div className='flex flex-col gap-2 m-auto mt-[20%]'>
@@ -33,7 +34,6 @@ function ProtectRoutes({ el, allows }) {
             </div>
         )
     }
-
 
     return el
 
