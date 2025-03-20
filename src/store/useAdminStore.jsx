@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { getAllAccomodation, getAllUser } from "../api/admin";
+import { getAllAccomodation, getAllUser, getListAccomocate } from "../api/admin";
 
 const useAdminStore = create(persist((set, get) => ({
       admin: null,
@@ -24,7 +24,15 @@ const useAdminStore = create(persist((set, get) => ({
           console.error("getAllCategory error", error);
         }
       },
-
+      actionGetListAccomocate : async (token)=>{
+        try {
+            const response = await getListAccomocate(token);
+            console.log('response=>', response)
+            return response.data.allAccomCate
+        } catch (error) {
+            console.error("getListAccomocate", error)
+        }
+      }
     }),
 
     

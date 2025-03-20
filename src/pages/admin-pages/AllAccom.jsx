@@ -59,7 +59,7 @@ useEffect(() => {
                 <td className="p-4">{acc.addressDetail}</td>
                 <td className="p-4">{acc.NumBedrooms}</td>
                 <td className="p-4">{acc.NumBathrooms}</td>
-                <td className="p-4 text-green-600"> {acc.availQTY}</td>
+                <td className="p-4"> {acc.availQTY}</td>
                 <td className="p-4">{acc.MaxGuests}</td>
                 <td className="p-4">{acc.typeOfAccom}</td>
               </tr>
