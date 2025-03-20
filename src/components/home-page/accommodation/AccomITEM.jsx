@@ -75,6 +75,7 @@ function AccomITEM({ id, image, location, rating, stayDetails, dateRange, price 
         //         )}
         //     </div>
 
+<<<<<<< HEAD
         //     <div className="flex justify-between items-center">
         //         <span className="text-[16px] font-semibold">{location}</span>
         //         <div className="flex items-center text-[#6a6a6a]">
@@ -86,6 +87,19 @@ function AccomITEM({ id, image, location, rating, stayDetails, dateRange, price 
         //     <span className="text-[14px] text-[#6a6a6a]">{dateRange}</span>
         //     <span className="text-[14px] font-bold">£{price} / night</span>
         // </div>
+=======
+            <div className="flex justify-between items-center">
+                <span className="text-[16px] font-semibold">{location}</span>
+                <div className="flex items-center text-[#6a6a6a]">
+                    <Star size={14} color="#6a6a6a" />
+                    <span className="ml-1 text-[14px]">{rating}</span>
+                </div>
+            </div>
+            <span className="text-[14px] text-[#6a6a6a]">{stayDetails}</span>
+            <span className="text-[14px] text-[#6a6a6a]">{dateRange}</span>
+            <span className="text-[14px] font-bold">฿{price} / night</span>
+        </div>
+>>>>>>> a570bad9a1a315ad401f6c88e1548331075fe211
     );
 }
 
