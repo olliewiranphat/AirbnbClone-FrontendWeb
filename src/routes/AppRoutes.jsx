@@ -31,6 +31,8 @@ import AllUsers from "../pages/admin-pages/AllUsers"
 import PaymentSuccess from "../pages/user-pages/PaymentSuccess"
 import PaymentCancel from "../pages/user-pages/PaymentCancel"
 import Payment from "../pages/user-pages/Payment"
+import AllAmenity from "../pages/admin-pages/AllAmenity"
+import AllCategory from "../pages/admin-pages/AllCategory"
 
 
 function AppRoutes() {
@@ -84,6 +86,8 @@ function AppRoutes() {
             <Route path='admin' element={<ProtectRoutes el={<AdminLayout />} allows={["ADMIN"]} />}>
                 <Route index element={<AdminDashboard />} />
                 <Route path='management/all-accommodations' element={<AllAccom />} />
+                <Route path='management/all-category' element={<AllCategory />} />
+                <Route path='management/all-amenity' element={<AllAmenity />} />
                 <Route path='management/all-hosts' element={<AllHosts />} />
                 <Route path='management/all-users' element={<AllUsers />} />
             </Route>
