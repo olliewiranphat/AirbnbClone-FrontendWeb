@@ -26,11 +26,11 @@ import ProtectRoutes from "./ProtectRoutes"
 import { Route, Routes } from "react-router"
 import HostAccom from "../pages/host-pages/HostAccom"
 import AllUsers from "../pages/admin-pages/AllUsers"
-import Payment from "../pages/user-pages/payment/Payment"
-import PaymentSuccess from "../pages/user-pages/payment/PaymentSuccess"
-import PaymentCancel from "../pages/user-pages/payment/PaymentCancel"
-import AllAmenities from "../pages/admin-pages/AllAmenities"
-import AllAccomCate from "../pages/admin-pages/AllAccomCate"
+import PaymentSuccess from "../pages/user-pages/PaymentSuccess"
+import PaymentCancel from "../pages/user-pages/PaymentCancel"
+import Payment from "../pages/user-pages/Payment"
+import AllAmenity from "../pages/admin-pages/AllAmenity"
+import AllCategory from "../pages/admin-pages/AllCategory"
 
 
 function AppRoutes() {
@@ -78,15 +78,19 @@ function AppRoutes() {
             {/* ADMIN */}
             <Route path='admin' element={<ProtectRoutes el={<AdminLayout />} allows={["ADMIN"]} />}>
                 <Route index element={<AdminDashboard />} />
+                <Route path='management/all-accommodations' element={<AllAccom />} />
+                <Route path='management/all-category' element={<AllCategory />} />
+                <Route path='management/all-amenity' element={<AllAmenity />} />
+                <Route path='management/all-hosts' element={<AllHosts />} />
                 <Route path='management/all-users' element={<AllUsers />} />
                 <Route path='management/all-hosts' element={<AllHosts />} />
                 <Route path='management/all-accommodations' element={<AllAccom />} />
                 <Route path='management/accommodations/all-categories' element={<AllAccomCate />} />
                 <Route path='management/accommodations/all-amenities' element={<AllAmenities />} />
-            </Route>
+            </Route >
 
             {/* Not found page */}
-            <Route path='*' element={<NotFound />} />
+            < Route path='*' element={< NotFound />} />
         </Routes >
 
     )

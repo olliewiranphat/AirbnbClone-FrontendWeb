@@ -29,14 +29,20 @@ function AdminSidebar() {
                     <Link to='/admin/management/all-hosts' className='inline-block  pb-1 w-auto cursor-pointer border-transparent hover:border-b-2  hover:border-[#FF385C] hover:duration-200'>
                         <span>Manage Host</span>
                     </Link>
+                    <Link to='/admin/management/all-category' className='inline-block  pb-1 w-auto cursor-pointer border-transparent hover:border-b-2  hover:border-[#FF385C] hover:duration-200'>
+                        <span>Manage Category</span>
+                    </Link>
+                    <Link to='/admin/management/all-amenity' className='inline-block  pb-1 w-auto cursor-pointer border-transparent hover:border-b-2  hover:border-[#FF385C] hover:duration-200'>
+                        <span>Manage Amenity</span>
+                    </Link>
                 </ul>
                 <div className='account flex items-center gap-1 relative '>
                     <Calendar className='' />
                     <span className=' absolute pl-10 bottom-[-3px]'>Reservations</span>
                 </div>
                 <ul className='pl-10 flex flex-col gap-6 mb-2 text-[14px]'>
-                    <Link to='/booking' className='inline-block w-auto cursor-pointer border-transparent hover:border-b-2  hover:border-[#FF385C] hover:duration-200'>
-                        <span>Booking</span>
+                    <Link to='/booking-history' className='inline-block  pb-1 w-auto cursor-pointer border-transparent hover:border-b-2  hover:border-[#FF385C] hover:duration-200'>
+                        <span>Booking History</span>
                     </Link>
                 </ul>
                 <div className='account flex items-center gap-1 relative '>
@@ -47,9 +53,7 @@ function AdminSidebar() {
                     <Link to='/account-settings' className='inline-block  pb-1 w-auto cursor-pointer border-transparent hover:border-b-2  hover:border-[#FF385C] hover:duration-200'>
                         <span>Your Profile</span>
                     </Link>
-                    <Link to='/booking-history' className='inline-block  pb-1 w-auto cursor-pointer border-transparent hover:border-b-2  hover:border-[#FF385C] hover:duration-200'>
-                        <span>Booking History</span>
-                    </Link>
+
                 </ul>
 
                 <div className='flex gap-4'>
