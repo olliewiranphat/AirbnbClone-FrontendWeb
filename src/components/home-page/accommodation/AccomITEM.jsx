@@ -84,7 +84,7 @@ function AccomITEM({ id, image, location, rating, stayDetails, dateRange, price 
             </div>
             <span className="text-[14px] text-[#6a6a6a]">{stayDetails}</span>
             <span className="text-[14px] text-[#6a6a6a]">{dateRange}</span>
-            <span className="text-[14px] font-bold">£{price} / night</span>
+            <span className="text-[14px] font-bold">฿{price} / night</span>
         </div>
     );
 }
