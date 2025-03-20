@@ -1,3 +1,24 @@
+<<<<<<< HEAD
+import React, { useEffect } from "react";
+import useAdminStore from "../../store/AdminStore";
+import AccomITEMAdmin from "../../components/admin-page/AccomITEMAdmin";
+import { useAuth } from "@clerk/clerk-react";
+
+
+function AllAccom() {
+  const { getToken } = useAuth()
+  const actionGetAccomAmen = useAdminStore(state => state.actionGetAccomAmen)
+  const allAccomAmen = useAdminStore(state => state.allAccomAmen)
+  useEffect(() => {
+    const fetchAccomAmen = async () => {
+      const token = await getToken()
+      actionGetAccomAmen(token)
+    }
+    fetchAccomAmen()
+  }, [])
+  console.log('allAccomAmen', allAccomAmen);
+
+=======
 import { useAuth } from "@clerk/clerk-react";
 import React, { useEffect, useState } from "react";
 import useAdminStore from "../../store/useAdminStore";
@@ -23,11 +44,12 @@ console.log('allAccomodation', allAccomodation)
 useEffect(() => {
   fetchAllAccomodation()
 }, [])
+>>>>>>> 8e58638c1bd3f627230b6cd898835d4187d0bc53
 
 
 
   return (
-    <div className="p-4 mr-4">
+    <div className="p-4 mr-4 mt-10">
       <h2 className="text-2xl font-bold mb-4">All Accommodations</h2>
       <div className="overflow-auto rounded-lg shadow">
         <table className="w-full border-collapse bg-white text-left text-sm text-gray-600">
@@ -35,19 +57,24 @@ useEffect(() => {
             <tr>
               <th className="p-4">ID</th>
               <th className="p-4">Title</th>
-              <th className="p-4">Description</th>
-              <th className="p-4">City</th>
-              <th className="p-4">Country</th>
+              <th className="p-4">Address</th>
               <th className="p-4">Price/Night</th>
+<<<<<<< HEAD
+=======
               <th className="p-4">Address</th>
               <th className="p-4">Bedrooms</th>
               <th className="p-4">Bathrooms</th>
+>>>>>>> 8e58638c1bd3f627230b6cd898835d4187d0bc53
               <th className="p-4">Available</th>
               <th className="p-4">MaxGuest</th>
               <th className="p-4">Type</th>
             </tr>
           </thead>
           <tbody>
+<<<<<<< HEAD
+            {allAccomAmen?.length > 0 && allAccomAmen.map((accom, inx) => (
+              <AccomITEMAdmin key={inx} accom={accom} />
+=======
             {allAccomodation.map((acc,index) => (
               <tr key={acc.id} className="border-t hover:bg-gray-100">
                 <td className="p-4">{index+1}</td>
@@ -63,6 +90,7 @@ useEffect(() => {
                 <td className="p-4">{acc.MaxGuests}</td>
                 <td className="p-4">{acc.typeOfAccom}</td>
               </tr>
+>>>>>>> 8e58638c1bd3f627230b6cd898835d4187d0bc53
             ))}
           </tbody>
         </table>

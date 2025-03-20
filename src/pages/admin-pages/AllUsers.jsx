@@ -1,3 +1,25 @@
+<<<<<<< HEAD
+import React, { useEffect } from "react";
+import useAdminStore from "../../store/AdminStore";
+import { useAuth } from "@clerk/clerk-react";
+import UserItem from "../../components/admin-page/UserItem";
+
+
+
+function AllUsers() {
+  const actionGetAllUsers = useAdminStore(state => state.actionGetAllUsers)
+  const allUsers = useAdminStore(state => state.allUsers)
+  const { getToken } = useAuth()
+  useEffect(() => {
+    const fetchAllUsers = async () => {
+      const token = await getToken()
+      actionGetAllUsers(token)
+    }
+    fetchAllUsers()
+  }, [])
+  console.log('allUsers', allUsers);
+
+=======
 import React, { useEffect, useState } from "react";
 import useAdminStore from "../../store/useAdminStore";
 import { useAuth } from '@clerk/clerk-react'
@@ -26,6 +48,7 @@ function AllUsers() {
   useEffect(() => {
     fetchUser()
   }, [])
+>>>>>>> 8e58638c1bd3f627230b6cd898835d4187d0bc53
 
 
   return (
@@ -42,6 +65,14 @@ function AllUsers() {
               <th className="p-4">Phone Number</th>
               <th className="p-4">Address</th>
               <th className="p-4">Status</th>
+<<<<<<< HEAD
+              <th className="p-4">Created At</th>
+            </tr>
+          </thead>
+          <tbody>
+            {allUsers.length > 0 && allUsers.map((user) => (
+              <UserItem key={user.userID} user={user} />
+=======
               <th className="p-4">CreatedAt</th>
             </tr>
           </thead>
@@ -57,6 +88,7 @@ function AllUsers() {
                 <td className="p-4">{user.status}</td>
                 <td className="p-4">{user.createAt}</td>
               </tr>
+>>>>>>> 8e58638c1bd3f627230b6cd898835d4187d0bc53
             ))}
           </tbody>
         </table>
