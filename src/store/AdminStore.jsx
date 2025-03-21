@@ -39,7 +39,8 @@ const AdminStore = (set) => ({
         try {
             const getAdminAllAccommodations = await getAllAccommodations()
             console.log('getAdminAllAccommodations', getAdminAllAccommodations);
-            set({ allAccommodatons: getAdminAllAccommodations.data.results })
+            // console.log('getAdminAllAccommodations', getAdminAllAccommodations.data);
+            set({ allAccommodatons: getAdminAllAccommodations })
         } catch (error) {
             console.log("getAdminAllAccommodations, ERROR", error);
         }

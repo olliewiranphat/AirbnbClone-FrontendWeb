@@ -84,6 +84,48 @@ function UserAccount() {
 
     // บันทึกการแก้ไขข้อมูล
     const handleSaveEdit = async () => {
+        // Reset errors
+        setModalErrors({
+            fullName: "",
+            email: "",
+            phoneNumber: "",
+            address: "",
+        });
+    
+        let hasError = false;
+        const newErrors = {};
+    
+        // ตรวจสอบ required fields
+        if (editField === "fullName" && !editValue.trim()) {
+            newErrors.fullName = "Full name is required.";
+            hasError = true;
+        }
+        if (editField === "email" && !editValue.trim()) {
+            newErrors.email = "Email is required.";
+            hasError = true;
+        } else if (editField === "email" && !/\S+@\S+\.\S+/.test(editValue)) {
+            newErrors.email = "Please enter a valid email address.";
+            hasError = true;
+        }
+        if (editField === "phoneNumber" && !editValue.trim()) {
+            newErrors.phoneNumber = "Phone number is required.";
+            hasError = true;
+        } else if (editField === "phoneNumber" && !/^\d+$/.test(editValue)) {
+            newErrors.phoneNumber = "Please enter a valid phone number.";
+            hasError = true;
+        }
+        if (editField === "address" && !editValue.trim()) {
+            newErrors.address = "Address is required.";
+            hasError = true;
+        }
+    
+        // หากมี error ให้อัปเดต state และหยุดการทำงาน
+        if (hasError) {
+            setModalErrors(newErrors);
+            return;
+        }
+    
+        // หากไม่มี error ให้บันทึกข้อมูล
         try {
             const token = await getToken();
             if (!token) {
@@ -91,13 +133,22 @@ function UserAccount() {
                 return;
             }
             const updateData = { [editField]: editValue };
-            await actionCreateUpdateAccount(token, updateData); // เรียกฟังก์ชันจาก store
-            await actionGetMyAccount(token); // ดึงข้อมูลใหม่หลังจากอัปเดต
+            await actionCreateUpdateAccount(token, updateData);
+            await actionGetMyAccount(token);
             setShowEditModal(false);
         } catch (error) {
             console.error("createUpdateAccount error", error);
         }
     };
+
+
+const [modalErrors, setModalErrors] = useState({
+    fullName: "",
+    email: "",
+    phoneNumber: "",
+    address: "",
+});
+
 
     // ลบบัญชีผู้ใช้
     const handleDeleteAccount = async () => {
@@ -161,8 +212,8 @@ function UserAccount() {
                     <div className="flex-grow">
                         {[
                             { label: "Fullname", value: userData?.fullName || "Wathanyu Thirinat", action: "Edit", field: "fullName" },
-                            { label: "Email address", value: userData?.email || "w***@gmail.com", action: "Edit", field: "email" },
-                            { label: "Phone number", value: userData?.phoneNumber || "+9***234567", action: "Edit", field: "phoneNumber" },
+                            { label: "Email address", value: userData?.email || "e***@example.com", action: "Edit", field: "email" },
+                            { label: "Phone number", value: userData?.phoneNumber || "+9***8765432", action: "Edit", field: "phoneNumber" },
                             { label: "Address", value: userData?.address || "Not provided", action: "Edit", field: "address" },
                         ].map((item, index) => (
                             <div
