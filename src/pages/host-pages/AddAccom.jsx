@@ -5,30 +5,15 @@ import AccomStep1 from '../../components/homehost-page/AccomStep1';
 import AccomStep2 from '../../components/homehost-page/AccomStep2';
 import AccomStep3 from '../../components/homehost-page/AccomStep3';
 import { addAccommodation } from '../../api/accomApi';
+import useAccomStore from '../../accomStore/addaccomStore';
 
 function AddAccom() {
-    const initInput = {
-        title: "",
-        description: "",
-        typeOfAccom: "",
-        img:[],
-        availQTY: "",
-        numBedrooms: "",
-        numBathrooms: "",
-        maxGuests: "",
-        pricePerNight: "",
-        addressDetail: "",
-        city: "",
-        country: "",
-        latitude: "",
-        longitude: "",
-      };
-    const [formData, setFormData] = useState(initInput);
+    const {formData, setFormData} = useAccomStore();
 
-    const handleChange = (e) => {
-          const { name, value } = e.target;
-          setFormData({ ...formData, [name]: value });
-      };
+    // const handleChange = (e) => {
+    //       const { name, value } = e.target;
+    //       setFormData({ ...formData, [name]: value });
+    //   };
       
       const [step, setStep] = useState(1);
       const totalSteps = 3;
@@ -65,13 +50,13 @@ function AddAccom() {
          <div><HostNav/></div>
          {/* content */}
         <div className='flex  flex-col items-center'>
-        <div className='account font-bold text-2xl ml-8 mt-10 mb-8'>Create Your House</div>
+        <div className='account font-bold text-4xl ml-8 mt-10 mb-8'>Create Your House</div>
 
         {/* Timeline Progress */}
             <ul className='flex justify-center w-3/4 my-4 steps steps-horizontal'>
-                <li className={`w-[200px]  text-center step ${step >= 1 ? 'font-bold step step-secondary' : 'text-gray-400 step-neutral'}`}>Step 1</li>
-                <li className={`w-[200px]  text-center step ${step >= 2 ? 'font-bold step step-secondary' : 'text-gray-400 '}`}>Step 2</li>
-                <li className={`w-[200px] text-center step ${step >= 3 ? 'font-bold step step-secondary' : 'text-gray-400 '}`}>Step 3</li>
+                <li className={`w-[200px]  text-center text-xl  step ${step >= 1 ? 'font-bold step step-secondary size-20' : 'text-gray-400  step-neutral'}`}>Step 1</li>
+                <li className={`w-[200px]  text-center text-xl  step ${step >= 2 ? 'font-bold step step-secondary size-20' : 'text-gray-400  '}`}>Step 2</li>
+                <li className={`w-[200px] text-center text-xl  step ${step >= 3 ? 'font-bold step step-secondary size-20' : 'text-gray-400 '}`}>Step 3</li>
             </ul>
                 
         {/* Render Step Components */}

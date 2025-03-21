@@ -1,29 +1,31 @@
 import React, { useState } from 'react';
+import useAccomStore from '../../accomStore/addaccomStore';
 
-function Counter() {
-  const [count, setCount] = useState(1);
+function Counter({ field }) {
+  const { formData, formDataByFIeld } = useAccomStore();
+  const count = formData[field] || 1; // Default 1 
 
   const increment = () => {
-    setCount(count + 1);
+    formDataByFIeld(count + 1, field);
   };
 
   const decrement = () => {
     if (count > 1) {
-      setCount(count - 1);
+      formDataByFIeld(count - 1, field);
     }
   };
 
   return (
     <div className="flex items-center space-x-4">
       <button
-        className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded"
+        className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-4xl"
         onClick={decrement}
       >
         -
       </button>
       <span className="text-lg font-semibold">{count}</span>
       <button
-        className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded"
+        className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-4xl"
         onClick={increment}
       >
         +

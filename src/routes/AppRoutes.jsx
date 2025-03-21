@@ -63,10 +63,6 @@ function AppRoutes() {
                 <Route path='trips' element={<Trips />} />
 
                 {/* PAYMENT */}
-<<<<<<< HEAD
-=======
-                {/* <Route path='booking/payment' element={<Payment />} /> */}
->>>>>>> dev
                 <Route path='booking/payment-success' element={<PaymentSuccess />} />
                 <Route path='booking/payment-cancel' element={<PaymentCancel />} />
                 {/* <Route path='booking/payment-complete/:session' element={<PaymentComplete />} /> */}
