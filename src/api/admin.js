@@ -20,11 +20,15 @@ export const getListAccomocate = async (token) => {
     return await axios.get(`${BASE_URL}/accomcate/get-all`, getHeaders(token));
 };
 
-export const deletedAccomcate = async (token) => {
-    console.log("Deleted Accomcate:", token);
-    return await axios.get(`${BASE_URL}/accomcate/delete`, getHeaders(token));
+export const deletedAccomcate = async (token,categoryID) => {
+    console.log("Deleted Accomcate:", token,categoryID);
+    return await axios.delete(`${BASE_URL}/accomcate/delete/${categoryID}`, getHeaders(token));
 };
 export const updateAccomcate = async (token) => {
     console.log("Deleted Accomcate:", token);
     return await axios.get(`${BASE_URL}/accomcate/update-newname`, getHeaders(token));
+};
+
+export const createAccomcate = async (token, cateName) => {
+    return await axios.post(`${BASE_URL}/accomcate/create`, { cateName }, getHeaders(token));
 };

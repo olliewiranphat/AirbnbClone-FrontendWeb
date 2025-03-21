@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Heart, ChevronLeft, ChevronRight, Star } from 'lucide-react';
-// import useWishlistStore from "../../../store/wishlistStore";
+// import useWishlistStore from "../../../store/";
 import { useAuth } from '@clerk/clerk-react'
 
 function AccomITEM({ id, image, location, rating, stayDetails, dateRange, price }) {
@@ -9,7 +9,7 @@ function AccomITEM({ id, image, location, rating, stayDetails, dateRange, price 
     // const { wishlist, toggleWishlistItem } = useWishlistStore();
     const { getToken } = useAuth()
 
-    const isLiked = wishlist.some((item) => item.id === id);
+    // const isLiked = wishlist.some((item) => item.id === id);
 
     const handleNextSlide = () => {
         setCurrentSlide((prev) => prev + 1);

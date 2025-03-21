@@ -34,7 +34,7 @@ function HomePage() {
     return (
         <>
             {
-                allAccommodatons.length > 0 ? (<AccomLIST allAccommodatons={allAccommodatons} />) : (<div className='px-[40px] py-6 m-auto'>No Accommodation Data yet!</div>)
+                allAccommodatons?.length > 0 ? (<AccomLIST allAccommodatons={allAccommodatons} />) : (<div className='px-[40px] py-6 m-auto'>No Accommodation Data yet!</div>)
             }
             <Inspiration />
         </>

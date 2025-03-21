@@ -6,6 +6,7 @@ function UserItem({ user }) {
     return (
         <tr key={user.userID} className="border-t hover:bg-gray-100">
             <td className="p-4">{user.userID}</td>
+            <td className="p-4">{user.Image}</td>
             <td className="p-4 font-semibold">{user.fullName}</td>
             <td className="p-4 text-blue-600 underline">{user.email}</td>
             <td className="p-4">{user.phoneNumber}</td>
