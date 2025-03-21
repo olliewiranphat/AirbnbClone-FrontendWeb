@@ -27,10 +27,11 @@ import { Route, Routes } from "react-router"
 import HostAccom from "../pages/host-pages/HostAccom"
 import AllUsers from "../pages/admin-pages/AllUsers"
 import PaymentSuccess from "../pages/user-pages/PaymentSuccess"
-import PaymentCancel from "../pages/user-pages/PaymentCancel"
+import PaymentCancel from "../pages/user-pages/payment/PaymentCancel"
 import Payment from "../pages/user-pages/Payment"
 import AllAmenity from "../pages/admin-pages/AllAmenity"
 import AllCategory from "../pages/admin-pages/AllCategory"
+import AllAccomCate from "../pages/admin-pages/AllAccomCate"
 
 
 function AppRoutes() {
@@ -86,7 +87,7 @@ function AppRoutes() {
                 <Route path='management/all-hosts' element={<AllHosts />} />
                 <Route path='management/all-accommodations' element={<AllAccom />} />
                 <Route path='management/accommodations/all-categories' element={<AllAccomCate />} />
-                <Route path='management/accommodations/all-amenities' element={<AllAmenities />} />
+                <Route path='management/accommodations/all-amenities' element={<AllAmenity />} />
             </Route >
 
             {/* Not found page */}
