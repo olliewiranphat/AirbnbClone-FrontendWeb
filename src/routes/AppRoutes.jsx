@@ -13,14 +13,12 @@ import AccomDetail from "../pages/public-pages/AccomDetail"
 import GiftCards from "../pages/public-pages/GiftCards"
 import HelpCenter from "../pages/public-pages/HelpCenter"
 import HomePage from "../pages/public-pages/HomePage"
-import HostEXP from "../pages/public-pages/HostEXP"
 import HostHomes from "../pages/public-pages/HostHomes"
 import NotFound from "../pages/public-pages/NotFound"
 import SearchAccom from "../pages/public-pages/SearchAccom"
 import Booking from "../pages/user-pages/Booking"
 import BookingHistory from "../pages/user-pages/BookingHistory"
 import Messages from "../pages/user-pages/Messages"
-import Notifications from "../pages/user-pages/Notifications"
 import Trips from "../pages/user-pages/Trips"
 import UserAccount from "../pages/user-pages/UserAccount"
 import WishLists from "../pages/user-pages/WishLists"
@@ -29,20 +27,21 @@ import { Route, Routes } from "react-router"
 import HostAccom from "../pages/host-pages/HostAccom"
 import AllUsers from "../pages/admin-pages/AllUsers"
 import PaymentSuccess from "../pages/user-pages/PaymentSuccess"
-import PaymentCancel from "../pages/user-pages/PaymentCancel"
+import PaymentCancel from "../pages/user-pages/payment/PaymentCancel"
 import Payment from "../pages/user-pages/Payment"
 import AllAmenity from "../pages/admin-pages/AllAmenity"
 import AllCategory from "../pages/admin-pages/AllCategory"
+import AllAccomCate from "../pages/admin-pages/AllAccomCate"
 
 
 function AppRoutes() {
+
     return (
 
         <Routes>
-            {/* PUBLIC */}
+            {/* PUBLIC - หน้า HomePage แสดงเสมอ*/}
             <Route path='/' element={<PublicLayout />}>
                 <Route index element={<HomePage />} />
-                {/* <Route path='search/accommodation-detail/:accommodationID' element={<AccomDetail />} /> */}
                 <Route path='search/accommodation' element={<SearchAccom />} />
                 <Route path='search/accommodation-detail' element={<AccomDetail />} />
             </Route>
@@ -53,9 +52,8 @@ function AppRoutes() {
             {/* <Route path="host/experiences" element={<HostEXP />} /> */}
             <Route path="help" element={<HelpCenter />} />
 
-            {/* USER */}
+            {/* USER - LOGINED: HomePage.jsx*/}
             <Route path='/' element={<UserLayout />}>
-                <Route index element={<HomePage />} />
                 <Route path='account-settings' element={<UserAccount />} />
                 <Route path='wishlists' element={<WishLists />} />
                 <Route path='booking' element={<Booking />} />
@@ -65,11 +63,7 @@ function AppRoutes() {
                 <Route path='trips' element={<Trips />} />
 
                 {/* PAYMENT */}
-                {/* <Route path='booking/payment' element={<Payment />} /> */}
-
-                <Route path='booking/payment-success' element={<PaymentSuccess />} />
-                <Route path='booking/payment-cancel' element={<PaymentCancel />} />
-                {/* <Route path='booking/payment-complete/:session' element={<PaymentComplete />} /> */}
+                <Route path='booking/payment' element={<Payment />} />
                 <Route path='booking/payment-success' element={<PaymentSuccess />} />
                 <Route path='booking/payment-cancel' element={<PaymentCancel />} />
             </Route>
@@ -90,10 +84,14 @@ function AppRoutes() {
                 <Route path='management/all-amenity' element={<AllAmenity />} />
                 <Route path='management/all-hosts' element={<AllHosts />} />
                 <Route path='management/all-users' element={<AllUsers />} />
-            </Route>
+                <Route path='management/all-hosts' element={<AllHosts />} />
+                <Route path='management/all-accommodations' element={<AllAccom />} />
+                <Route path='management/accommodations/all-categories' element={<AllAccomCate />} />
+                <Route path='management/accommodations/all-amenities' element={<AllAmenity />} />
+            </Route >
 
             {/* Not found page */}
-            <Route path='*' element={<NotFound />} />
+            < Route path='*' element={< NotFound />} />
         </Routes >
 
     )

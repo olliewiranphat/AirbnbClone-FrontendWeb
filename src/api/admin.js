@@ -15,3 +15,16 @@ export const getAllAccomodation = async (token) => {
     console.log("Token used in getAllAccomodation:", token);
     return await axios.get(`${BASE_URL}/all-accommodations`, getHeaders(token));
 };
+export const getListAccomocate = async (token) => {
+    console.log("Token used in getListAccomocate:", token);
+    return await axios.get(`${BASE_URL}/accomcate/get-all`, getHeaders(token));
+};
+
+export const deletedAccomcate = async (token) => {
+    console.log("Deleted Accomcate:", token);
+    return await axios.get(`${BASE_URL}/accomcate/delete`, getHeaders(token));
+};
+export const updateAccomcate = async (token) => {
+    console.log("Deleted Accomcate:", token);
+    return await axios.get(`${BASE_URL}/accomcate/update-newname`, getHeaders(token));
+};

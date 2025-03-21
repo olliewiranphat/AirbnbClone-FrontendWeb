@@ -5,6 +5,15 @@ import { useUser, useAuth } from "@clerk/clerk-react";
 import AirbnbLOGO from "../../components/home-page/main-navbar/AirbnbLOGO";
 import UserNav from "../../components/home-page/main-navbar/UserNav";
 
+import PersonalInfo from "../../components/home-page/user/user-account/PersonalInfo";
+import UserImage from "../../components/home-page/user/user-account/UserImage";
+import UserInfo from "../../components/home-page/user/user-account/UserInfo";
+import ContentFooter from "../../components/ContentFooter";
+import { AnimatePresence } from "framer-motion";
+import InactiveModal from "../../components/home-page/user/user-account/InactiveModal";
+import HelpingInform from "../../components/home-page/user/user-account/HelpingInform";
+// import useUserStore from "../../store/UserStore";
+
 function UserAccount() {
     const { user } = useUser();
     const { getToken } = useAuth();
@@ -106,17 +115,17 @@ function UserAccount() {
 
     return (
         <>
-            <AirbnbLOGO />
+            {/* <AirbnbLOGO />
             <div className="flex justify-between items-center px-10 py-4 border-b border-gray-200">
                 <div>
-                </div>
+                </div> */}
 
-                <UserNav />
+                {/* <UserNav /> */}
 
-            </div>
+            {/* </div> */}
 
 
-            <div className="min-h-screen bg-white px-10 py-10">
+            <div className="min-h-[600px] bg-white px-10 py-10">
                 <div className="max-w-[1360px] mx-auto mb-8">
                     <h1 className="text-3xl font-semibold">Personal info</h1>
                     <p className="text-gray-500 text-sm mt-2">
@@ -246,37 +255,11 @@ function UserAccount() {
                         </div>
                     </div>
                     {/* ส่วนช่วยเหลือ */}
-                    <div className="flex-shrink-0 w-[300px] bg-gray-50 border border-gray-200 rounded-lg p-6 space-y-6">
-                        {[
-                            {
-                                title: "Why isn't my info shown here?",
-                                description:
-                                    "We're hiding some account details to protect your identity.",
-                                icon: <LockClosedIcon className="w-6 h-6 text-pink-500" />,
-                            },
-                            {
-                                title: "Which details can be edited?",
-                                description:
-                                    "Contact info and personal details can be edited. If this info was used to verify your identity, you'll need to get verified again the next time you book – or to continue hosting.",
-                                icon: <PencilIcon className="w-6 h-6 text-pink-500" />,
-                            },
-                            {
-                                title: "What info is shared with others?",
-                                description:
-                                    "Airbnb only releases contact information for hosts and guests after a reservation is confirmed.",
-                                icon: <EyeIcon className="w-6 h-6 text-pink-500" />,
-                            },
-                        ].map((item, index) => (
-                            <div key={index} className="flex items-start space-x-4">
-                                <div>{item.icon}</div>
-                                <div>
-                                    <h3 className="text-sm font-medium text-gray-800">{item.title}</h3>
-                                    <p className="text-sm text-gray-500">{item.description}</p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
+                    <HelpingInform />
                 </div>
+
+
+                
                 {/* Popup Edit Modal */}
                 {showEditModal && (
                     <div
@@ -359,7 +342,7 @@ function UserAccount() {
                     </div>
                 )}
             </div>
-
+            {/* <ContentFooter /> */}
 
         </>
 
