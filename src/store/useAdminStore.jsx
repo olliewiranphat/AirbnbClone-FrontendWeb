@@ -1,9 +1,10 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { getAllAccomodation, getAllUser, getListAccomocate } from "../api/admin";
+import { createAccomcate, deletedAccomcate, getAllAccomodation, getAllUser, getListAccomocate } from "../api/admin";
 
 const useAdminStore = create(persist((set, get) => ({
       admin: null,
+      allcategory: null,
       actionGetAllUser: async (token) => {
         try {
           const response = await getAllUser(token);
@@ -32,8 +33,33 @@ const useAdminStore = create(persist((set, get) => ({
         } catch (error) {
             console.error("getListAccomocate", error)
         }
+      },
+      actionGetDeleteAccomocate : async (token,categoryId)=>{
+        try {
+          const deleted = await deletedAccomcate(token,categoryId)
+          console.log('response deleted sucess', deleted)
+        } catch (error) {
+          console.error("error deleted", error)
+        }
+      },
+      actionGetUpdateAccomocate : async (token,categoryId)=>{
+        try {
+          const updated = await updateAccomcate(token,categoryId)
+          console.log('response updated sucess', updated)
+        } catch (error) {
+          console.error("error updated", error)
+        }
+      },
+      actionGetCreateAccomocate : async (token,body)=>{
+        try {
+          const created = await createAccomcate(token,body)
+          console.log('response created sucess', created)
+        } catch (error) {
+          console.error("error create", error)
+        }
       }
     }),
+    
 
     
     {

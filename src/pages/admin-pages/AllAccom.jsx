@@ -6,8 +6,8 @@ import { useAuth } from "@clerk/clerk-react";
 
 function AllAccom() {
   const { getToken } = useAuth()
-  const actionGetAccomAmen = useAdminStore(state => state.actionGetAccomAmen)
-  const allAccomAmen = useAdminStore(state => state.allAccomAmen)
+  const actionGetAccomAmen = useAdminStore(state => state.actionGetAllAccommodations)
+  const allAccomAmen = useAdminStore(state => state.allAccommodatons)
   useEffect(() => {
     const fetchAccomAmen = async () => {
       const token = await getToken()
@@ -31,7 +31,6 @@ function AllAccom() {
               <th className="p-4">Title</th>
               <th className="p-4">Address</th>
               <th className="p-4">Price/Night</th>
-              <th className="p-4">Address</th>
               <th className="p-4">Bedrooms</th>
               <th className="p-4">Bathrooms</th>
               <th className="p-4">Available</th>
