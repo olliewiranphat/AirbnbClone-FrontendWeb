@@ -1,5 +1,5 @@
 import React from "react";
-import useAccomStore from "../../accomStore/addaccomStore";
+import useAccomStore from "../../../accomStore/addaccomStore";
 
 const categoryAccom1 = ["Amazing views", "Beachfront", "OMG!", "Rooms", "Treehouses","Castles","Farms","Cabins","Tiny homes","Amazing pools"];
 

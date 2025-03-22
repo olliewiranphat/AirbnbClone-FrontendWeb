@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import HostNav from '../../components/homehost-page/HostNav'
+import HostNav from '../../components/homehost-page/SwichHost/HostNav'
 import ReloadLink from '../../utils/ReloadLink'
 import { useNavigate } from 'react-router';
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import useAccomStore from '../../accomStore/addaccomStore';
+import useAccomStore from '../../../accomStore/addaccomStore';
 
 function Counter({ field }) {
   const { formData, formDataByField } = useAccomStore();

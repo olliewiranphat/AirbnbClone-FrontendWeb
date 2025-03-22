@@ -1,5 +1,5 @@
 import React from 'react'
-import TableCheck from './TableCheck'
+import TableCheck from '../SwichHost/TableCheck'
 
 function ContentStayit() {
   return (

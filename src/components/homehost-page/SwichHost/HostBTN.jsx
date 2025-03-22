@@ -1,7 +1,7 @@
 import React from 'react'
-import ReloadLink from '../../utils/ReloadLink'
+import ReloadLink from '../../../utils/ReloadLink'
 import { SignOutButton } from '@clerk/clerk-react'
-import BTNhost from '../../components/homehost-page/BTNhost'
+import BTNhost from '../../../components/homehost-page/SwichHost/BTNhost'
 function HostBTN() {
   return (
     <div className='relative group flex flex-col'>

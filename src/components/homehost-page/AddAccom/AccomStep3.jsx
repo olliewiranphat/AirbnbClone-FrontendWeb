@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 // import Counter from './Counter';
-import MapComponent from './MapComponent';
-import useAccomStore from '../../accomStore/addaccomStore';
+import MapComponent from '../../homehost-page/AddAccom/MapComponent';
+import useAccomStore from '../../../accomStore/addaccomStore';
 
 function AccomStep3() {
     const {formData, setFormData} = useAccomStore();

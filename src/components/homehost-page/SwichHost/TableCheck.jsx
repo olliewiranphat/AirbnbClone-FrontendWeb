@@ -1,5 +1,5 @@
 import React from 'react'
-import { CorrectIcon, WrongIcon } from './IndexIcon'
+import { CorrectIcon, WrongIcon } from '../IndexIcon'
 
 function TableCheck() {
   return (

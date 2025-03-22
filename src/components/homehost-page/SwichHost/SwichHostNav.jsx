@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import AirbnbLOGO from "../home-page/main-navbar/AirbnbLOGO";
-import ReloadLink from "../../utils/ReloadLink";
-import { HouseIcon } from "./IndexIcon";
+import AirbnbLOGO from "../../home-page/main-navbar/AirbnbLOGO";
+import ReloadLink from "../../../utils/ReloadLink";
+import { HouseIcon } from "../IndexIcon";
 import { useAuth, useUser } from "@clerk/clerk-react";
-import { setupRolehost } from "../../api/hostRole";
+import { setupRolehost } from "../../../api/hostRole";
 import { useNavigate } from "react-router";
-import { Loader2 } from "lucide-react";
+// import { Loader2 } from "lucide-react";
 
 
 function SwichHostNav() {

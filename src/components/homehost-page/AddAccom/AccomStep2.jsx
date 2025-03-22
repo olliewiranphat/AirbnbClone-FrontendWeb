@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import useAccomStore from '../../accomStore/addaccomStore';
-import BasicInfoForm from './BasicInfoForm';
-import AmenitiesSelector from './AmenitiesSelector';
-import Upimg from './Upimg';
+import useAccomStore from '../../../accomStore/addaccomStore';
+import BasicInfoForm from '../AddAccom/BasicInfoForm';
+import AmenitiesSelector from '../AddAccom/AmenitiesSelector';
+import Upimg from '../AddAccom/Upimg';
 
 function AccomStep2() {
     const { formData, formDataByField } = useAccomStore();

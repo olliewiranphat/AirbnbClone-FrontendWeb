@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import HostNav from '../../components/homehost-page/HostNav';
+import HostNav from '../../components/homehost-page/SwichHost/HostNav';
 import axios from 'axios';
 // import { useParams } from 'react-router-dom';
 

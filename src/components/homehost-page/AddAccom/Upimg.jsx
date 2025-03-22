@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import useAccomStore from '../../accomStore/addaccomStore';
+import useAccomStore from '../../../accomStore/addaccomStore';
 import { LoaderCircle } from "lucide-react";
-import { deleteImage, uploadImage } from "../../api/accomApi";
+import { deleteImage, uploadImage } from "../../../api/accomApi";
 import { useAuth } from "@clerk/clerk-react";
 
 function Upimg({field}) {

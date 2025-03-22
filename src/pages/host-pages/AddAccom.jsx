@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import HostNav from "../../components/homehost-page/HostNav";
+import HostNav from "../../components/homehost-page/SwichHost/HostNav";
 import axios from "axios";
-import AccomStep1 from "../../components/homehost-page/AccomStep1";
-import AccomStep2 from "../../components/homehost-page/AccomStep2";
-import AccomStep3 from "../../components/homehost-page/AccomStep3";
+import AccomStep1 from "../../components/homehost-page/AddAccom/AccomStep1";
+import AccomStep2 from "../../components/homehost-page/AddAccom/AccomStep2";
+import AccomStep3 from "../../components/homehost-page/AddAccom/AccomStep3";
 import { addAccommodation } from "../../api/accomApi";
 import useAccomStore from "../../accomStore/addaccomStore";
 import { useAuth } from "@clerk/clerk-react";

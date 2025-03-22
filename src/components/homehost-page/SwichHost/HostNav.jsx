@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import AirbnbLOGO from "../home-page/main-navbar/AirbnbLOGO";
+import AirbnbLOGO from "../../home-page/main-navbar/AirbnbLOGO";
 import HostNavProfile from "./HostNavProfile";
-import ReloadLink from "../../utils/ReloadLink";
+import ReloadLink from "../../../utils/ReloadLink";
 import { Link } from "react-router";
 
 

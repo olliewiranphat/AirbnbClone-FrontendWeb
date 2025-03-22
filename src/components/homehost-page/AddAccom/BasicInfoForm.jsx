@@ -1,6 +1,6 @@
 import React from "react";
-import Counter from "./Counter";
-import useAccomStore from "../../accomStore/addaccomStore";
+import Counter from "../../homehost-page/AddAccom/Counter";
+import useAccomStore from "../../../accomStore/addaccomStore";
 
 const BasicInfoForm = () => {
     const { formData, formDataByFIeld } = useAccomStore();

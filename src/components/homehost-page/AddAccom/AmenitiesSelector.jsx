@@ -1,5 +1,5 @@
 import React from "react";
-import useAccomStore from "../../accomStore/addaccomStore";
+import useAccomStore from "../../../accomStore/addaccomStore";
 
 const amenities = [
   { amenityID: 1, name: "Wifi" },

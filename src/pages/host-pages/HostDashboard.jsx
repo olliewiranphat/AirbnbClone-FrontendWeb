@@ -1,5 +1,5 @@
 import React from 'react'
-import HostNav from '../../components/homehost-page/HostNav'
+import HostNav from '../../components/homehost-page/SwichHost/HostNav'
 
 function HostDashboard() {
     return (

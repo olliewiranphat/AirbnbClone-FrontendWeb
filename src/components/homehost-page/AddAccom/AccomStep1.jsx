@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 // import { deleteImage, uploadImage } from "../../api/accomApi";
 import { useAuth } from "@clerk/clerk-react";
-import useAccomStore from "../../accomStore/addaccomStore";
+import useAccomStore from "../../../accomStore/addaccomStore";
 import { LoaderCircle } from "lucide-react";
-import PlaceTypeSelector from "./PlaceTypeSelector";
-import CategoryAccom from "./CategoryAccom";
+import PlaceTypeSelector from "../../homehost-page/AddAccom/PlaceTypeSelector";
+import CategoryAccom from "../../homehost-page/AddAccom/CategoryAccom";
 
 function AccomStep1() {
   const { getToken } = useAuth();

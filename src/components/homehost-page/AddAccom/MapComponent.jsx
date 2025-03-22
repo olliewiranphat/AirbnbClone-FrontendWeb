@@ -1,6 +1,6 @@
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import { useState } from "react";
-import useAccomStore from "../../accomStore/addaccomStore";
+import useAccomStore from "../../../accomStore/addaccomStore";
 
 const containerStyle = { width: "100%", height: "400px" };
 const defaultCenter = { lat: 13.736717, lng: 100.523186 }; // พิกัดกรุงเทพฯ
