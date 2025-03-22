@@ -30,8 +30,9 @@ export const deleteImage = async (token,file) => {
 }
 
 //Add
-export const addAccommodation = async (token,id) => {
-    return await axios.post('http://localhost:8081/host/accommodation/add-new',{id},{
+export const addAccommodation = async (token,formData) => {
+    console.log('token', token)
+    return await axios.post('http://localhost:8081/host/accommodation/add-new',formData,{
         headers:{
             Authorization: `Bearer ${token}`
         }

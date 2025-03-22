@@ -2,16 +2,16 @@ import React, { useState } from 'react';
 import useAccomStore from '../../accomStore/addaccomStore';
 
 function Counter({ field }) {
-  const { formData, formDataByFIeld } = useAccomStore();
+  const { formData, formDataByField } = useAccomStore();
   const count = formData[field] || 1; // Default 1 
 
   const increment = () => {
-    formDataByFIeld(count + 1, field);
+    formDataByField(count + 1, field);
   };
 
   const decrement = () => {
     if (count > 1) {
-      formDataByFIeld(count - 1, field);
+      formDataByField(count - 1, field);
     }
   };
 

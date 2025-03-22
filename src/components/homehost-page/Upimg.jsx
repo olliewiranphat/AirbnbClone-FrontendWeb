@@ -4,9 +4,9 @@ import { LoaderCircle } from "lucide-react";
 import { deleteImage, uploadImage } from "../../api/accomApi";
 import { useAuth } from "@clerk/clerk-react";
 
-function Upimg() {
+function Upimg({field}) {
     const { getToken } = useAuth();
-    const { formData, setFormData, setDeleteImage } = useAccomStore();
+    const { formData, formDataByField, setDeleteImage } = useAccomStore();
     const [uploading, setUploading] = useState(false);
     const [uploadError, setUploadError] = useState(null);    
     
@@ -25,7 +25,9 @@ function Upimg() {
           }
           console.log("Upload images url", uploadedUrls);
           // setFormDataImg(uploadedUrls);
-          setFormData({ ...formData, img: [...formData.img, ...uploadedUrls] });
+
+   
+          formDataByField(uploadedUrls, field);
         } catch (error) {
           console.log(error);
         } finally {
@@ -55,8 +57,8 @@ function Upimg() {
       <div className="flex flex-col gap-2 mt-2">
         {/* ส่วนแสดงรูป */}
         <div className="flex gap-2 mt-2 flex-wrap">
-          {formData.img.length > 0 &&
-            formData.img.map((image, index) => (
+          {formData[field]?.length > 0 &&
+            formData[field]?.map((image, index) => (
               <div key={index} className="relative">
                 <img
                   src={image?.secure_url}
