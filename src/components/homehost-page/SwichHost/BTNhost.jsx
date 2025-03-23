@@ -1,6 +1,6 @@
 import React from 'react'
-import SignoutAdminBTN from './SignoutAdminBTN'
-import SignupLoginBTN from '../home-page/user/SignupLoginBTN'
+import SignoutAdminBTN from '../SignoutAdminBTN'
+import SignupLoginBTN from '../../../components/home-page/user/SignupLoginBTN'
 
 
 function UserBTN() {

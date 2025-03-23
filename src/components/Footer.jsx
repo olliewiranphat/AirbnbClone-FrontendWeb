@@ -20,7 +20,7 @@ function Footer() {
         <>
             {/* Footer */}
             <div className="px-[40px] py-6 flex justify-between items-center text-[#222222] text-[14px] border-t-[1px] border-gray-300">
-                <span>© 2025 Airbnb, Inc. · Privacy · Terms · Sitemap · Company details</span>
+                <span>© 2025 Stayzy, Inc. · Privacy · Terms · Sitemap · Company details</span>
                 <div className="flex items-center gap-4">
                     <span className="cursor-pointer hover:underline">English (GB)</span>
                     <span className="cursor-pointer hover:underline">£ GBP</span>
