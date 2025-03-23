@@ -23,7 +23,7 @@ function SignoutACCBTN() {
 
     return (<div ref={menuRef}>
         <SignedIn className='relative' >
-            <button onClick={() => setShowLIST(!showLIST)} className='h-[50px] rounded-full flex gap-1 py-2 px-3 border border-gray-300 items-center hover:shadow-xl'>
+            <button onClick={() => setShowLIST(!showLIST)} className='h-[50px] rounded-full flex gap-1 py-2 px-3 border border-gray-300 items-center hover:shadow-xl cursor-pointer'>
                 <AlignJustify className='h-[18px]' />
                 <img src={user?.imageUrl} alt="profile" className='h-[32px] w-[32px] bg-slate-500 rounded-full' />
             </button>

@@ -22,20 +22,18 @@ function MainNavBar() {
                 <AirbnbLOGO />
 
                 {/* HOME/EXP */}
-                <div className="flex gap-9 text-[17px] text-[#6a6a6a] justify-center flex-1 pl-32">
+                <div className="flex gap-9 text-[17px] text-[#6a6a6a] pl-10 flex-1">
                     <button
                         onClick={hdlClickHome}
-                        className={`${
-                            showEXP === false ? 'text-[#222222] font-semibold' : ''
-                        }`}
+                        className={`${showEXP === false ? 'text-[#222222] font-semibold' : ''
+                            }`}
                     >
                         Homes
                     </button>
                     <button
                         onClick={hdlClickEXP}
-                        className={`${
-                            showEXP === true ? 'text-[#222222] font-semibold' : ''
-                        }`}
+                        className={`${showEXP === true ? 'text-[#222222] font-semibold' : ''
+                            }`}
                     >
                         Experiences
                     </button>

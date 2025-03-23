@@ -3,6 +3,7 @@ import { AlignJustify, CircleUserRound, Search } from "lucide-react";
 import AirbnbLOGO from "../../components/home-page/main-navbar/AirbnbLOGO";
 import Footer from "../../components/Footer";
 import tabContent from ".././../components/helpcenter/Tabcontent";
+import UserBTN from "../../components/home-page/user/UserBTN";
 
 export default function HelpCenter() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -20,13 +21,9 @@ export default function HelpCenter() {
           <h1 className="text-lg font-bold">Help Center</h1>
         </div>
         <div className="relative">
-          <button
-            className="flex items-center gap-2 border p-2 rounded-lg cursor-pointer"
-            onClick={() => setMenuOpen(!menuOpen)}
-          >
-            <AlignJustify className="w-6 h-6" />
-            <CircleUserRound className="w-6 h-6" />
-          </button>
+          <div>
+            <UserBTN />
+          </div>
           {menuOpen && (
             <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg p-2">
               <ul>

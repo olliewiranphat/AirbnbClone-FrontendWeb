@@ -76,15 +76,12 @@ function HostAccom() {
     if (error) return <p>Error: {error}</p>;
 
     return (
-    <div className='h-full w-full flex flex-col gap-2 p-5 mb-20'>
-        {/* Nav */}
-        <div><HostNav/></div>
-        {/* Listing */}
-        <div className='flex justify-between mt-10 ml-10 mr-10 mb-8'>
-            <h1 className='text-3xl font-semibold'>Your listing</h1>
-            <ReloadLink to='/host-center/host/accommodations/add'
-            className='text-lg text-white bg-[#FF385C] border rounded-md p-2'>Create a new House</ReloadLink>
-        </div>
+        <div className='h-full w-full flex flex-col gap-2 p-5 mb-20'>
+            {/* Nav */}
+            <div><HostNav /></div>
+            {/* Listing */}
+            <div className='flex justify-between mt-10 ml-10 mr-10 mb-8'>
+                <h1 className='text-3xl font-semibold'>Your listing</h1>
 
         {/* get all home */}
         <div className="overflow-x-auto ml-10 mr-10">
@@ -124,8 +121,8 @@ function HostAccom() {
             </tbody>
             </table>
         </div>   
-
-    </div>
+        </div>
+        </div >
     )
 }
 

@@ -23,7 +23,7 @@ function SignupLoginBTN() {
     return (
         <div ref={menuRef}>
             <SignedOut >
-                <button onClick={() => setShowLIST(!showLIST)} className='h-[50px] rounded-full flex gap-1 py-2 px-3 border border-gray-300 items-center hover:shadow-xl'>
+                <button onClick={() => setShowLIST(!showLIST)} className='h-[50px] rounded-full flex gap-1 py-2 px-3 border border-gray-300 items-center hover:shadow-xl cursor-pointer'>
                     <AlignJustify className='h-[18px]' />
                     <img src="https://i.ibb.co/p6jNPQD5/Screenshot-2025-03-08-112025.png" alt="profile" className='h-[32px]' />
                 </button>

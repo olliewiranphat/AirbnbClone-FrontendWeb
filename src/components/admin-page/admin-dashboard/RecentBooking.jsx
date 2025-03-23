@@ -1,7 +1,7 @@
 import React from 'react'
-// import OrderItem from './OrderItem'
+import RecentBookingITEM from './RecentBookingITEM'
 
-function RecentOrders() {
+function RecentBooking({ allUserBooking }) {
     return (
         <div className='w-[80%] rounded-sm '>
             <div className='p-4 text-white text-[14px] bg-[#4D5562]'>Recent Orders</div>
@@ -13,10 +13,12 @@ function RecentOrders() {
                     <span className='text-[11px] font-semibold text-gray-900'>Customer Name</span>
                     <span className='text-[11px] font-semibold text-gray-900'>Order Status</span>
                 </div>
-                {/* <OrderItem /> */}
+                {
+                    allUserBooking.length > 0 && allUserBooking.map((item, inx) => (<RecentBookingITEM key={inx} item={item} />))
+                }
             </div>
         </div>
     )
 }
 
-export default RecentOrders
+export default RecentBooking
