@@ -15,7 +15,7 @@ function Footer() {
         <>
             {/* Footer */}
             <div className="px-[40px] py-6 flex justify-between items-center text-[#222222] text-[14px] border-t-[1px] border-gray-300">
-                <span>© 2025 Airbnb, Inc. · Privacy · Terms · Sitemap · Company details</span>
+                <span>© 2025 Stayzy, Inc. · Privacy · Terms · Sitemap · Company details</span>
                 <div className="flex items-center gap-4">
                     <span className="cursor-pointer hover:underline">English (GB)</span>
                     <span className="cursor-pointer hover:underline">£ GBP</span>
@@ -61,7 +61,7 @@ function Footer() {
                         <div>
                             <h3 className="text-lg font-semibold mb-4">Hosting</h3>
                             <ul className="space-y-2">
-                                <li className="hover:underline cursor-pointer">Airbnb your home</li>
+                                <li className="hover:underline cursor-pointer">Stayzy your home</li>
                                 <li className="hover:underline cursor-pointer">AirCover for Hosts</li>
                                 <li className="hover:underline cursor-pointer">Hosting resources</li>
                                 <li className="hover:underline cursor-pointer">Community forum</li>
@@ -73,14 +73,14 @@ function Footer() {
 
                         {/* Airbnb Section */}
                         <div>
-                            <h3 className="text-lg font-semibold mb-4">Airbnb</h3>
+                            <h3 className="text-lg font-semibold mb-4">Stayzy</h3>
                             <ul className="space-y-2">
                                 <li className="hover:underline cursor-pointer">Newsroom</li>
                                 <li className="hover:underline cursor-pointer">New features</li>
                                 <li className="hover:underline cursor-pointer">Careers</li>
                                 <li className="hover:underline cursor-pointer">Investors</li>
                                 <li className="hover:underline cursor-pointer">Gift cards</li>
-                                <li className="hover:underline cursor-pointer">Airbnb.org emergency stays</li>
+                                <li className="hover:underline cursor-pointer">Stayzy.org emergency stays</li>
                             </ul>
                         </div>
                     </div>

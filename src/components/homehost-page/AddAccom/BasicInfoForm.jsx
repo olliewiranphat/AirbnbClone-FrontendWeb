@@ -15,7 +15,7 @@ const BasicInfoForm = () => {
       ];
   return (
     <div>
-      <h2 className="text-xl font-bold">Share some basics about your place</h2>
+      <h2 className="text-xl font-bold"><span className="text-red-700 mr-1">*</span>Share some basics about your place</h2>
       {fields.map((field,index) => (
         <div key={index} className="flex justify-between items-center mt-2">
           <span className="capitalize">{field.label}</span>

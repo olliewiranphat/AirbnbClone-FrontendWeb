@@ -35,7 +35,7 @@ function Upimg({field}) {
         }
       };
     
-      console.log("Form data=====", formData);
+      console.log("Form data==", formData);
       // ลบรูปออกจาก Cloud และ State
       const handleRemoveImage = async (public_id, index) => {
         console.log("index", index);
@@ -89,7 +89,7 @@ function Upimg({field}) {
         {uploading && (
           <>
           <LoaderCircle className="animate-spin" />
-          <span className="text-xs text-gray-500">กำลังอัปโหลดรูปภาพ...</span>
+          <span className="text-xs text-gray-500">uploading...</span>
           </>
         )}
         {uploadError && (

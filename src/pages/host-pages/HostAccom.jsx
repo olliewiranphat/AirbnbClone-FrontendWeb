@@ -1,37 +1,80 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import HostNav from '../../components/homehost-page/SwichHost/HostNav'
 import ReloadLink from '../../utils/ReloadLink'
 import { useNavigate } from 'react-router';
+import { useAuth } from '@clerk/clerk-react';
+import { deleteAccommodation, getAccom } from '../../api/accomApi';
 
 function HostAccom() {
-    const [accommodations, setAccommodations] = useState([
-        {
-            id: 1,
-            title: "Cozy Apartment",
-            description: "A comfortable place to relax.",
-            typeOfAccommodation: "Apartment",
-            img: "placeholder.jpg",
-            quantityrooms: 2,
-            quantitybeds: 3,
-            quantitybathrooms: 1,
-            guests: 4,
-            price: "$100",
-            address: "123 Main Street",
-            city: "Bangkok",
-            country: "Thailand",
-        },
-    ]);
+    const [accommodations, setAccommodations] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const { getToken } = useAuth();
+    // const [accommodations, setAccommodations] = useState([
+    //     {
+    //         id: 1,
+    //         title: "Cozy Apartment",
+    //         description: "A comfortable place to relax.",
+    //         typeOfAccommodation: "Apartment",
+    //         img: "placeholder.jpg",
+    //         quantityrooms: 2,
+    //         quantitybeds: 3,
+    //         quantitybathrooms: 1,
+    //         guests: 4,
+    //         price: "$100",
+    //         address: "123 Main Street",
+    //         city: "Bangkok",
+    //         country: "Thailand",
+    //     },
+    // ]);
     const navigate = useNavigate();
+
+     //ดึงข้อมูลที่พักจาก API เมื่อ Component โหลด
+     useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const token = await getToken(); // ดึง token
+                const response = await getAccom(token,1); // ID อาจเปลี่ยนตามเงื่อนไขของ API
+                
+                if (response.status === 200) {
+                    setAccommodations(response.data);
+                }
+            } catch (err) {
+                console.error("Error fetching accommodations:", err);
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchData();
+    }, []);
 
     const handleEdit = (id) => {
         const accomToEdit = accommodations.find((accom) => accom.id === id);
-        navigate(`/host-center/host/accommodations/update/:${id}`, { state: accomToEdit });
+        navigate(`host-center/host/accommodations/update/:accommodationID`, { state: accomToEdit });
     };
 
-    const handleDelete = (id) => {
-        const updatedAccommodations = accommodations.filter((accom) => accom.id !== id);
-        setAccommodations(updatedAccommodations);
+    const handleDelete = async (id) => {
+        try {
+            const token = await getToken(); // Get the authentication token
+            const response = await deleteAccommodation(token, id); // Call the delete API
+    
+            if (response.status === 200) {
+                // Remove the deleted accommodation from the state
+                const updatedAccommodations = accommodations.filter((accom) => accom.accommodationsID !== id);
+                setAccommodations(updatedAccommodations);
+            } else {
+                console.error("Failed to delete accommodation:", response.statusText);
+            }
+        } catch (err) {
+            console.error("Error during deletion:", err.message);
+        }
     };
+    
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error: {error}</p>;
+
     return (
     <div className='h-full w-full flex flex-col gap-2 p-5 mb-20'>
         {/* Nav */}
@@ -62,41 +105,25 @@ function HostAccom() {
               {/* card home */}
             <tbody className='border bg-gray-100 rounded-2xl p-4 shadow-xl m-4 hover:shadow-2xl'>
                 {accommodations.map((accom) => (
-                <tr key={accom.id}>
-                    <td><img src={accom.img} alt={accom.title} className='w-16 h-16 object-cover' /></td>
+                <tr key={accom.accommodationsID}>
+                    <td><img src={accom.Rooms?.[0]?.ImgsRoom?.[0]?.url} alt={accom.title} className='w-16 h-16 object-cover' /></td>
                     <td>{accom.title}</td>
-                    <td>{accom.typeOfAccommodation}</td>
-                    <td>{accom.quantityrooms} Rooms</td>
-                    <td>{accom.price}/night</td>
-                    <td>{accom.address}{accom.city}</td>
+                    <td>{accom.typeOfAccom}</td>
+                    <td>{accom.availQTY} Rooms</td>
+                    <td>{accom.pricePerNight}/night</td>
+                    <td>{accom.addressDetail},{accom.city}</td>
                     <td>{accom.country}</td>
                     <td>
                     <button className='bg-blue-500 text-white p-2 rounded-md mr-2'
-                        onClick={() => handleEdit(accom.id)}>Edit</button>
+                        onClick={() => handleEdit(accom.accommodationID)}>Edit</button>
                     <button className='bg-red-500 text-white p-2 rounded-md'
-                        onClick={() => handleDelete(accom.id)}>Delete</button>
+                        onClick={() => handleDelete(accom.accommodationID)}>Delete</button>
                     </td>
                 </tr>
                 ))}
             </tbody>
             </table>
-        </div>
-      
-        {/* info */}
-        {/* <div className='flex flex-col bg-gray-200 p-2'>
-            <h1 className='text-2xl font-semibold'>Accom Name</h1>
-            <p className='text-md font-semibold'>Description</p>
-            <p className='text-xs font-semibold'>City, Country</p>
-        </div> */}
-        {/* Typeroom */}
-        {/* <div className='bg-gray-500 p-4 text-2xl font-semibold'>Type room</div> */}
-        {/* Quantity */}
-        {/* <div className='bg-gray-500 p-4'>
-            <h1 className='text-2xl font-semibold'>Quantit room</h1>
-            <p className='text-md font-semibold'>Many guests </p>
-        </div> */}
-        {/* price */}
-        {/* <div className='bg-gray-500 p-4 text-2xl font-semibold'>Price/night</div> */}
+        </div>   
 
     </div>
     )

@@ -30,7 +30,7 @@ const CategoryAccom = ({ selectedAccom, setSelectedAccom }) => {
           <button
             key={categoryacc}
             className={`border p-4 rounded-lg ${
-                categoryAccom.includes(categoryacc) ? "bg-gray-200" : ""
+                categoryAccom.includes(categoryacc) ? "bg-[#FF385C] text-white" : ""
             }`}
             onClick={() => toggleItem(categoryacc)}
           >

@@ -40,7 +40,7 @@ export const addAccommodation = async (token,formData) => {
 }
 //delete
 export const deleteAccommodation = async (token,id) => {
-    return await axios.delete('http://localhost:8081/host/accommodation/delete/:accommodationID',{id},{
+    return await axios.delete(`http://localhost:8081/host/accommodation/delete/:accommodationID${id}`,{
         headers:{
             Authorization: `Bearer ${token}`
         }
@@ -72,8 +72,8 @@ export const updateAccom = async (token,id) => {
 }
 
 //get all
-export const getAccom = async (token,id) => {
-    return await axios.put('http://localhost:8081/host/accommodation/get-all',{id},{
+export const getAccom = async (token) => {
+    return await axios.get('http://localhost:8081/host/accommodation/get-all',{
         headers:{
             Authorization: `Bearer ${token}`
         }
@@ -82,13 +82,9 @@ export const getAccom = async (token,id) => {
 
 //get dashboard
 export const getDashboard = async (token,id) => {
-    return await axios.put('http://localhost:8081/host/dashboard',{id},{
+    return await axios.get('http://localhost:8081/host/dashboard',id,{
         headers:{
             Authorization: `Bearer ${token}`
         }
     })
 }
-
-
-
-

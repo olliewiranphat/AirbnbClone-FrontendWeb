@@ -6,7 +6,7 @@ const useAccomStore = create(persist((set) => ({
     formData: {
         title: "",
         description: "",
-        typeOfAccom: "",
+        typeOfAccom: "PRIVATEROOM",
         img: [],
         imgBeds: [],
         imgBaths: [],

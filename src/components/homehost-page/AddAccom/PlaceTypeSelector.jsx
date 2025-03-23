@@ -1,10 +1,10 @@
 import React from "react";
-import { Home } from "lucide-react";
+import { Home, Hotel, School } from "lucide-react";
 
 const placeTypes = [
-  { label: "ENTIREHOME", icon: Home },
+  { label: "ENTIREHOME", icon: School },
   { label: "PRIVATEROOM", icon: Home },
-  { label: "SHAREDROOM", icon: Home },
+  { label: "SHAREDROOM", icon: Hotel },
 ];
 const PlaceTypeSelector = ({ selectedType, setSelectedType }) => {
     // เลือกได้1ประเภทเท่านั้น
@@ -27,7 +27,7 @@ const PlaceTypeSelector = ({ selectedType, setSelectedType }) => {
           <button
             key={label}
             className={`border p-4 rounded-lg flex flex-col items-center ${
-              selectedType === label ? "bg-gray-200" : ""
+              selectedType === label ? "bg-[#FF385C] text-white" : ""
             }`}
             onClick={() => handleSelection(label)}
           >

@@ -11,6 +11,7 @@ import { useAuth } from "@clerk/clerk-react";
 function AddAccom() {
   const { formData, setFormData } = useAccomStore();
     const { getToken } = useAuth();
+    
 
   // const handleChange = (e) => {
   //       const { name, value } = e.target;
@@ -36,7 +37,7 @@ function AddAccom() {
     const amenity = formData.selectedAmenities;
 
     const roomData = [
-        {id: 1, name: "Main Room", img: formData.img},
+        {id: 1, name: "Rooms", img: formData.img},
         {id: 2, name: "Bed Room", img: formData.imgBeds},
         {id: 3, name: "Bath Room", img: formData.imgBath}
     ];
@@ -74,7 +75,7 @@ function AddAccom() {
       });
       if (response.status === 200) {
         alert("Accommodation added successfully");
-        setFormData(initInput); // Reset form
+        setFormData(formData); // Reset form
       }
     } catch (err) {
       console.error("Error adding accommodation:", err);
@@ -142,7 +143,7 @@ function AddAccom() {
           {step < totalSteps ? (
             <button
               onClick={nextStep}
-              className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+              className="px-4 py-2 bg-[#222222] text-white rounded hover:bg-[#333333]"
             >
               Next
             </button>
@@ -150,9 +151,9 @@ function AddAccom() {
             <button
               type="submit"
               onClick={handleSubmit}
-              className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+              className="px-4 py-2 bg-[#FF385C] text-white rounded hover:bg-[#dd1062]"
             >
-              Save
+              Create
             </button>
           )}
         </div>

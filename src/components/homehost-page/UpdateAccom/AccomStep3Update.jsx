@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import MapComponent from '../../homehost-page/AddAccom/MapComponent';
 import useAccomStore from '../../../accomStore/addaccomStore';
 
-function AccomStep3() {
+function AccomStep3Update() {
     const {formData, setFormData} = useAccomStore();
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -49,4 +49,4 @@ function AccomStep3() {
   )
 }
 
-export default AccomStep3
+export default AccomStep3Update
