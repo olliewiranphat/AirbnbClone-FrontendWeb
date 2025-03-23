@@ -32,7 +32,7 @@ import Payment from "../pages/user-pages/Payment"
 import AllAmenity from "../pages/admin-pages/AllAmenity"
 import AllCategory from "../pages/admin-pages/AllCategory"
 import AllAccomCate from "../pages/admin-pages/AllAccomCate"
-
+import AllBookings from "../pages/admin-pages/AllBookings"
 
 function AppRoutes() {
 
@@ -84,7 +84,7 @@ function AppRoutes() {
                 <Route path='management/all-amenity' element={<AllAmenity />} />
                 <Route path='management/all-hosts' element={<AllHosts />} />
                 <Route path='management/all-users' element={<AllUsers />} />
-                <Route path='management/all-hosts' element={<AllHosts />} />
+                <Route path='management/all-booking' element={<AllBookings />} />
                 <Route path='management/all-accommodations' element={<AllAccom />} />
                 <Route path='management/accommodations/all-categories' element={<AllAccomCate />} />
                 <Route path='management/accommodations/all-amenities' element={<AllAmenity />} />

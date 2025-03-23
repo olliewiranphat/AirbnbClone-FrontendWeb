@@ -18,7 +18,7 @@ function AdminDashboard() {
     hdlGetDashboard()
   }, [])
   // console.log('adminDashboard', adminDashboard)
-  const { allAccom, allUserBooking, allUserReview } = adminDashboard
+  //[close] const { allAccom, allUserBooking, allUserReview } = adminDashboard
   // console.log('allAccom', allAccom);
 
 
@@ -49,7 +49,7 @@ function AdminDashboard() {
       {/* Orders Section */}
       <div className="bg-white rounded-lg shadow-lg p-6 mt-6">
         <h3 className="text-lg font-semibold text-gray-700 mb-4">Recent Orders</h3>
-        <RecentBooking allUserBooking={allUserBooking} />
+        {/* <RecentBooking allUserBooking={allUserBooking} /> */} close
       </div>
     </div>
   );

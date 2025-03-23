@@ -41,7 +41,7 @@ function AdminSidebar() {
                     <span className=' absolute pl-10 bottom-[-3px]'>Reservations</span>
                 </div>
                 <ul className='pl-10 flex flex-col gap-6 mb-2 text-[14px]'>
-                    <Link to='/booking-history' className='inline-block  pb-1 w-auto cursor-pointer border-transparent hover:border-b-2  hover:border-[#FF385C] hover:duration-200'>
+                    <Link to='/admin/management/all-booking' className='inline-block  pb-1 w-auto cursor-pointer border-transparent hover:border-b-2  hover:border-[#FF385C] hover:duration-200'>
                         <span>Booking History</span>
                     </Link>
                 </ul>

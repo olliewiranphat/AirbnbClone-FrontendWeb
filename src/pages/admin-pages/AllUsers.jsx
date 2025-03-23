@@ -38,7 +38,7 @@ function AllUsers() {
             </tr>
           </thead>
           <tbody>
-            {allUsers.length > 0 && allUsers.map((user) => (
+            {allUsers?.length > 0 && allUsers.map((user) => (
               <UserItem key={user.userID} user={user} />
             ))}
           </tbody>
