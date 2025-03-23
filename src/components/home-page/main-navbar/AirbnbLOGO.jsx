@@ -6,7 +6,7 @@ function AirbnbLOGO() {
 
     return (
         <ReloadLink to='/'>
-            <img src="https://i.ibb.co/7tv6CXLT/Untitled-design.png" alt="airbnb" className='w-[30%] cursor-pointer' />
+            <img src="https://i.ibb.co/7tv6CXLT/Untitled-design.png" alt="airbnb" className='w-[28%] cursor-pointer' />
         </ReloadLink>
     )
 }

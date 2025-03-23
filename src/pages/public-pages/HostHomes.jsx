@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import SwichHostNav from '../../components/homehost-page/SwichHostNav'
 import Footer from '../../components/Footer';
 import ContentStayit from '../../components/homehost-page/contentStayit';
-import MapComponent from '../../components/homehost-page/MapComponent';
+import MapComponent from '../../components/map/MapComponent';
+
 
 
 function HostHomes() {

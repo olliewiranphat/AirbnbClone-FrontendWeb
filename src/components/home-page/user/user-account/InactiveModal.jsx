@@ -2,10 +2,11 @@ import React from 'react'
 import { motion } from "framer-motion";
 import { useAuth } from '@clerk/clerk-react';
 import { inactiveAccount } from '../../../../api-server/userController';
+import { useNavigate } from 'react-router';
 
 function InactiveModal({ setShowInactiveModal }) {
-    const { getToken } = useAuth()
-
+    const { getToken, signOut } = useAuth()
+    const navigate = useNavigate();
     const hdlInactiveAccount = async () => {
         setShowInactiveModal(false)
         const token = await getToken()
@@ -14,6 +15,10 @@ function InactiveModal({ setShowInactiveModal }) {
         try {
             const resInactiveAccount = await inactiveAccount(token);
             console.log("resInactiveAccount", resInactiveAccount);
+
+            // Sign out && redirect HomePage.jsx
+            await signOut(); //DONE THIS!!, before navigate('/');
+            navigate('/'); // Go to HomePage
         } catch (error) {
             console.error("Error Inactivating Account:", error.response?.data || error.message);
         }

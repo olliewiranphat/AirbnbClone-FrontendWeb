@@ -17,6 +17,8 @@ function UserAccountLIST() {
             <div className='px-4 py-5 flex flex-col gap-5 items-start'>
                 <ReloadLink to='/giftcards' className='cursor-pointer'>Gift cards</ReloadLink>
                 <ReloadLink to='/help cursor-pointer' className='cursor-pointer'>Help Center</ReloadLink>
+
+                {/* BECAUSE USE CLERK, SO CANNOT UPDATE ONLINE/OFFLINE STATUS AFTER SIGNOUT, CANT WRITE CALLBACK API */}
                 <SignOutButton className='cursor-pointer' redirectUrl='/'>Log out</SignOutButton>
             </div>
         </div>
