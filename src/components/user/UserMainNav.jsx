@@ -6,7 +6,9 @@ function UserMainNav() {
 
 
     return (
+
         <div className={`w-screen h-[80px] fixed px-[40px] flex justify-between bg-white z-50 `} >
+
             <AirbnbLOGO />
 
             <div className='flex items-center'>

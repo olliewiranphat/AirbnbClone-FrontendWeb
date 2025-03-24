@@ -31,7 +31,10 @@ export const getAllHosts = async (token) => {
 
 
 export const getAllAccommodations = async () => {
-    return await axios('http://localhost:8081/admin/all-accommodations')
+    const res = await axios('http://localhost:8081/admin/all-accommodations')
+    // console.log("Hello MTFK", res.data.results)
+    // return await axios('http://localhost:8081/admin/all-accommodations')
+    return res.data.results
 }
 
 export const getAllAccomCate = async (token) => {
