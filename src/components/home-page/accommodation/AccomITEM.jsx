@@ -20,10 +20,12 @@ function AccomITEM({
     accommodation,
 }) {
 
+
     const [isHovered, setIsHovered] = useState(false);
     const [currentSlide, setCurrentSlide] = useState(0);
     const { getToken } = useAuth();
     const { wishlist, toggleWishlistItem } = useWishlistStore();
+
 
     // Extract values from the accommodation prop if provided
     const ID = accommodation?.ID || accommodationID;
@@ -35,6 +37,8 @@ function AccomITEM({
     const Bathrooms = accommodation?.Bathrooms;
     const ImageURL = accommodation?.ImageURL || imageUrl;
     const Rating = accommodation?.Rating || rating;
+
+
 
     const imageArray = Array.isArray(ImageURL) ? ImageURL : (ImageURL ? [ImageURL] : []);
 

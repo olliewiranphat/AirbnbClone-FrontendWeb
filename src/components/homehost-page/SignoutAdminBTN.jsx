@@ -1,8 +1,8 @@
 import { AlignJustify } from 'lucide-react'
 import React, { useEffect, useRef, useState } from 'react'
-import UserAccountLIST from './HostAccountLIST';
+import UserAccountLIST from '../home-page/user/UserAccountLIST';
 import { SignedIn, useUser } from '@clerk/clerk-react';
-import HostAccountLIST from './HostAccountLIST';
+import HostAccountLIST from '../homehost-page/SwichHost/HostAccountLIST';
 
 function SignoutAdminBTN() {
     const { user } = useUser()

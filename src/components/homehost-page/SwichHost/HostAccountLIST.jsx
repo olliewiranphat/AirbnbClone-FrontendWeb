@@ -1,6 +1,6 @@
 import { SignOutButton } from '@clerk/clerk-react'
 import React from 'react'
-import ReloadLink from '../../utils/ReloadLink'
+import ReloadLink from '../../../utils/ReloadLink'
 
 function HostAccountLIST() {
     return (

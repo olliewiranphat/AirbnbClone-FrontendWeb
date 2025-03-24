@@ -16,7 +16,7 @@ function HomePage() {
     const allAccommodatons = useAdminStore(state => state.allAccommodatons)
     console.log('allAccommodatons', allAccommodatons);
     const userData = useUserStore(state => state.userData)
-    console.log('.role', userData?.role);
+    // console.log('.role', userData?.role);
 
 
     const displayAccom = filteredAcccom.length > 0 ? filteredAcccom : allAccommodatons
@@ -27,7 +27,6 @@ function HomePage() {
             if (isSignedIn) {
                 const token = await getToken()
                 actionGetMyAccount(token)
-
             }
         }
         fetchData()
@@ -37,7 +36,7 @@ function HomePage() {
     return (
         <>
             {
-                allAccommodatons.length > 0 ? (<AccomLIST allAccommodatons={allAccommodatons} />) : (<div className='px-[40px] py-6 m-auto'>No Accommodation Data yet!</div>)
+                allAccommodatons?.length > 0 ? (<AccomLIST allAccommodatons={allAccommodatons} />) : (<div className='px-[40px] py-6 m-auto'>No Accommodation Data yet!</div>)
             }
             <Inspiration />
         </>
