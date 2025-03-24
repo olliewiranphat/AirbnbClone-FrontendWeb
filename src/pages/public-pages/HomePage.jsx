@@ -19,7 +19,7 @@ function HomePage() {
     console.log('.role', userData?.role);
 
 
-    const displayAccom = filteredAcccom.length > 0 ? filteredAcccom : allAccommodatons
+    // const displayAccom = filteredAcccom.length > 0 ? filteredAcccom : allAccommodatons
 
     useEffect(() => {
         const fetchData = async () => {
