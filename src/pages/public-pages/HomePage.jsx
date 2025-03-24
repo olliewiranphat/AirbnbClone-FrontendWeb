@@ -16,7 +16,7 @@ function HomePage() {
     const allAccommodatons = useAdminStore(state => state.allAccommodatons)
     console.log('allAccommodatons', allAccommodatons);
     const userData = useUserStore(state => state.userData)
-    // console.log('.role', userData?.role);
+    console.log('.role', userData?.role);
 
 
     const displayAccom = filteredAcccom.length > 0 ? filteredAcccom : allAccommodatons
@@ -26,6 +26,7 @@ function HomePage() {
             actionGetAllAccommodations()
             if (isSignedIn) {
                 const token = await getToken()
+                // console.log('token', token)
                 actionGetMyAccount(token)
             }
         }
