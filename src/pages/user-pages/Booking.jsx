@@ -6,13 +6,11 @@ import { DateRange } from "react-date-range";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { format } from "date-fns";
-import GuestModal from "../GuestModal"; 
-import bookingStore from "../../store/bookingStore";
+import GuestModal from "../GuestModal"; // Import the new component
+import ReloadLink from "../../utils/ReloadLink";
+import axios from "axios"; // Import axios for API calls
 
 function Booking() {
-    const {
-      bookingSelect, setBookingSelect
-       } = bookingStore();
    const [paymentOption, setPaymentOption] = useState('full');
    const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
    const [isGuestModalOpen, setIsGuestModalOpen] = useState(false);
@@ -27,10 +25,14 @@ function Booking() {
       infants: 0,
       pets: 0
    });
+   const [isLoading, setIsLoading] = useState(false);
+   const [error, setError] = useState(null);
+
+   // Get accommodation ID from URL params
+   // Assuming the URL structure is /booking/:accommodationId
+   const accommodationId = window.location.pathname.split('/').pop();
 
    const handleSelect = (ranges) => {
-      console.log("ranges", ranges)
-      setBookingSelect(ranges.selection)
       setSelectionRange(ranges.selection);
    };
 
@@ -53,13 +55,54 @@ function Booking() {
 
       return guestText;
    };
-console.log(bookingSelect)
+
+   // Function to handle booking submission
+   const handleBookingSubmit = async () => {
+      setIsLoading(true);
+      setError(null);
+
+      try {
+         // Total guests (excluding infants and pets as per your guestQTY parameter)
+         const totalGuests = guestDetails.adults + guestDetails.children;
+
+         // Get total price from the page (hardcoded in this example)
+         const totalPrice = 258.28;
+
+         // Prepare request data
+         const bookingData = {
+            checkInDate: format(selectionRange.startDate, "yyyy-MM-dd"),
+            checkOutDate: format(selectionRange.endDate, "yyyy-MM-dd"),
+            totalPrice: totalPrice,
+            guestQTY: totalGuests
+         };
+
+         // Make API call to create booking
+         const response = await axios.post(`/booking/create/${accommodationId}`,bookingData,
+            {
+               headers: {
+                  'Content-Type': 'application/json'
+               }
+            }
+         );
+
+         console.log('Booking created:', response.data);
+
+         // Redirect to trips page on success
+         window.location.href = '/trips';
+      } catch (err) {
+         console.error('Error creating booking:', err);
+         setError(err.response?.data?.message || 'Failed to create booking');
+      } finally {
+         setIsLoading(false);
+      }
+   };
+
    return (
       <div className="w-[1100px] mx-auto p-4 font-sans">
          <div className="flex items-center mb-6 mt-6">
-            <button className="mr-2">
+            <ReloadLink to="/" className="mr-2">
                <ChevronLeft className=" rounded-full hover:rounded-full hover:bg-slate-200 " />
-            </button>
+            </ReloadLink>
             <h1 className="text-4xl font-semibold">Request to book</h1>
          </div>
 
@@ -145,9 +188,6 @@ console.log(bookingSelect)
                   </div>
                </div>
 
-               {/* Rest of the component remains the same */}
-               {/* ... */}
-
                {/* Guest Modal */}
                <GuestModal
                   isOpen={isGuestModalOpen}
@@ -204,7 +244,19 @@ console.log(bookingSelect)
                      <a href="#" className="underline ml-1">Privacy Policy</a>
                   </p>
 
-                  <button className="btn btn-secondary w-full h-12 bg-rose-500 text-white py-3 rounded-lg font-medium mb-4">Continue</button>
+                  {/* Replaced ReloadLink with a button that triggers the API call */}
+                  <button
+                     onClick={handleBookingSubmit}
+                     disabled={isLoading}
+                     className="w-full h-12 bg-rose-500 text-white py-3 rounded-lg font-medium mb-4 hover:bg-rose-600">
+                     {isLoading ? "Processing..." : "Continue"}
+                  </button>
+
+                  {error && (
+                     <div className="text-red-500 text-sm mb-4">
+                        {error}
+                     </div>
+                  )}
 
                   <div className="flex items-center justify-center mb-4">
                      <div className="border-t grow"></div>
@@ -233,8 +285,6 @@ console.log(bookingSelect)
             {/* Price details sidebar */}
             <div className="md:col-span-2">
                <div className="border rounded-xl p-4 sticky top-4">
-                  {/* Content of the sidebar remains the same */}
-                  {/* ... */}
                   <div className="flex mb-4">
                      <div className="w-24 h-20 bg-gray-200 rounded-lg mr-3"></div>
                      <div>
@@ -282,8 +332,6 @@ console.log(bookingSelect)
          </div>
 
          <footer className="mt-12 pt-6 border-t text-sm text-gray-600">
-            {/* Footer content remains the same */}
-            {/* ... */}
             <div className="flex flex-wrap justify-between items-center">
                <div className="flex items-center space-x-2">
                   <span>© 2025 Airbnb, Inc.</span>
