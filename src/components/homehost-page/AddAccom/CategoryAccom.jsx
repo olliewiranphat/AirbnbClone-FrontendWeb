@@ -4,17 +4,21 @@ import useAccomStore from "../../../accomStore/addaccomStore";
 const categoryAccom1 = ["Amazing views", "Beachfront", "OMG!", "Rooms", "Treehouses","Castles","Farms","Cabins","Tiny homes","Amazing pools"];
 
 const CategoryAccom = ({ selectedAccom, setSelectedAccom }) => {
-    const categoryAccom = useAccomStore((state) => state.formData.categoryAccom);
-    console.log('categoryAccom', categoryAccom)
-    const setFormData = useAccomStore((state) => state.setFormData);
-  const toggleItem = (categoryacc) => {
-    const updatedCategories = categoryAccom.includes(categoryacc)
-      ? categoryAccom.filter((item) => item !== categoryacc)
-      : [...categoryAccom, categoryacc];
-      console.log('updatedCategories', updatedCategories)
-
-    setFormData({ categoryAccom: updatedCategories });
+  const handleSelection = (type) => {
+    setSelectedAccom(type);
   };
+
+    // const categoryAccom = useAccomStore((state) => state.formData.categoryAccom);
+  //   console.log('categoryAccom', categoryAccom)
+  //   const setFormData = useAccomStore((state) => state.setFormData);
+  // const toggleItem = (categoryacc) => {
+  //   const updatedCategories = categoryAccom.includes(categoryacc)
+  //     ? categoryAccom.filter((item) => item !== categoryacc)
+  //     : [...categoryAccom, categoryacc];
+  //     console.log('updatedCategories', updatedCategories)
+
+  //   setFormData({ categoryAccom: updatedCategories });
+  // };
 
 //   const toggleItem = (categoryacc) => {
 //     setSelectedAccom((prev) =>
@@ -30,9 +34,9 @@ const CategoryAccom = ({ selectedAccom, setSelectedAccom }) => {
           <button
             key={categoryacc}
             className={`border p-4 rounded-lg ${
-                categoryAccom.includes(categoryacc) ? "bg-[#FF385C] text-white" : ""
+              selectedAccom.includes(categoryacc) ? "bg-[#FF385C] text-white" : ""
             }`}
-            onClick={() => toggleItem(categoryacc)}
+            onClick={() => handleSelection(categoryacc)}
           >
             {categoryacc}
           </button>

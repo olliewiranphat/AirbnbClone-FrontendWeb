@@ -6,7 +6,7 @@ import { useAuth } from '@clerk/clerk-react';
 import { deleteAccommodation, getAccom } from '../../api/accomApi';
 
 function HostAccom() {
-    const [accommodations, setAccommodations] = useState([]);
+    const [accommodations, setAccommodations] = useState(() => []);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const { getToken } = useAuth();
@@ -34,11 +34,9 @@ function HostAccom() {
         const fetchData = async () => {
             try {
                 const token = await getToken(); // ดึง token
-                const response = await getAccom(token,1); // ID อาจเปลี่ยนตามเงื่อนไขของ API
-                
-                if (response.status === 200) {
-                    setAccommodations(response.data);
-                }
+                const response = await getAccom(token); // ID อาจเปลี่ยนตามเงื่อนไขของ API
+                console.log('response', response.data.allMyAccom)
+                setAccommodations(response.data.allMyAccom)
             } catch (err) {
                 console.error("Error fetching accommodations:", err);
                 setError(err.message);
@@ -52,7 +50,7 @@ function HostAccom() {
 
     const handleEdit = (id) => {
         const accomToEdit = accommodations.find((accom) => accom.id === id);
-        navigate(`host-center/host/accommodations/update/:accommodationID`, { state: accomToEdit });
+        navigate(`host-center/host/accommodations/update/${id}`, { state: accomToEdit });
     };
 
     const handleDelete = async (id) => {
@@ -62,7 +60,7 @@ function HostAccom() {
     
             if (response.status === 200) {
                 // Remove the deleted accommodation from the state
-                const updatedAccommodations = accommodations.filter((accom) => accom.accommodationsID !== id);
+                const updatedAccommodations = accommodations.filter((accom) => accom.accommodationID !== id);
                 setAccommodations(updatedAccommodations);
             } else {
                 console.error("Failed to delete accommodation:", response.statusText);
@@ -82,6 +80,8 @@ function HostAccom() {
             {/* Listing */}
             <div className='flex justify-between mt-10 ml-10 mr-10 mb-8'>
                 <h1 className='text-3xl font-semibold'>Your listing</h1>
+                <ReloadLink to="/host-center/host/accommodations/add" className=" rounded-3xl p-4  bg-[#FF385C] text-white">Create new listing</ReloadLink>
+            </div>
 
         {/* get all home */}
         <div className="overflow-x-auto ml-10 mr-10">
@@ -102,8 +102,8 @@ function HostAccom() {
               {/* card home */}
             <tbody className='border bg-gray-100 rounded-2xl p-4 shadow-xl m-4 hover:shadow-2xl'>
                 {accommodations.map((accom) => (
-                <tr key={accom.accommodationsID}>
-                    <td><img src={accom.Rooms?.[0]?.ImgsRoom?.[0]?.url} alt={accom.title} className='w-16 h-16 object-cover' /></td>
+                <tr key={accom.accommodationID}>
+                    {/* <td><img src={accom?.imageUrl[0]} alt={accom.title} className='w-16 h-16 object-cover' /></td> */}
                     <td>{accom.title}</td>
                     <td>{accom.typeOfAccom}</td>
                     <td>{accom.availQTY} Rooms</td>
@@ -120,8 +120,7 @@ function HostAccom() {
                 ))}
             </tbody>
             </table>
-        </div>   
-        </div>
+        </div> 
         </div >
     )
 }

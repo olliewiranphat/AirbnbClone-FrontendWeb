@@ -11,8 +11,10 @@ function AccomStep1() {
   // const [uploading, setUploading] = useState(false);
   // const [uploadError, setUploadError] = useState(null);  
 
-  const handleChange = (e) => {
+  const handleChange = async(e) => {
     const { name, value } = e.target;
+    const token = await getToken()
+    console.log('token', token)
     setFormData({ ...formData, [name]: value });
     // console.log(e.target.value  )
   };
