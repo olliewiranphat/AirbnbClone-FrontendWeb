@@ -56,5 +56,10 @@ const AdminStore = (set) => ({
     }
 })
 
+const filteredAccomStore = set => ({
+    filteredAccoms: [],
+})
+
 const useAdminStore = create(persist(AdminStore, { name: "admin" }))
+const useFilteredAccomStore = create(filteredAccomStore, { name: "filteredAccom" })
 export default useAdminStore

@@ -18,6 +18,9 @@ function HomePage() {
     const userData = useUserStore(state => state.userData)
     console.log('.role', userData?.role);
 
+
+    const displayAccom = filteredAcccom.length > 0 ? filteredAcccom : allAccommodatons
+
     useEffect(() => {
         const fetchData = async () => {
             actionGetAllAccommodations()
