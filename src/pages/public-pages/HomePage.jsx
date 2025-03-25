@@ -14,20 +14,24 @@ function HomePage() {
     const actionGetMyAccount = useUserStore(state => state.actionGetMyAccount)
     const actionGetAllAccommodations = useAdminStore(state => state.actionGetAllAccommodations)
     const allAccommodatons = useAdminStore(state => state.allAccommodatons)
-    // console.log('allAccommodatons', allAccommodatons);
+    console.log('allAccommodatons', allAccommodatons);
     const userData = useUserStore(state => state.userData)
-    // console.log('.role', userData?.role);
+    console.log('.role', userData?.role);
+
+
+    // const displayAccom = filteredAcccom.length > 0 ? filteredAcccom : allAccommodatons
 
     useEffect(() => {
         const fetchData = async () => {
             actionGetAllAccommodations()
             if (isSignedIn) {
                 const token = await getToken()
+                // console.log('token', token)
                 actionGetMyAccount(token)
             }
         }
         fetchData()
-    }, [isSignedIn, getToken, actionGetMyAccount, actionGetAllAccommodations]); // ✅ เพิ่ม `isSignedIn` ใน Dependency
+    }, [isSignedIn, getToken, actionGetMyAccount, actionGetAllAccommodations]); 
 
 
     return (
@@ -41,3 +45,5 @@ function HomePage() {
 }
 
 export default HomePage
+
+

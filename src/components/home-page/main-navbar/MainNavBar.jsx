@@ -28,14 +28,14 @@ function MainNavBar() {
                         className={`${showEXP === false ? 'text-[#222222] font-semibold' : ''
                             }`}
                     >
-                        Homes
+                        {/* Homes */}
                     </button>
                     <button
                         onClick={hdlClickEXP}
                         className={`${showEXP === true ? 'text-[#222222] font-semibold' : ''
                             }`}
                     >
-                        Experiences
+                        {/* Experiences */}
                     </button>
                 </div>
 

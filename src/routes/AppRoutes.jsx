@@ -31,8 +31,9 @@ import PaymentCancel from "../pages/user-pages/payment/PaymentCancel"
 import Payment from "../pages/user-pages/Payment"
 import AllAmenity from "../pages/admin-pages/AllAmenity"
 import AllCategory from "../pages/admin-pages/AllCategory"
+import PaymentForm from "../pages/user-pages/Payment"
 import AllAccomCate from "../pages/admin-pages/AllAccomCate"
-import AllBookings from "../pages/admin-pages/AllBookings"
+
 
 function AppRoutes() {
 
@@ -42,8 +43,9 @@ function AppRoutes() {
             {/* PUBLIC - หน้า HomePage แสดงเสมอ*/}
             <Route path='/' element={<PublicLayout />}>
                 <Route index element={<HomePage />} />
-                <Route path='search/accommodation' element={<SearchAccom />} />
-                <Route path='search/accommodation-detail' element={<AccomDetail />} />
+                {/* <Route path='search/accommodation' element={<SearchAccom />} /> */}
+                {/* <Route path='search/accommodation-detail' element={<AccomDetail />} /> */}
+                <Route path='search/accommodation-detail/:accommodationID' element={<AccomDetail />} />
             </Route>
 
             {/* Utill Pages */}
@@ -63,7 +65,11 @@ function AppRoutes() {
                 <Route path='trips' element={<Trips />} />
 
                 {/* PAYMENT */}
-                <Route path='booking/payment' element={<Payment />} />
+                <Route path='booking/payment' element={<PaymentForm />} />
+
+                <Route path='booking/payment-success' element={<PaymentSuccess />} />
+                <Route path='booking/payment-cancel' element={<PaymentCancel />} />
+                {/* <Route path='booking/payment-complete/:session' element={<PaymentComplete />} /> */}
                 <Route path='booking/payment-success' element={<PaymentSuccess />} />
                 <Route path='booking/payment-cancel' element={<PaymentCancel />} />
             </Route>
@@ -84,7 +90,7 @@ function AppRoutes() {
                 <Route path='management/all-amenity' element={<AllAmenity />} />
                 <Route path='management/all-hosts' element={<AllHosts />} />
                 <Route path='management/all-users' element={<AllUsers />} />
-                <Route path='management/all-booking' element={<AllBookings />} />
+                <Route path='management/all-hosts' element={<AllHosts />} />
                 <Route path='management/all-accommodations' element={<AllAccom />} />
                 <Route path='management/accommodations/all-categories' element={<AllAccomCate />} />
                 <Route path='management/accommodations/all-amenities' element={<AllAmenity />} />

@@ -1,9 +1,18 @@
 import React, { useState } from "react";
+<<<<<<< HEAD:src/components/homehost-page/SwichHostNav.jsx
 import AirbnbLOGO from "../home-page/main-navbar/AirbnbLOGO";
 import { HousePlusIcon, Loader } from "lucide-react";
 import { SignInButton, useAuth, useUser } from "@clerk/clerk-react";
 import { updateToHOST } from "../../api-server/hostController";
 import useUserStore from "../../store/UserStore";
+=======
+import AirbnbLOGO from "../../home-page/main-navbar/AirbnbLOGO";
+// import ReloadLink from "../../../utils/ReloadLink";
+import { HousePlusIcon, Loader } from "lucide-react";
+import { useAuth, useUser } from "@clerk/clerk-react";
+import { updateToHOST } from "../../../api-server/hostController";
+import useUserStore from "../../../store/UserStore";
+>>>>>>> 67ac945b9ec7931682f19f23d1bc2e7368070a19:src/components/homehost-page/SwichHost/SwichHostNav.jsx
 import { useNavigate } from "react-router";
 
 function SwichHostNav() {

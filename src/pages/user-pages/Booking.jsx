@@ -6,13 +6,10 @@ import { DateRange } from "react-date-range";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { format } from "date-fns";
-import GuestModal from "../GuestModal"; 
-import bookingStore from "../../store/bookingStore";
+import GuestModal from "../GuestModal"; // Import the new component
+import ReloadLink from "../../utils/ReloadLink";
 
 function Booking() {
-    const {
-      bookingSelect, setBookingSelect
-       } = bookingStore();
    const [paymentOption, setPaymentOption] = useState('full');
    const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
    const [isGuestModalOpen, setIsGuestModalOpen] = useState(false);
@@ -29,8 +26,6 @@ function Booking() {
    });
 
    const handleSelect = (ranges) => {
-      console.log("ranges", ranges)
-      setBookingSelect(ranges.selection)
       setSelectionRange(ranges.selection);
    };
 
@@ -53,13 +48,13 @@ function Booking() {
 
       return guestText;
    };
-console.log(bookingSelect)
+
    return (
       <div className="w-[1100px] mx-auto p-4 font-sans">
          <div className="flex items-center mb-6 mt-6">
-            <button className="mr-2">
+            <ReloadLink to="/" className="mr-2">
                <ChevronLeft className=" rounded-full hover:rounded-full hover:bg-slate-200 " />
-            </button>
+            </ReloadLink>
             <h1 className="text-4xl font-semibold">Request to book</h1>
          </div>
 
@@ -145,88 +140,17 @@ console.log(bookingSelect)
                   </div>
                </div>
 
-               {/* Rest of the component remains the same */}
-               {/* ... */}
-
-               {/* Guest Modal */}
                <GuestModal
                   isOpen={isGuestModalOpen}
                   onClose={() => setIsGuestModalOpen(false)}
                   onSave={handleGuestSave}
                />
 
-               {/* Continue with the rest of your component */}
                <div className="mb-6">
-                  <h2 className="mb-4 text-2xl font-semibold">Choose how to pay</h2>
 
-                  <div className="border rounded-lg mb-3">
-                     <label className="flex items-center justify-between p-4 cursor-pointer">
-                        <div>
-                           <p className="font-medium">Pay $258.28 now</p>
-                        </div>
-                        <input
-                           type="radio"
-                           name="payment"
-                           checked={paymentOption === 'full'}
-                           onChange={() => setPaymentOption('full')}
-                           className="h-5 w-5 text-black"
-                        />
-                     </label>
-                  </div>
+                  {/* <button className="btn btn-secondary w-full h-12 bg-rose-500 text-white py-3 rounded-lg font-medium mb-4">Continue</button> */}
+                  <ReloadLink to="/trips" className="btn btn-secondary w-full h-12 bg-rose-500 text-white py-3 rounded-lg font-medium mb-4">Continue</ReloadLink>
 
-                  <div className="border rounded-lg">
-                     <label className="flex items-center justify-between p-4 cursor-pointer">
-                        <div>
-                           <p className="font-medium">Pay part now, part later</p>
-                           <p className="text-gray-600 text-sm">$51.66 due today, $206.62 on Apr 12, 2025. No extra fees.</p>
-                           <button className="text-gray-800 underline text-sm font-medium">More info</button>
-                        </div>
-                        <input
-                           type="radio"
-                           name="payment"
-                           checked={paymentOption === 'split'}
-                           onChange={() => setPaymentOption('split')}
-                           className="h-5 w-5 text-black"
-                        />
-                     </label>
-                  </div>
-               </div>
-
-               <div className="mb-6">
-                  <h2 className="mb-4 text-2xl font-semibold">Log in or sign up to book</h2>
-
-                  <div className="mb-4">
-                     <PhoneInput />
-                  </div>
-
-                  <p className="text-sm text-gray-600 mb-4">
-                     We'll call or text you to confirm your number. Standard message and data rates apply.
-                     <a href="#" className="underline ml-1">Privacy Policy</a>
-                  </p>
-
-                  <button className="btn btn-secondary w-full h-12 bg-rose-500 text-white py-3 rounded-lg font-medium mb-4">Continue</button>
-
-                  <div className="flex items-center justify-center mb-4">
-                     <div className="border-t grow"></div>
-                     <span className="px-4 text-gray-500">or</span>
-                     <div className="border-t grow"></div>
-                  </div>
-
-                  <div className="grid grid-cols-3 gap-3 mb-4">
-                     <button className="border border-black rounded-lg py-3 flex justify-center items-center">
-                        <Facebook className="w-7 h-7" />
-                     </button>
-                     <button className="border border-black rounded-lg py-3 flex justify-center items-center">
-                        <Google className="w-7 h-7" />
-                     </button>
-                     <button className="border border-black rounded-lg py-3 flex justify-center items-center">
-                        <Apple className="w-7 h-7" />
-                     </button>
-                  </div>
-
-                  <button className="w-full border border-black rounded-lg py-3 flex justify-center items-center">
-                     <p>Continue with email</p>
-                  </button>
                </div>
             </div>
 

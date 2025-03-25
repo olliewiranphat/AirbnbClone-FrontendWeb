@@ -12,7 +12,8 @@ export const createUpdateAccount = async (token, value) => {
 
 
 export const getMyAccount = async (token) => {
-    return await axios('http://localhost:8081/user/my-account/get',
+    console.log('api',token)
+    return await axios.get('http://localhost:8081/user/my-account/get',
         {
             headers: {
                 Authorization: `Bearer ${token}`

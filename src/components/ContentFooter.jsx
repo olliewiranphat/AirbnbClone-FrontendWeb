@@ -4,10 +4,10 @@ function ContentFooter() {
     return (
         <>
             {/* Content */}
-            <div className="grid grid-cols-3 gap-6 py-[20px] text-[14px] ">
+            <div className="grid grid-cols-3 gap-6 py-[20px]  text-[14px] text-start justify-center">
                 {/* Support Section */}
-                <div>
-                    <h3 className="font-semibold mb-4">Support</h3>
+                <div className='flex flex-col gap-2 text-start justify-center pl-20'> 
+                    <h3 className="font-semibold text-start mb-4 flex justify-start ">Support</h3>
                     <ul className="space-y-2">
                         <li className="hover:underline cursor-pointer">Help Centre</li>
                         <li className="hover:underline cursor-pointer">Get help with a safety issue</li>
@@ -20,7 +20,7 @@ function ContentFooter() {
                 </div>
 
                 {/* Hosting Section */}
-                <div>
+                <div className='flex flex-col gap-2 text-start justify-center '> 
                     <h3 className=" font-semibold mb-4">Hosting</h3>
                     <ul className="space-y-2">
                         <li className="hover:underline cursor-pointer">Airbnb your home</li>
@@ -34,7 +34,7 @@ function ContentFooter() {
                 </div>
 
                 {/* Airbnb Section */}
-                <div>
+                <div className='flex flex-col gap-2 text-start justify-center'> 
                     <h3 className="font-semibold mb-4">Airbnb</h3>
                     <ul className="space-y-2">
                         <li className="hover:underline cursor-pointer">Newsroom</li>

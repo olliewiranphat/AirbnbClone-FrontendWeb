@@ -38,8 +38,9 @@ const AdminStore = (set) => ({
     actionGetAllAccommodations: async () => {
         try {
             const getAdminAllAccommodations = await getAllAccommodations()
-            // console.log('getAdminAllAccommodations', getAdminAllAccommodations);
-            set({ allAccommodatons: getAdminAllAccommodations.data.results })
+            console.log('getAdminAllAccommodations', getAdminAllAccommodations);
+            // console.log('getAdminAllAccommodations', getAdminAllAccommodations.data);
+            set({ allAccommodatons: getAdminAllAccommodations })
         } catch (error) {
             console.log("getAdminAllAccommodations, ERROR", error);
         }
@@ -55,5 +56,10 @@ const AdminStore = (set) => ({
     }
 })
 
+const filteredAccomStore = set => ({
+    filteredAccoms: [],
+})
+
 const useAdminStore = create(persist(AdminStore, { name: "admin" }))
+const useFilteredAccomStore = create(filteredAccomStore, { name: "filteredAccom" })
 export default useAdminStore

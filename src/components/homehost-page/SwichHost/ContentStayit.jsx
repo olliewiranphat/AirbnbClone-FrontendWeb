@@ -1,6 +1,6 @@
 import React from "react";
 import TableCheck from "./TableCheck";
-import Questionshost from "./questionshost";
+import Questionshost from "../../homehost-page/Questionshost";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { House, Timer, MessageSquareText } from "lucide-react";
 
