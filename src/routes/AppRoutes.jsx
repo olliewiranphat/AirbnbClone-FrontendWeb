@@ -31,11 +31,8 @@ import PaymentCancel from "../pages/user-pages/payment/PaymentCancel"
 import Payment from "../pages/user-pages/Payment"
 import AllAmenity from "../pages/admin-pages/AllAmenity"
 import AllCategory from "../pages/admin-pages/AllCategory"
-<<<<<<< HEAD
-import AllAccomCate from "../pages/admin-pages/AllAccomCate"
-=======
 import PaymentForm from "../pages/user-pages/Payment"
->>>>>>> dev
+import AllAccomCate from "../pages/admin-pages/AllAccomCate"
 
 
 function AppRoutes() {
@@ -68,15 +65,11 @@ function AppRoutes() {
                 <Route path='trips' element={<Trips />} />
 
                 {/* PAYMENT */}
-<<<<<<< HEAD
-                <Route path='booking/payment' element={<Payment />} />
-=======
                 <Route path='booking/payment' element={<PaymentForm />} />
 
                 <Route path='booking/payment-success' element={<PaymentSuccess />} />
                 <Route path='booking/payment-cancel' element={<PaymentCancel />} />
                 {/* <Route path='booking/payment-complete/:session' element={<PaymentComplete />} /> */}
->>>>>>> dev
                 <Route path='booking/payment-success' element={<PaymentSuccess />} />
                 <Route path='booking/payment-cancel' element={<PaymentCancel />} />
             </Route>
