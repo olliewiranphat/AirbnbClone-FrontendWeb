@@ -6,17 +6,17 @@ ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
 const BarChart = () => {
     const data = {
-        labels: ["Sat", "Sun", "Mon", "Tue", "Wed", "Thu"],
+        labels: ["Sat", "Sun", "Mon", "Tue", "Wed", "Thu","Fri"],
         datasets: [
             {
                 label: "Orders A",
-                data: [50, 45, 40, 35, 30, 25],
+                data: [50, 45, 40, 35, 30, 25, 45],
                 backgroundColor: "blue",
                 barThickness: 15
             },
             {
                 label: "Orders B",
-                data: [40, 25, 35, 40, 25, 15],
+                data: [40, 25, 35, 40, 35, 35, 55],
                 backgroundColor: "purple",
                 barThickness: 15
             },

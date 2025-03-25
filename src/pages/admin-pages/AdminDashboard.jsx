@@ -37,11 +37,11 @@ function AdminDashboard() {
       {/* Charts Section */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="bg-white rounded-lg shadow-lg p-6">
-          <h3 className="text-sm font-medium text-gray-600 mb-2">Statistics of Order</h3>
+          <h3 className="text-sm font-medium text-gray-600 mb-2">Statistics of Revervation</h3>
           <BarChart />
         </div>
         <div className="bg-white rounded-lg shadow-lg p-6">
-          <h3 className="text-sm font-medium text-gray-600 mb-2">Analytics</h3>
+          <h3 className="text-sm font-medium text-gray-600 mb-2">Analytics of Revervation</h3>
           <AreaChart />
         </div>
       </div>

@@ -8,6 +8,7 @@ import "react-date-range/dist/theme/default.css";
 import { format } from "date-fns";
 import GuestModal from "../GuestModal"; // Import the new component
 import ReloadLink from "../../utils/ReloadLink";
+import Pic1 from "../../../image/bg-01.jpg"
 
 function Booking() {
    const [paymentOption, setPaymentOption] = useState('full');
@@ -160,7 +161,9 @@ function Booking() {
                   {/* Content of the sidebar remains the same */}
                   {/* ... */}
                   <div className="flex mb-4">
-                     <div className="w-24 h-20 bg-gray-200 rounded-lg mr-3"></div>
+                     <div className="w-24 h-20 bg-gray-200 rounded-lg mr-3">
+                        <img src={Pic1} alt="" className="object-cover w-full h-full" /> 
+                     </div>
                      <div>
                         <p className="font-medium">Nice equipped room in a family flat</p>
                         <p className="text-sm text-gray-600">Room in rental unit</p>

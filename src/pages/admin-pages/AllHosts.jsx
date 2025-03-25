@@ -27,7 +27,6 @@ function AllHosts() {
           <thead className="bg-gray-200">
             <tr>
               <th className="p-4">ID</th>
-              <th className="p-4">Image</th>
               <th className="p-4">Full Name</th>
               <th className="p-4">Email</th>
               <th className="p-4">Phone Number</th>
@@ -40,9 +39,7 @@ function AllHosts() {
             {allHosts?.length > 0 && allHosts?.map((host,index) => (
               <tr key={host.id} className="border-t hover:bg-gray-100">
                 <td className="p-4">{index+1}</td>
-                <td className="p-4 w-[20px] h-[20px]">
-                  <img src={host.imageUrl} alt="imageUrl" className="w-full h-full object-cover" />
-                </td>
+ 
                 <td className="p-4 font-semibold">{host.fullName}</td>
                 <td className="p-4 text-blue-600 underline">{host.email}</td>
                 <td className="p-4">{host.phoneNumber}</td>

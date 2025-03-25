@@ -26,7 +26,6 @@ function AllBookings() {
           <thead className="bg-gray-200">
             <tr>
               <th className="p-4">ID</th>
-              <th className="p-4">CustomerName</th>
               <th className="p-4">CheckInDate</th>
               <th className="p-4">CheckoutDate</th>
               <th className="p-4">GuestQuaintity</th>
@@ -39,7 +38,6 @@ function AllBookings() {
             {allBookings?.length > 0 && allBookings?.map((booking, index) => (
               <tr key={booking.id} className="border-t hover:bg-gray-100">
                 <td className="p-4">{index + 1}</td>
-                <td className="p-4 font-semibold">{}</td>
                 <td className="p-4 font-semibold">{booking.checkOutDate}</td>
                 <td className="p-4 font-semibold">{booking.checkInDate}</td>
                 <td className="p-4 text-blue-600 underline">{booking.guestQTY}</td>
