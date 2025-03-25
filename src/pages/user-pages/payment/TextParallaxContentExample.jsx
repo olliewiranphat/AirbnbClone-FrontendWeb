@@ -95,6 +95,10 @@ const OverlayCopy = ({ subheading, heading }) => {
    );
 };
 
+const hdlHome = () => {
+   window.location.href = "/";
+}
+
 const ExampleContent = () => (
    <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 px-4 pb-24 pt-12 md:grid-cols-12">
       <h2 className="col-span-1 text-3xl font-bold md:col-span-4">
@@ -109,7 +113,7 @@ const ExampleContent = () => (
             <span>Once again, thanks for choosing us!</span>
          </p>
          <div className=" flex items-center justify-center">
-            <button className="px-6 py-2 font-medium bg-[#fd2d52] text-white w-fit transition-all shadow-[3px_3px_0px_black] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px]">
+            <button onClick={hdlHome} className="px-6 py-2 font-medium bg-[#fd2d52] text-white w-fit transition-all shadow-[3px_3px_0px_black] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px]">
                Home
             </button>
          </div>

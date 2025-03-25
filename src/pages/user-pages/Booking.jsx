@@ -8,7 +8,6 @@ import "react-date-range/dist/theme/default.css";
 import { format } from "date-fns";
 import GuestModal from "../GuestModal"; // Import the new component
 import ReloadLink from "../../utils/ReloadLink";
-import axios from "axios"; // Import axios for API calls
 
 function Booking() {
    const [paymentOption, setPaymentOption] = useState('full');
@@ -25,12 +24,6 @@ function Booking() {
       infants: 0,
       pets: 0
    });
-   const [isLoading, setIsLoading] = useState(false);
-   const [error, setError] = useState(null);
-
-   // Get accommodation ID from URL params
-   // Assuming the URL structure is /booking/:accommodationId
-   const accommodationId = window.location.pathname.split('/').pop();
 
    const handleSelect = (ranges) => {
       setSelectionRange(ranges.selection);
@@ -54,47 +47,6 @@ function Booking() {
       }
 
       return guestText;
-   };
-
-   // Function to handle booking submission
-   const handleBookingSubmit = async () => {
-      setIsLoading(true);
-      setError(null);
-
-      try {
-         // Total guests (excluding infants and pets as per your guestQTY parameter)
-         const totalGuests = guestDetails.adults + guestDetails.children;
-
-         // Get total price from the page (hardcoded in this example)
-         const totalPrice = 258.28;
-
-         // Prepare request data
-         const bookingData = {
-            checkInDate: format(selectionRange.startDate, "yyyy-MM-dd"),
-            checkOutDate: format(selectionRange.endDate, "yyyy-MM-dd"),
-            totalPrice: totalPrice,
-            guestQTY: totalGuests
-         };
-
-         // Make API call to create booking
-         const response = await axios.post(`/booking/create/${accommodationId}`,bookingData,
-            {
-               headers: {
-                  'Content-Type': 'application/json'
-               }
-            }
-         );
-
-         console.log('Booking created:', response.data);
-
-         // Redirect to trips page on success
-         window.location.href = '/trips';
-      } catch (err) {
-         console.error('Error creating booking:', err);
-         setError(err.response?.data?.message || 'Failed to create booking');
-      } finally {
-         setIsLoading(false);
-      }
    };
 
    return (
@@ -188,103 +140,25 @@ function Booking() {
                   </div>
                </div>
 
-               {/* Guest Modal */}
                <GuestModal
                   isOpen={isGuestModalOpen}
                   onClose={() => setIsGuestModalOpen(false)}
                   onSave={handleGuestSave}
                />
 
-               {/* Continue with the rest of your component */}
                <div className="mb-6">
-                  <h2 className="mb-4 text-2xl font-semibold">Choose how to pay</h2>
 
-                  <div className="border rounded-lg mb-3">
-                     <label className="flex items-center justify-between p-4 cursor-pointer">
-                        <div>
-                           <p className="font-medium">Pay $258.28 now</p>
-                        </div>
-                        <input
-                           type="radio"
-                           name="payment"
-                           checked={paymentOption === 'full'}
-                           onChange={() => setPaymentOption('full')}
-                           className="h-5 w-5 text-black"
-                        />
-                     </label>
-                  </div>
+                  {/* <button className="btn btn-secondary w-full h-12 bg-rose-500 text-white py-3 rounded-lg font-medium mb-4">Continue</button> */}
+                  <ReloadLink to="/trips" className="btn btn-secondary w-full h-12 bg-rose-500 text-white py-3 rounded-lg font-medium mb-4">Continue</ReloadLink>
 
-                  <div className="border rounded-lg">
-                     <label className="flex items-center justify-between p-4 cursor-pointer">
-                        <div>
-                           <p className="font-medium">Pay part now, part later</p>
-                           <p className="text-gray-600 text-sm">$51.66 due today, $206.62 on Apr 12, 2025. No extra fees.</p>
-                           <button className="text-gray-800 underline text-sm font-medium">More info</button>
-                        </div>
-                        <input
-                           type="radio"
-                           name="payment"
-                           checked={paymentOption === 'split'}
-                           onChange={() => setPaymentOption('split')}
-                           className="h-5 w-5 text-black"
-                        />
-                     </label>
-                  </div>
-               </div>
-
-               <div className="mb-6">
-                  <h2 className="mb-4 text-2xl font-semibold">Log in or sign up to book</h2>
-
-                  <div className="mb-4">
-                     <PhoneInput />
-                  </div>
-
-                  <p className="text-sm text-gray-600 mb-4">
-                     We'll call or text you to confirm your number. Standard message and data rates apply.
-                     <a href="#" className="underline ml-1">Privacy Policy</a>
-                  </p>
-
-                  {/* Replaced ReloadLink with a button that triggers the API call */}
-                  <button
-                     onClick={handleBookingSubmit}
-                     disabled={isLoading}
-                     className="w-full h-12 bg-rose-500 text-white py-3 rounded-lg font-medium mb-4 hover:bg-rose-600">
-                     {isLoading ? "Processing..." : "Continue"}
-                  </button>
-
-                  {error && (
-                     <div className="text-red-500 text-sm mb-4">
-                        {error}
-                     </div>
-                  )}
-
-                  <div className="flex items-center justify-center mb-4">
-                     <div className="border-t grow"></div>
-                     <span className="px-4 text-gray-500">or</span>
-                     <div className="border-t grow"></div>
-                  </div>
-
-                  <div className="grid grid-cols-3 gap-3 mb-4">
-                     <button className="border border-black rounded-lg py-3 flex justify-center items-center">
-                        <Facebook className="w-7 h-7" />
-                     </button>
-                     <button className="border border-black rounded-lg py-3 flex justify-center items-center">
-                        <Google className="w-7 h-7" />
-                     </button>
-                     <button className="border border-black rounded-lg py-3 flex justify-center items-center">
-                        <Apple className="w-7 h-7" />
-                     </button>
-                  </div>
-
-                  <button className="w-full border border-black rounded-lg py-3 flex justify-center items-center">
-                     <p>Continue with email</p>
-                  </button>
                </div>
             </div>
 
             {/* Price details sidebar */}
             <div className="md:col-span-2">
                <div className="border rounded-xl p-4 sticky top-4">
+                  {/* Content of the sidebar remains the same */}
+                  {/* ... */}
                   <div className="flex mb-4">
                      <div className="w-24 h-20 bg-gray-200 rounded-lg mr-3"></div>
                      <div>
@@ -332,6 +206,8 @@ function Booking() {
          </div>
 
          <footer className="mt-12 pt-6 border-t text-sm text-gray-600">
+            {/* Footer content remains the same */}
+            {/* ... */}
             <div className="flex flex-wrap justify-between items-center">
                <div className="flex items-center space-x-2">
                   <span>© 2025 Airbnb, Inc.</span>
