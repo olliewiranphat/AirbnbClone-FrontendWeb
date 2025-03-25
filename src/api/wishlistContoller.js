@@ -15,3 +15,5 @@ export const getWishlistHistory = async (token) => {
     console.log("Token used in getWishlistHistory:", token);
     return await axios.get(`${BASE_URL}/history`, getHeaders(token));
 };
+
+

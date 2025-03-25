@@ -19,7 +19,7 @@ function HomePage() {
     console.log('.role', userData?.role);
 
 
-    const displayAccom = filteredAcccom.length > 0 ? filteredAcccom : allAccommodatons
+    // const displayAccom = filteredAcccom.length > 0 ? filteredAcccom : allAccommodatons
 
     useEffect(() => {
         const fetchData = async () => {
@@ -31,7 +31,7 @@ function HomePage() {
             }
         }
         fetchData()
-    }, [isSignedIn, getToken, actionGetMyAccount, actionGetAllAccommodations]); // ✅ เพิ่ม `isSignedIn` ใน Dependency
+    }, [isSignedIn, getToken, actionGetMyAccount, actionGetAllAccommodations]); 
 
 
     return (
@@ -45,3 +45,4 @@ function HomePage() {
 }
 
 export default HomePage
+
