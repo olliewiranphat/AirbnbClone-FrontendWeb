@@ -4,8 +4,8 @@ import React, { useEffect, useState } from 'react'
 import RenderModal from '../../components/messages/renderModal'
 import { useAuth } from '@clerk/clerk-react'
 import useUserAllChatsStore from '../../store/message/useUserAllChatStore'
-import MessageContainer from '../../components/messages/MessageContainer'
 import ChatRoomContainer from '../../components/messages/ChatRoomContainer'
+import ChatContainer from '../../components/messages/ChatContainer'
 
 function Messages() {
 
@@ -25,12 +25,12 @@ function Messages() {
     const [loading, setLoading] = useState(false)
     // console.log('loading', loading);
 
-
+    const [showChatRoom, setShowChatRoom] = useState(false)
 
 
     return (
-        <div className='py-[50px] px-[40px] flex gap-6 min-h-[500px] bg-gray-300'>
-            <div className='w-[30%] bg-amber-600'>
+        <div className='py-[50px] px-[40px] flex gap-6 min-h-[500px]'>
+            <div className='w-[30%]'>
 
                 <div className='flex justify-between items-center py-5'>
                     <span className='text-xl strong'>Messages</span>
@@ -39,7 +39,7 @@ function Messages() {
                         <SlidersHorizontal />
                     </div> */}
                 </div>
-                <div className='bg-amber-200'>
+                <div>
                     <div className='flex gap-2 relative'>
                         <button onClick={() => setShowModal(!showModal)}
                             className={`cursor-pointer p-4 rounded-full bg-[#222222] hover:bg-black hover:duration-300 w-[110px] h-[40px] text-white flex items-center relative ${showModal ? 'bg-[#323232]' : ''}`}>
@@ -66,11 +66,13 @@ function Messages() {
                     </AnimatePresence>
                 </div>
 
-                <MessageContainer />
+                <ChatContainer setShowChatRoom={setShowChatRoom} />
 
             </div>
             {/* CHAT ROOM CONTAINER */}
-            <ChatRoomContainer />
+            {
+                showChatRoom && <ChatRoomContainer setShowChatRoom={setShowChatRoom} />
+            }
             {/* USER-HOSTING */}
             {/* USER-ADMIN */}
         </div>

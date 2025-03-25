@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import AirbnbLOGO from "../home-page/main-navbar/AirbnbLOGO";
-import ReloadLink from "../../utils/ReloadLink";
 import { HousePlusIcon, Loader } from "lucide-react";
-import { useAuth, useUser } from "@clerk/clerk-react";
+import { SignInButton, useAuth, useUser } from "@clerk/clerk-react";
 import { updateToHOST } from "../../api-server/hostController";
 import useUserStore from "../../store/UserStore";
 import { useNavigate } from "react-router";
@@ -14,12 +13,16 @@ function SwichHostNav() {
   const navigate = useNavigate()
   const actionGetMyAccount = useUserStore(state => state.actionGetMyAccount)
 
-  const { getToken } = useAuth()
+  const { getToken, isSignedIn } = useAuth()
+  const { user } = useUser()
+  console.log('user', user);
+
   const hdlChangeToHOST = async () => {
+
     setLoading(true)
     try {
       const token = await getToken()
-      // console.log('token', token);
+      console.log('token', token);
       const updateStatusUserHOST = await updateToHOST(token, "HOST")
       // console.log('updateStatusUserHOST', updateStatusUserHOST);
       actionGetMyAccount(token) //ROLE=HOST
@@ -27,12 +30,13 @@ function SwichHostNav() {
       setLoading(false)
     } catch (error) {
       console.log("UpdateHOST, ERROR", error);
-
     }
   }
 
+
+
   return (
-    <div className="flex justify-between items-center px-[40px] w-full h-[80px] relative">
+    <div className="flex justify-between items-center px-[40px] mt-2 w-full h-[80px] relative ">
       {/* LOGO */}
 
       <AirbnbLOGO />
@@ -44,11 +48,15 @@ function SwichHostNav() {
 
         {/* UPDATE STATUS to HOST */}
 
-        <button onClick={hdlChangeToHOST}
-          className=" bg-[#FF385C]  flex items-center justify-center gap-3 cursor-pointer py-2 px-4 rounded-md w-[200px] h-[48px] hover:font-semibold hover:bg-[#dd1062]  hover:duration-300">
-          <HousePlusIcon className='text-white' />
-          <span className="text-white">Stayzy Setup</span>
-        </button>
+
+        {
+          isSignedIn ? (<button onClick={hdlChangeToHOST}
+            className=" bg-[#FF385C] text-white flex items-center justify-center gap-3 cursor-pointer py-2 px-4 rounded-md w-[200px] h-[48px] hover:font-semibold hover:bg-[#dd1062]  hover:duration-300">
+            <HousePlusIcon />
+            <span>Stayzy Setup</span>
+          </button>) : <SignInButton mode="modal" forceRedirectUrl={'/host-center'}
+            className=" bg-[#FF385C] text-white flex items-center justify-center gap-3 cursor-pointer py-2 px-4 rounded-md w-[200px] h-[48px] hover:font-semibold hover:bg-[#dd1062]  hover:duration-300">Login to Host</SignInButton>
+        }
       </div>
       {
         loading && (

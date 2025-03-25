@@ -1,6 +1,6 @@
 import React from 'react'
 import useUserConversationStore from '../../../store/UserConversationStrore'
-import ConversationHeader from '../ConversationHeader';
+import ConversationHeader from '../ChatRoomHeader';
 import MessageHistory from '../MessageHistory';
 import NoMessageHistory from '../NoMessageHistory';
 import MessageInputUser from '../MessageInputUser';

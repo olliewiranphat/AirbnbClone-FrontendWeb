@@ -14,11 +14,10 @@ function HostHomes() {
         setValue(event.target.value);
     };
     return (
-        <div className="min-h-screen bg-white flex flex-col items-center p-6">
+        <div className="min-h-screen bg-white flex flex-col items-center ">
             {/* navbar */}
-            <div className="w-full fixed top-0 left-0 right-0 bg-white  z-50">
-                <SwichHostNav />
-            </div>
+            <SwichHostNav />
+
             {/* text+map */}
             <div className='mx-auto grid sm:grid-cols-1 md:grid-cols-2 items-center w-[90%] h-full gap-4 p-2 mt-28 mb-28 '>
                 <div className='flex  h-[400px] w-full justify-center flex-col text-center items-center bg-white p-4'>

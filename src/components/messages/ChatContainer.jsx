@@ -7,18 +7,18 @@ import MyChatITEM from './MyChatITEM'
 import NoMessageHistory from './NoMessageHistory'
 import NoHaveChatLISTS from './NoHaveChatLISTS'
 
-function MessageContainer({ showModal, setShowModal }) {
+function ChatContainer({ showModal, setShowModal, setShowChatRoom }) {
     const { myAllChats } = useUserAllChatsStore()
     // console.log('myAllChats', myAllChats);
     // let myAllChats = null
-    const renderMyChatITEM = myAllChats?.map(item => (<MyChatITEM key={item.conversationID} item={item} />))
+    const renderMyChatITEM = myAllChats?.map(item => (<MyChatITEM setShowChatRoom={setShowChatRoom} key={item.conversationID} item={item} />))
     return (
-        <>
+        <div className='w-[60%] pt-2'>
             {
                 myAllChats ? renderMyChatITEM : <NoHaveChatLISTS />
             }
-        </>
+        </div>
     )
 }
 
-export default MessageContainer
+export default ChatContainer

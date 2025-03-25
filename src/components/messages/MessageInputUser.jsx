@@ -1,13 +1,53 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Image, Send, X } from "lucide-react";
 import ImagePreviewLISTS from "./ImagePreviewLISTS";
+import useUserAllChatsStore from "../../store/message/useUserAllChatStore";
+import { useAuth, useUser } from "@clerk/clerk-react";
+import socket from "../../socket/chatSocket";
+import axios from "axios";
+
+// await axios.post(`/user/messages/send/${conversationID}`, {
+//     receiverID,
+//     message
+//   }, {
+//     headers: { Authorization: `Bearer ${userToken}` }
+//   });
+
+
 
 const MessageInputUser = () => {
+    const { chatConversationIDData, actionGetChatConversationID } = useUserAllChatsStore()
+    // console.log('chatConversationIDData', chatConversationIDData);
+    const { user } = useUser()
+    const { getToken } = useAuth()
+    const receiverID = user?.id === chatConversationIDData.participant1ID ? chatConversationIDData.participant2ID : chatConversationIDData.participant1ID
+    // console.log('receiverID', receiverID);
+
     const [text, setText] = useState("");
+    const [chat, setChat] = useState([]);
+
+    // ✅ 1. JOIN ROOM
+    useEffect(() => {
+        socket.connect(); // connect server
+        socket.emit("joinChat", chatConversationIDData?.conversationID); // join room
+
+        // ✅ 2. ฟังข้อความที่ถูกส่งมา
+        socket.on("receiveMessage", (data) => {
+            setChat((prev) => [...prev, data]);
+        });
+
+        return () => {
+            socket.disconnect();
+            socket.off("receiveMessage");
+        };
+    }, [chatConversationIDData?.conversationID]);
+
+
+
     const [imagePreview, setImagePreview] = useState([]); //SEND IMAGE && SHOW PREVIEW
     const [isSending, setIsSending] = useState(false); // New loading state
-
     const fileInputRef = useRef(null);
+
     // const { sendMessage } = userChatStore();
 
     const handleImageChange = (e) => {
@@ -20,40 +60,53 @@ const MessageInputUser = () => {
             alert("Please select an image file")
             return;
         }
-
-        // console.log(URL.createObjectURL(file).slice(5));
         setImagePreview([...imagePreview, URL.createObjectURL(file)])
-
-
     };
-    console.log('imagePreview', imagePreview);
 
 
     const handleSendMessage = async (e) => {
         e.preventDefault();
+        // console.log('imagePreview', imagePreview);
+        console.log('text', text);
         if (!text.trim() && imagePreview.length === 0) return; //NO TEXT NO IMAGE
         setIsSending(true); // Show loading
-        // try {
-        //     await sendMessage({ //SOCKET.IO
-        //         text: text.trim(),
-        //         image: imagePreview,
-        //     });
-        //     setText("");
-        //     setImagePreview(null);
-        //     if (fileInputRef.current) fileInputRef.current.value = "";
-        // } catch (error) {
-        //     console.error("Failed to send message:", error);
-        //     alert("Failed to send message")
-        //     //   toast.error(error.message || "Failed to send message");
-        // } finally {
-        //     setIsSending(false); // Hide loading
-        // }
+
+        const newMsg = {
+            conversationID: chatConversationIDData?.conversationID,
+            senderID: user?.id,
+            receiverID,
+            message: text
+        };
+        console.log('newMsg', newMsg);
+
+        try {
+            // ส่งแบบ real-time
+            socket.emit("sendMessage", newMsg);
+
+            // บันทึกลง DB
+            await axios.post(
+                `http://localhost:8081/user/messages/send/${chatConversationIDData.conversationID}`,
+                newMsg,
+                { withCredentials: true }
+            );
+            const token = await getToken()
+            actionGetChatConversationID(token, chatConversationIDData.conversationID)
+            setChat((prev) => [...prev, newMsg]);
+            setText("");
+        } catch (error) {
+            console.error("Failed to send message:", error);
+            alert("Failed to send message")
+            //   toast.error(error.message || "Failed to send message");
+        } finally { //END PROCESS
+            setIsSending(false); // CLOSE loading
+        }
     };
 
     return (
-        <div className="absolute bottom-0 bg-[#222222] px-5 py-4 w-full">
-            {imagePreview.length > 0 && <ImagePreviewLISTS imagePreview={imagePreview} setImagePreview={setImagePreview} />
-            }
+        <div className="bg-[#222222] px-5 py-4 w-full">
+            {/* PREVIEW IMAGES BEFORE SEND */}
+            {imagePreview.length > 0 && <ImagePreviewLISTS imagePreview={imagePreview} setImagePreview={setImagePreview} />}
+            {/* FORM SEND MESSSAGES (TEXT & IMAGES) */}
             <form onSubmit={handleSendMessage} className="flex gap-4 flex-wrap justify-center">
 
                 {/* TEXT MESSAGE */}
@@ -68,6 +121,7 @@ const MessageInputUser = () => {
 
                 {/* IMAGE MESSAGE */}
                 <div className="flex flex-1 gap-4 items-center justify-center">
+                    {/* INPUT TEXT */}
                     <input
                         type="file"
                         accept="image/*"
@@ -76,6 +130,8 @@ const MessageInputUser = () => {
                         onChange={handleImageChange}
                         disabled={isSending}
                     />
+
+                    {/* IMAGE BTN */}
                     <button
                         type="button"
                         className="w-[40px] h-[40px] rounded-full cursor-pointer hover:bg-[#dd1062] hover:duration-300 text-white bg-[#FF385C]"
@@ -85,11 +141,11 @@ const MessageInputUser = () => {
                         <Image className="h-[20px] m-auto" />
                     </button>
 
-                    {/* SEND DATA */}
+                    {/* SEND TEXT-IMAGES */}
                     <button
                         type="submit"
                         className="w-[40px] h-[40px] rounded-full cursor-pointer hover:bg-[#dd1062] hover:duration-300 text-white bg-[#FF385C] relative"
-                        disabled={(!text.trim() && imagePreview.length === 0 || isSending)}
+                    // disabled={(!text.trim() && imagePreview.length === 0 || isSending)}
                     >
                         {isSending ? (
                             <span className="loading loading-spinner loading-xs"></span>
