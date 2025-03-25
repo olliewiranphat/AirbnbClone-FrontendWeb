@@ -10,6 +10,7 @@ import { useAuth } from '@clerk/clerk-react'
 import { useParams } from 'react-router'
 import axios from 'axios'
 import ReloadLink from '../../utils/ReloadLink'
+import MapComponent from '../../components/homehost-page/AddAccom/MapComponent'
 
 function AccomDetail() {
    const { getToken } = useAuth()
@@ -99,17 +100,15 @@ function AccomDetail() {
             {/* Location and Host */}
             <div className="flex justify-between">
                <div className='flex flex-col'>
-                  <h2 className="font-medium">{accommodation.description}</h2>
+                  <h2 className="font-medium">Room in Villefranche, France</h2>
                   <div className="text-sm text-gray-500">
-                     <span>{accommodation.accomCate?.typeName || "Accommodation"}</span>
+                     <span>2 beds · Private bathroom</span>
                   </div>
                   <div className="flex items-center mt-3">
                      <div className="flex">
-                        <span className="text-sm">★ {accommodation.Review?.length > 0
-                           ? (accommodation.Review.reduce((sum, review) => sum + review.rating, 0) / accommodation.Review.length).toFixed(2)
-                           : "N/A"} Review</span>
+                        <span className="text-sm">★ 4.97</span>
                         <span className="text-sm text-gray-500 mx-1">·</span>
-                        <span className="text-sm text-gray-500">{accommodation.Review?.length || 0} Reviews</span>
+                        <span className="text-sm text-gray-500">157 reviews</span>
                      </div>
                   </div>
 
@@ -153,7 +152,7 @@ function AccomDetail() {
                      </p>
                   </div>
 
-                  <div className='mt-5 border-t w-[750px]'>
+                  {/* <div className='mt-5 border-t w-[750px]'>
                      <p className='mt-6 font-bold text-[22px]'>Where you'll sleep</p>
                      <div className='flex gap-10 mt-8'>
                         {accommodation.Room && accommodation.Room.map((room, index) => (
@@ -165,6 +164,26 @@ function AccomDetail() {
                               <p className='mt-1 ml-2 text-[16px]'>{room.bedType || "1 queen bed"}</p>
                            </div>
                         ))}
+                     </div>
+                  </div> */}
+
+                  <div className='mt-5 border-t w-[750px]'>
+                     <p className='mt-6 font-bold text-[22px]'>Where you’ll sleep</p>
+                     <div className='flex gap-10 mt-8'>
+                        <div className='w-[400px] h-full'>
+                           <img src={Pic1} alt="" className='rounded-lg' />
+                           <p className='mt-4 ml-2 font-medium text-[17px]'>
+                              Bedroom 1
+                           </p>
+                           <p className='mt-1 ml-2 text-[16px]'>1 queen bed</p>
+                        </div>
+                        <div className='w-[400px] h-full'>
+                           <img src={Pic1} alt="" className='rounded-lg' />
+                           <p className='mt-4 ml-2 font-medium text-[17px]'>
+                              Bedroom 1
+                           </p>
+                           <p className='mt-1 ml-2 text-[16px]'>1 queen bed</p>
+                        </div>
                      </div>
                   </div>
                </div>
@@ -239,7 +258,7 @@ function AccomDetail() {
             </div>
 
             {/* Features */}
-            <div className="mt-8">
+            {/* <div className="mt-8">
                <h2 className="text-xl font-medium mb-4">What this place offers</h2>
                <div className="grid grid-cols-2 gap-y-4">
                   {accommodation.AccomAmen && accommodation.AccomAmen.slice(0, 4).map((amenity, index) => (
@@ -273,22 +292,59 @@ function AccomDetail() {
                <button className="border border-gray-800 rounded-lg px-4 py-2 mt-4 text-sm font-medium">
                   Show all {accommodation.AccomAmen?.length || 0} amenities
                </button>
+            </div> */}
+            <div className="mt-8">
+               <h2 className="text-xl font-medium mb-4">What this place offers</h2>
+               <div className="grid grid-cols-2 gap-y-4">
+                  <div className="flex items-center">
+                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="mr-3">
+                        <rect x="3" y="11" width="18" height="10" rx="2" stroke="currentColor" strokeWidth="2" />
+                        <path d="M5 11V7a7 7 0 0114 0v4" stroke="currentColor" strokeWidth="2" />
+                     </svg>
+                     <span>Lock on bedroom door</span>
+                  </div>
+                  <div className="flex items-center">
+                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="mr-3">
+                        <path d="M8 3v2M16 3v2M3 8h18M5 4h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                     </svg>
+                     <span>Free cancellation before Apr 29</span>
+                  </div>
+                  <div className="flex items-center">
+                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="mr-3">
+                        <path d="M9 22V12h6v10M2 12h20M2 7a2 2 0 012-2h16a2 2 0 012 2v15H4a2 2 0 01-2-2V7z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                     </svg>
+                     <span>Wifi</span>
+                  </div>
+                  <div className="flex items-center">
+                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="mr-3">
+                        <path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2z" stroke="currentColor" strokeWidth="2" />
+                        <path d="M8 11a1 1 0 100-2 1 1 0 000 2zM16 11a1 1 0 100-2 1 1 0 000 2zM12 16a4 4 0 01-4-4h8a4 4 0 01-4 4z" stroke="currentColor" strokeWidth="2" />
+                     </svg>
+                     <span>Kitchen</span>
+                  </div>
+               </div>
+               <button className="border border-gray-800 rounded-lg px-4 py-2 mt-4 text-sm font-medium">
+                  Show all 27 amenities
+               </button>
             </div>
 
             {/* Reviews */}
             <div className="mt-8 border-t pt-8">
                <div className="flex items-center mb-4">
+                  <span className="text-xl font-medium">★ 4.97  ·  157 reviews</span>
+               </div>
+               {/* <div className="flex items-center mb-4">
                   <span className="text-xl font-medium">★ {accommodation.Review?.length > 0
                      ? (accommodation.Review.reduce((sum, review) => sum + review.rating, 0) / accommodation.Review.length).toFixed(2)
                      : "N/A"} · {accommodation.Review?.length || 0} reviews</span>
-               </div>
+               </div> */}
 
                <div>
                   <RatingCard reviews={accommodation.Review || []} />
                </div>
 
                {/* Review Cards */}
-               <div className="grid grid-cols-2 gap-8 mt-7">
+               {/* <div className="grid grid-cols-2 gap-8 mt-7">
                   {accommodation.Review && accommodation.Review.slice(0, 2).map((review, index) => (
                      <div key={index} className="mb-6">
                         <div className="flex items-center mb-2 gap-3">
@@ -310,6 +366,44 @@ function AccomDetail() {
 
                <button className="border border-gray-800 rounded-lg px-4 py-2 mt-4 text-sm font-medium">
                   Show all {accommodation.Review?.length || 0} reviews
+               </button> */}
+               {/* Review Cards */}
+               <div className="grid grid-cols-2 gap-8 mt-8">
+                  <div className="mb-6">
+                     <div className="flex items-center mb-2 gap-5">
+                        <div className="avatar">
+                           <div className="w-14 rounded-full">
+                              <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                           </div>
+                        </div>
+                        <div>
+                           <div className="font-medium">Daniel</div>
+                           <div className="text-sm text-gray-500">October 2022</div>
+                        </div>
+                     </div>
+                     <p className="text-sm">Great location, comfortable room, and excellent host. Would definitely stay again!</p>
+                     <button className="text-sm font-medium underline mt-2">Show more</button>
+                  </div>
+
+                  <div className="mb-6">
+                     <div className="flex items-center mb-2 gap-5">
+                        <div className="avatar">
+                           <div className="w-14 rounded-full">
+                              <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                           </div>
+                        </div>
+                        <div>
+                           <div className="font-medium">Emma</div>
+                           <div className="text-sm text-gray-500">September 2022</div>
+                        </div>
+                     </div>
+                     <p className="text-sm">The room is exactly as pictured. Nathan was a great host and the location is perfect for exploring the area.</p>
+                     <button className="text-sm font-medium underline mt-2">Show more</button>
+                  </div>
+               </div>
+
+               <button className="border border-gray-800 rounded-lg px-4 py-2 mt-4 text-sm font-medium">
+                  Show all 157 reviews
                </button>
             </div>
 
@@ -319,17 +413,19 @@ function AccomDetail() {
                <div className="text-m mb-4">{accommodation.location || "Address information not available"}</div>
 
                <div className="h-80 bg-gray-200 rounded-lg mb-4 relative">
-                  <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-white rounded-full p-2">
+                  {/* <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-white rounded-full p-2">
                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" stroke="#FF385C" strokeWidth="2" />
                         <circle cx="12" cy="10" r="3" stroke="#FF385C" strokeWidth="2" />
                      </svg>
-                  </div>
+                  </div> */}
+
+                  <MapComponent />
                </div>
             </div>
 
             {/* Host */}
-            <div className="mt-8 border-t pt-8">
+            <div className="mt-18 border-t pt-8">
                <HostCard host={accommodation.host} />
             </div>
 
