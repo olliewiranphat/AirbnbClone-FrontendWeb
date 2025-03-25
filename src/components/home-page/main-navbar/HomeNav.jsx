@@ -7,6 +7,7 @@ import bookingStore from '../../../store/bookingStore';
 import guestStore from '../../../store/guestStore';
 import axios from 'axios';
 
+
 function HomeNav({ onSearch }) { // รับ props onSearch
 
 
@@ -75,37 +76,27 @@ function HomeNav({ onSearch }) { // รับ props onSearch
 
   const handleSearch = async () => {
     try {
-      const params = {
-        query: searchQuery, // ใช้ searchQuery ที่ถูกกำหนดค่า
-        checkInDate: filters.checkIn ? format(filters.checkIn, 'yyyy-MM-dd') : null,
-        checkOutDate: filters.checkOut ? format(filters.checkOut, 'yyyy-MM-dd') : null,
-        guestQTY: filters.guests.adults + filters.guests.children,
-      };
-      console.log("onSearch", onSearch);
-      console.log('Search params:', params);
+        const params = {
+            city: searchQuery, // ใช้ searchQuery เป็น city
+            checkIn: filters.checkIn ? format(filters.checkIn, 'yyyy-MM-dd') : null,
+            checkOut: filters.checkOut ? format(filters.checkOut, 'yyyy-MM-dd') : null,
+            maxGuests: filters.guests.adults + filters.guests.children,
+        };
 
-      const { data } = await axios.get('http://localhost:8081/admin/all-accommodations', { params });
-      console.log('API response:', data);
+        // ใช้ endpoint ที่ถูกต้องสำหรับการค้นหา
+        const { data } = await axios.get('http://localhost:8081/user/search-accommodations', { params });
+        console.log('API response:', data);
 
-      const filtered = data.results.filter((acc) => {
-        const isGuestsValid = acc.MaxGuests >= params.guestQTY;
-        console.log(`Accommodation ${acc.id || acc._id}: Max guests ${acc.MaxGuests}, Required: ${params.guestQTY}, Valid: ${isGuestsValid}`);
-        return isGuestsValid;
-      });
-
-      console.log('Filtered results:', filtered);
-      setFilteredAccommodations(filtered);//set state สำหรับ filteredAccommodations
-
-      // // เรียกใช้ onSearch และส่งผลลัพธ์การค้นหาไปยัง parent component
-      // if (onSearch) {
-      //   onSearch(filtered);
-      // } else {
-      //   console.error('onSearch is not defined');
-      // }
+        // เรียกใช้ onSearch และส่งผลลัพธ์การค้นหาไปยัง parent component
+        if (onSearch) {
+            onSearch(data.accommodations);
+        } else {
+            console.error('onSearch is not defined');
+        }
     } catch (error) {
-      console.error('Error searching:', error);
+        console.error('Error searching:', error);
     }
-  };
+};
 
   const hasGuests = Object.values(guestSelect).some(val => val > 0);
   const guestSummary = hasGuests
@@ -286,3 +277,4 @@ function GuestRow({ label, description, value, increment, decrement }) {
 }
 
 export default HomeNav;
+

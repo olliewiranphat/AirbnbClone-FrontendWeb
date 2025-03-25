@@ -42,3 +42,6 @@ function AccomLIST({ searchResults }) {
 }
 
 export default AccomLIST;
+
+
+ 

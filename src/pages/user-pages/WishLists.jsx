@@ -37,7 +37,7 @@ function WishLists() {
                     return (
                         <AccomITEM
                             key={item.accommodationID}
-                            imageUrl={imageUrl}
+                            imageUrl={item.imageUrl || 'https://via.placeholder.com/400x300?text=No+Image'}
                             accommodationID={item.accommodationID}
                             title={item.title}
                             city={item.city}
@@ -54,3 +54,5 @@ function WishLists() {
 }
 
 export default WishLists;
+
+

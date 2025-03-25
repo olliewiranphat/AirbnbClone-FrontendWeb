@@ -31,7 +31,7 @@ function HomePage() {
             }
         }
         fetchData()
-    }, [isSignedIn, getToken, actionGetMyAccount, actionGetAllAccommodations]); // ✅ เพิ่ม `isSignedIn` ใน Dependency
+    }, [isSignedIn, getToken, actionGetMyAccount, actionGetAllAccommodations]); 
 
 
     return (
@@ -45,3 +45,5 @@ function HomePage() {
 }
 
 export default HomePage
+
+
