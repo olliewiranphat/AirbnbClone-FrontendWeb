@@ -40,7 +40,8 @@ export const addAccommodation = async (token,formData) => {
 }
 //delete
 export const deleteAccommodation = async (token,id) => {
-    return await axios.delete(`http://localhost:8081/host/accommodation/delete/:accommodationID${id}`,{
+    // return await axios.delete(`http://localhost:8081/host/accommodation/delete/:accommodationID${id}`,{
+    return await axios.delete(`http://localhost:8081/host/accommodation/delete/${id}`,{
         headers:{
             Authorization: `Bearer ${token}`
         }
@@ -49,7 +50,7 @@ export const deleteAccommodation = async (token,id) => {
 
 // update
 export const updateRoom = async (token,id) => {
-    return await axios.put('http://localhost:8081/host/accommodation/room/update/:roomID',{id},{
+    return await axios.put(`http://localhost:8081/host/accommodation/room/update/${id}`,{
         headers:{
             Authorization: `Bearer ${token}`
         }
@@ -80,9 +81,26 @@ export const getAccom = async (token) => {
     })
 }
 
-//get dashboard
-export const getDashboard = async (token,id) => {
-    return await axios.get('http://localhost:8081/host/dashboard',id,{
+//get by id
+export const getAccomById = async (token,accommodationID) => {
+    return await axios.get(`http://localhost:8081/host/accommodation/get-byId/${accommodationID}`,{
+        headers:{
+            Authorization: `Bearer ${token}`
+        }
+    })
+}
+
+//dashboard
+export const getDashboard = async (token) => {
+    return await axios.get('http://localhost:8081/host/dashboard',{
+        headers:{
+            Authorization: `Bearer ${token}`
+        }
+    })
+}
+//update img
+export const updateImg = async (token, body) => {
+    return await axios.put(`http://localhost:8081/accommodation/update-img/`,body,{
         headers:{
             Authorization: `Bearer ${token}`
         }

@@ -34,8 +34,8 @@ const AmenitiesSelector = () => {
         {amenities.map((amenity) => (
           <button
             key={amenity.amenityID}
-            className={`border p-4 rounded-lg ${
-              selectedAmenities.includes(amenity) ? "bg-[#FF385C] text-white" : ""
+            className={`border p-4 rounded-lg cursor-pointer hover:bg-[#e8e8e8] flex items-center justify-center ${
+              selectedAmenities.includes(amenity) ? "bg-[#FF385C] text-white" : "bg-white text-black"
             }`}
             onClick={() => toggleAmenity(amenity)}
           >

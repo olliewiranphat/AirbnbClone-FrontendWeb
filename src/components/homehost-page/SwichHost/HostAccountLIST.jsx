@@ -10,7 +10,6 @@ function HostAccountLIST() {
                 <ReloadLink to='/giftcards' className="hover:cursor-pointer strong ">Gift cards</ReloadLink>
             </div>
             <div className='w-full px-4 py-5 border-b-[1px] border-gray-300 flex flex-col gap-5 items-start'>
-                <ReloadLink to='/host/experiences'>Host an experience</ReloadLink>
                 <ReloadLink to='/' className="hover:cursor-pointer strong ">Swicth to travel </ReloadLink>
                 <ReloadLink to='/help' className="hover:cursor-pointer strong ">Help Center</ReloadLink>
                 <SignOutButton>Log out</SignOutButton>

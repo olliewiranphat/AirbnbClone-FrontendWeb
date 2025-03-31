@@ -3,11 +3,13 @@ import HostNav from '../../components/homehost-page/SwichHost/HostNav'
 import ReloadLink from '../../utils/ReloadLink'
 import { useNavigate } from 'react-router';
 import { useAuth } from '@clerk/clerk-react';
-import { deleteAccommodation, getAccom } from '../../api/accomApi';
+import { deleteAccommodation } from '../../api/accomApi';
+import useAccomStore from '../../accomStore/addaccomStore';
+import { DeleteAlet } from '../../utils/CreateAlet';
 
 function HostAccom() {
-    const [accommodations, setAccommodations] = useState(() => []);
-    const [loading, setLoading] = useState(true);
+    // const [accommodations, setAccommodations] = useState([]);
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const { getToken } = useAuth();
     // const [accommodations, setAccommodations] = useState([
@@ -28,33 +30,66 @@ function HostAccom() {
     //     },
     // ]);
     const navigate = useNavigate();
+    const setSelectAccomEdit = useAccomStore((state) => state.setSelectAccomEdit);
+    const setAccommodations = useAccomStore((state) => state.setAccommodations);
+    const accommodations = useAccomStore((state) => state.accommodations);
+    const fetchData = useAccomStore((state) => state.fetchData);
 
      //ดึงข้อมูลที่พักจาก API เมื่อ Component โหลด
-     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const token = await getToken(); // ดึง token
-                const response = await getAccom(token); // ID อาจเปลี่ยนตามเงื่อนไขของ API
-                console.log('response', response.data.allMyAccom)
-                setAccommodations(response.data.allMyAccom)
-            } catch (err) {
-                console.error("Error fetching accommodations:", err);
-                setError(err.message);
-            } finally {
-                setLoading(false);
-            }
-        };
+    //  useEffect(() => {
+    //     const fetchData = async () => {
+    //         try {
+    //             setLoading(true);
+    //             const token = await getToken(); // ดึง token
+    //             const response = await getAccom(token); // ID อาจเปลี่ยนตามเงื่อนไขของ API
+    //             console.log('response', response.data.allMyAccom)
+    //             // setAccommodations(response.data.allMyAccom)
+    //             setAccommodations(response.data.allMyAccom)
+    //         } catch (err) {
+    //             console.error("Error fetching accommodations:", err);
+    //             setError(err.message);
+    //         } finally {
+    //             setLoading(false);
+    //         }
+    //     };
 
-        fetchData();
+    //     fetchData();
+    // }, []);
+
+    const fetchAllData = async () => {
+                try {
+                    setLoading(true);
+                    const token = await getToken(); // ดึง token
+                    await fetchData(token)
+                   
+                } catch (err) {
+                    console.error("Error fetching accommodations:", err);
+                    setError(err.message);
+                } finally {
+                    setLoading(false);
+                }
+            };
+
+    useEffect(() => {
+        fetchAllData()
     }, []);
 
     const handleEdit = (id) => {
-        const accomToEdit = accommodations.find((accom) => accom.id === id);
-        navigate(`host-center/host/accommodations/update/${id}`, { state: accomToEdit });
+        // console.log('id', id)
+        // const accomToEdit = accommodations.find((accom) => accom.accommodationID === id);
+        // console.log('accomToEditaaaaaaaaaaaa', accomToEdit)
+        // navigate(`/host-center/host/accommodations/update/${id}`, { state: accomToEdit });
+
+        setSelectAccomEdit(id);
+        // fetchDataById(token,id)
+        navigate(`/host-center/host/accommodations/update/${id}`);
     };
+
+    console.log('accommodations eeeeeee', accommodations)
 
     const handleDelete = async (id) => {
         try {
+            setLoading(true);
             const token = await getToken(); // Get the authentication token
             const response = await deleteAccommodation(token, id); // Call the delete API
     
@@ -67,6 +102,9 @@ function HostAccom() {
             }
         } catch (err) {
             console.error("Error during deletion:", err.message);
+        } finally {
+            DeleteAlet()
+            setLoading(false);
         }
     };
     
@@ -80,7 +118,7 @@ function HostAccom() {
             {/* Listing */}
             <div className='flex justify-between mt-10 ml-10 mr-10 mb-8'>
                 <h1 className='text-3xl font-semibold'>Your listing</h1>
-                <ReloadLink to="/host-center/host/accommodations/add" className=" rounded-3xl p-4  bg-[#FF385C] text-white">Create new listing</ReloadLink>
+                <ReloadLink to="/host-center/host/accommodations/add" className=" rounded-3xl p-4  bg-[#FF385C] text-white hover:cursor-pointer">Create new listing</ReloadLink>
             </div>
 
         {/* get all home */}
@@ -103,7 +141,7 @@ function HostAccom() {
             <tbody className='border bg-gray-100 rounded-2xl p-4 shadow-xl m-4 hover:shadow-2xl'>
                 {accommodations.map((accom) => (
                 <tr key={accom.accommodationID}>
-                    {/* <td><img src={accom?.imageUrl[0]} alt={accom.title} className='w-16 h-16 object-cover' /></td> */}
+                    <td><img src={accom?.Room[0]?.ImgsRoom[0]?.imageUrl} alt={accom.title} className='w-16 h-16 object-cover' /></td>
                     <td>{accom.title}</td>
                     <td>{accom.typeOfAccom}</td>
                     <td>{accom.availQTY} Rooms</td>
@@ -111,9 +149,9 @@ function HostAccom() {
                     <td>{accom.addressDetail},{accom.city}</td>
                     <td>{accom.country}</td>
                     <td>
-                    <button className='bg-blue-500 text-white p-2 rounded-md mr-2'
+                    <button className='bg-blue-500 text-white p-2 rounded-md mr-2 cursor-pointer'
                         onClick={() => handleEdit(accom.accommodationID)}>Edit</button>
-                    <button className='bg-red-500 text-white p-2 rounded-md'
+                    <button className='bg-red-500 text-white p-2 rounded-md cursor-pointer'
                         onClick={() => handleDelete(accom.accommodationID)}>Delete</button>
                     </td>
                 </tr>

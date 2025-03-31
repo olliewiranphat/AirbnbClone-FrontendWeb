@@ -21,9 +21,11 @@ function Upimg({field}) {
             const token = await getToken();
             console.log(token);
             const imageUrl = await uploadImage(token, file);
-            if (imageUrl) uploadedUrls.push(imageUrl);
+            if (imageUrl){ uploadedUrls.push(imageUrl);
+            };
+            console.log('imageUrl', imageUrl)
           }
-          console.log("Upload images url", uploadedUrls);
+          // console.log("Upload images url", uploadedUrls);
           // setFormDataImg(uploadedUrls);
 
    
@@ -44,7 +46,7 @@ function Upimg({field}) {
         try {
           const token = await getToken();
           await deleteImage(token, { public_id: public_id });
-          setDeleteImage(index);
+          setDeleteImage(index, field);
         } catch (error) {
           alert("Failed to delete image. Please try again.");
         } finally {

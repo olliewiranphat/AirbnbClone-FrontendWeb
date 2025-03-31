@@ -10,11 +10,11 @@ function HostDashboard() {
       "June", "July", "August", "September", "October",
       "November", "December"];
     const monthlyTotal = {
-      January: "฿ 0.00",
-      February: "฿ 0.00",
-      March: "฿ 0.00",
-      April: "฿ 0.00",
-      May: "฿ 0.00",
+      January: "฿ 1200.00",
+      February: "฿ 800.00",
+      March: "฿ 952.00",
+      April: "฿ 1400.00",
+      May: "฿ 2100.00",
       June: "฿ 0.00",
       July: "฿ 0.00",
       August: "฿ 0.00",
@@ -24,11 +24,11 @@ function HostDashboard() {
       December: "฿ 0.00"
     };
     const detailsData = [
-      { title: "Gross Earnings", value: "฿ 0.00" },
-      { title: "Adjustments", value: "฿ 0.00" },
-      { title: "Stayzy Service Fee", value: "฿ 0.00" },
-      { title: "Tax Withheld", value: "฿ 0.00" },
-      { title: "Total", value: "฿ 0.00" }
+      { title: "Gross Earnings", value: "฿ 5550.00" },
+      { title: "Adjustments", value: "฿ 1000.00" },
+      { title: "Stayzy Service Fee", value: "฿ 200.00" },
+      { title: "Tax Withheld", value: "฿ 77.00" },
+      { title: "Total", value: "฿ 1527.00" }
     ];
 
     const tabs = [
@@ -47,7 +47,7 @@ function HostDashboard() {
 
       <div className="max-w-screen-xl w-full mx-auto px-8 py-10">
         <div className="flex justify-between items-center mb-6">
-          <h1 className="text-2xl font-bold">Welcome back, </h1>
+          <h1 className="text-2xl font-bold">Welcome Host, </h1>
           <button className="border px-4 py-2 rounded-lg text-sm">
             Complete your listings
           </button>

@@ -6,7 +6,7 @@ const placeTypes = [
   { label: "PRIVATEROOM", icon: Home },
   { label: "SHAREDROOM", icon: Hotel },
 ];
-const PlaceTypeSelector = ({ selectedType, setSelectedType }) => {
+const PlaceTypeSelectorUpdate = ({ selectedType, setSelectedType }) => {
     // เลือกได้1ประเภทเท่านั้น
     const handleSelection = (type) => {
       setSelectedType(type);
@@ -26,8 +26,8 @@ const PlaceTypeSelector = ({ selectedType, setSelectedType }) => {
         {placeTypes.map(({ label, icon: Icon }) => (
           <button
             key={label}
-            className={`border-none p-4 rounded-lg flex flex-col items-center cursor-pointer hover:bg-[#e8e8e8] justify-center  ${
-              selectedType === label ? "bg-[#FF385C] text-white" : "bg-white text-black"
+            className={`border p-4 rounded-lg flex flex-col items-center ${
+              selectedType === label ? "bg-[#FF385C] text-white" : ""
             }`}
             onClick={() => handleSelection(label)}
           >
@@ -55,4 +55,4 @@ const PlaceTypeSelector = ({ selectedType, setSelectedType }) => {
   );
 };
 
-export default PlaceTypeSelector;
+export default PlaceTypeSelectorUpdate;

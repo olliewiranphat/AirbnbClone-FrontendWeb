@@ -7,10 +7,14 @@ import AccomStep3 from "../../components/homehost-page/AddAccom/AccomStep3";
 import { addAccommodation } from "../../api/accomApi";
 import useAccomStore from "../../accomStore/addaccomStore";
 import { useAuth } from "@clerk/clerk-react";
+import { useNavigate } from "react-router";
+import { CreateAlet } from "../../utils/CreateAlet";
 
 function AddAccom() {
-  const { formData, setFormData } = useAccomStore();
+  const { formData, setFormData, resetFormData } = useAccomStore();
     const { getToken } = useAuth();
+
+    const navigate = useNavigate();
     
 
   // const handleChange = (e) => {
@@ -73,10 +77,14 @@ function AddAccom() {
         amenity,
         roomData,
       });
-      if (response.status === 200) {
-        alert("Accommodation added successfully");
-        setFormData(formData); // Reset form
+      if (response.status === 201) {
+
+        // alert("Accommodation added successfully");
+        resetFormData(); // Reset form
+        CreateAlet("Accommodation added successfully")
+        navigate("/host-center/host/accommodations");
       }
+      return {success: true,response};
     } catch (err) {
       console.error("Error adding accommodation:", err);
     }
@@ -135,7 +143,7 @@ function AddAccom() {
           {step > 1 && (
             <button
               onClick={prevStep}
-              className="px-4 py-2 bg-gray-400 text-white rounded hover:bg-gray-500"
+              className="px-4 py-2 bg-gray-400 text-white rounded hover:bg-gray-500 hover:cursor-pointer "
             >
               Back
             </button>
@@ -143,7 +151,7 @@ function AddAccom() {
           {step < totalSteps ? (
             <button
               onClick={nextStep}
-              className="px-4 py-2 bg-[#222222] text-white rounded hover:bg-[#333333]"
+              className="px-4 py-2 bg-[#222222] text-white rounded hover:bg-[#333333]  hover:cursor-pointer"
             >
               Next
             </button>
@@ -151,7 +159,7 @@ function AddAccom() {
             <button
               type="submit"
               onClick={handleSubmit}
-              className="px-4 py-2 bg-[#FF385C] text-white rounded hover:bg-[#dd1062]"
+              className="px-4 py-2 bg-[#FF385C] text-white rounded hover:bg-[#dd1062] cursor-pointer"
             >
               Create
             </button>

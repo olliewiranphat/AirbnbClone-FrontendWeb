@@ -13,12 +13,12 @@ function HostNav() {
   };
 
   return (
-    <div className=" pb-6 border-b-[1px] p border-gray-200  flex-wrap bg-white ">
+    <div className=" pb-6 border-b-[1px] p border-gray-200  flex-wrap bg-white cursor-pointer">
       <div className="h-[80px] px-[40px] py-[15px] flex items-center justify-between">
         {/* LOGO */}
         <AirbnbLOGO />
         {/* Nav */}
-        <div className='flex gap-9 text-[17px] text-[#6a6a6a] justify-center flex-1 pl-32'>
+        <div className='flex gap-9 text-[17px] text-[#6a6a6a] items-center flex-1 pl-56'>
           <Link to="/host-center"
             onClick={() => hdlTabClick("Dashboard")} className={`${activeTab === "Dashboard" ? 'text-[#222222] strong' : "text-[#6a6a6a]"}`}>Dashboard</Link>
           <Link to='/host-center/host/accommodations'

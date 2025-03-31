@@ -7,7 +7,7 @@ import HostBTN from './HostBTN'
 function HostNavProfile() {
     return (
         <div className='flex gap-5 text-[14px] flex-wrap items-center'>
-            <button className="btn btn-ghost btn-circle">
+            {/* <button className="btn btn-ghost btn-circle">
                 <div className="indicator">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -23,7 +23,7 @@ function HostNavProfile() {
                     </svg>
                     <span className="badge badge-xs badge-primary indicator-item"></span>
                 </div>
-            </button>
+            </button> */}
             {/* hostProfile*/}
             <HostBTN />
         </div>

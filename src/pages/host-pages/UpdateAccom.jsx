@@ -6,10 +6,18 @@ import AccomStep1Update from '../../components/homehost-page/UpdateAccom/AccomSt
 import AccomStep2Update from '../../components/homehost-page/UpdateAccom/AccomStep2Update';
 import AccomStep3Update from '../../components/homehost-page/UpdateAccom/AccomStep3Update';
 import { addAccommodation } from '../../api/accomApi';
+import { useLocation } from 'react-router';
 
 function UpdateAccom() {
     const { formData, setFormData } = useAccomStore();
     const { getToken } = useAuth();
+
+    // const location = useLocation();
+    // console.log('location', location)
+    // const accomToEdit = location.state;
+
+    // console.log('accomToEdit///******----', accomToEdit)
+
     
   const [step, setStep] = useState(1);
   const totalSteps = 3;

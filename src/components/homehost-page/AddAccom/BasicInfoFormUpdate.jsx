@@ -1,17 +1,18 @@
 import React from "react";
-import Counter from "../../homehost-page/AddAccom/Counter";
+import Counter from "./Counter";
 import useAccomStore from "../../../accomStore/addaccomStore";
+import CounterUpdate from "./CounterUpdate";
 
-const BasicInfoForm = () => {
-    const { formData, formDataByFIeld } = useAccomStore();
+const BasicInfoFormUpdate = () => {
+    const { formData, formDataByFIeld, selectAccomEdit } = useAccomStore();
     const updateField = (value,field ) => {
         formDataByFIeld( value,field);
     };
     const fields = [
         { field: "availQTY", label: "Available Rooms" },
-        { field: "numBedrooms", label: "Number of Bedrooms" },
-        { field: "numBathrooms", label: "Number of Bathrooms" },
-        { field: "maxGuests", label: "Maximum Guests" },
+        { field: "NumBedrooms", label: "Number of Bedrooms" },
+        { field: "NumBathrooms", label: "Number of Bathrooms" },
+        { field: "MaxGuests", label: "Maximum Guests" },
       ];
   return (
     <div>
@@ -19,7 +20,7 @@ const BasicInfoForm = () => {
       {fields.map((field,index) => (
         <div key={index} className="flex justify-between items-center mt-2">
           <span className="capitalize">{field.label}</span>
-          <Counter
+          <CounterUpdate
             //  count={selectAccomEdit[field] || formData[field] || 1}
             // setCount={(value) => updateField(value,field )}
             field={field.field}
@@ -30,4 +31,4 @@ const BasicInfoForm = () => {
   );
 };
 
-export default BasicInfoForm;
+export default BasicInfoFormUpdate;
