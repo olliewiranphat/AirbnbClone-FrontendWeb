@@ -20,11 +20,8 @@ function SignupLoginBTN() {
         };
     }, []);
 
-<<<<<<< HEAD
-=======
 
 
->>>>>>> e19b8cc (Change Repo)
     return (
         <div ref={menuRef}>
             <SignedOut >

@@ -38,11 +38,7 @@ const AdminStore = (set) => ({
     actionGetAllAccommodations: async () => {
         try {
             const getAdminAllAccommodations = await getAllAccommodations()
-<<<<<<< HEAD
-            console.log('getAdminAllAccommodations', getAdminAllAccommodations);
-=======
             // console.log('getAdminAllAccommodations', getAdminAllAccommodations);
->>>>>>> e19b8cc (Change Repo)
             // console.log('getAdminAllAccommodations', getAdminAllAccommodations.data);
             set({ allAccommodatons: getAdminAllAccommodations })
         } catch (error) {
@@ -52,11 +48,7 @@ const AdminStore = (set) => ({
     actionGetAllBookings: async (token) => {
         try {
             const GetAdminAllBookings = await getAllBookings(token)
-<<<<<<< HEAD
-            console.log('GetAdminAllBookings', GetAdminAllBookings);
-=======
             // console.log('GetAdminAllBookings', GetAdminAllBookings);
->>>>>>> e19b8cc (Change Repo)
             set({ allBookings: GetAdminAllBookings.data.results })
         } catch (error) {
             console.log("getAllBookings, ERROR", error);

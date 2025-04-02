@@ -34,11 +34,7 @@ function HomePage() {
             }
         }
         fetchData()
-<<<<<<< HEAD
     }, [isSignedIn, getToken, actionGetMyAccount, actionGetAllAccommodations]);
-=======
-    }, [isSignedIn, getToken, actionGetMyAccount, actionGetAllAccommodations]);
->>>>>>> e19b8cc (Change Repo)
 
 
     return (
