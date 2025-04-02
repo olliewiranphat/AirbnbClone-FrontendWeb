@@ -12,10 +12,14 @@ function UserNav() {
 
     return (
         <div className='flex gap-5 text-[14px] flex-wrap items-center'>
-            {
-                role === "HOST" ? (<ReloadLink to='/host-center' className='cursor-pointer header'>Switch to host</ReloadLink>)
-                    : (<ReloadLink to='/host/homes' className='cursor-pointer header'>Stayzy your home</ReloadLink>)
-            }
+            <ReloadLink
+                to={role === "HOST" ? "/host-center" : role === "ADMIN" ? "/admin" : "/host/homes"}
+                className="cursor-pointer header"
+            >
+                {
+                    role === "HOST" ? "Switch to Host" : role === "ADMIN" ? "Switch to Admin" : "Stayzy your home"
+                }
+            </ReloadLink>
             <button>
                 <Globe className='h-[18px] cursor-pointer' />
             </button>

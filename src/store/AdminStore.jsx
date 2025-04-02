@@ -29,7 +29,7 @@ const AdminStore = (set) => ({
     actionGetAllHosts: async (token) => {
         try {
             const getAdminAllHosts = await getAllHosts(token)
-            console.log('getAdminAllHosts', getAdminAllHosts);
+            // console.log('getAdminAllHosts', getAdminAllHosts);
             set({ allHosts: getAdminAllHosts.data.results })
         } catch (error) {
             console.log("getAllHosts, ERROR", error);
@@ -38,7 +38,11 @@ const AdminStore = (set) => ({
     actionGetAllAccommodations: async () => {
         try {
             const getAdminAllAccommodations = await getAllAccommodations()
+<<<<<<< HEAD
             console.log('getAdminAllAccommodations', getAdminAllAccommodations);
+=======
+            // console.log('getAdminAllAccommodations', getAdminAllAccommodations);
+>>>>>>> e19b8cc (Change Repo)
             // console.log('getAdminAllAccommodations', getAdminAllAccommodations.data);
             set({ allAccommodatons: getAdminAllAccommodations })
         } catch (error) {
@@ -48,7 +52,11 @@ const AdminStore = (set) => ({
     actionGetAllBookings: async (token) => {
         try {
             const GetAdminAllBookings = await getAllBookings(token)
+<<<<<<< HEAD
             console.log('GetAdminAllBookings', GetAdminAllBookings);
+=======
+            // console.log('GetAdminAllBookings', GetAdminAllBookings);
+>>>>>>> e19b8cc (Change Repo)
             set({ allBookings: GetAdminAllBookings.data.results })
         } catch (error) {
             console.log("getAllBookings, ERROR", error);

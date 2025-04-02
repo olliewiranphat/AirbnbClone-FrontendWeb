@@ -9,13 +9,14 @@ import NoHaveChatLISTS from './NoHaveChatLISTS'
 
 function ChatContainer({ showModal, setShowModal, setShowChatRoom }) {
     const { myAllChats } = useUserAllChatsStore()
-    // console.log('myAllChats', myAllChats);
+    console.log('myAllChats', myAllChats);
     // let myAllChats = null
-    const renderMyChatITEM = myAllChats?.map(item => (<MyChatITEM setShowChatRoom={setShowChatRoom} key={item.conversationID} item={item} />))
+
     return (
-        <div className='w-[60%] pt-2'>
+        <div className='w-[60%] pt-2 h-full'>
             {
-                myAllChats ? renderMyChatITEM : <NoHaveChatLISTS />
+                myAllChats.length !== 0 ? myAllChats?.map(chat => (<MyChatITEM setShowChatRoom={setShowChatRoom} key={chat.conversationID} chat={chat} />))
+                    : <NoHaveChatLISTS />
             }
         </div>
     )

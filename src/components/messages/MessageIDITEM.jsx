@@ -1,48 +1,73 @@
-import React from 'react'
+import { useUser } from '@clerk/clerk-react';
+import React from 'react';
 
-function MessageIDITEM({ item }) {
-    console.log('item', item);
-    const { messageID, conversationID, isRead, message, receiverID, senderID, receiver, sender, sentAt } = item
+function MessageIDITEM({ msg }) {
+    console.log('msg', msg);
 
-    return (<>
-        <div className='my-4 flex items-center justify-end px-4 gap-4'>
-            <div className='relative w-[40%] flex justify-end'>
-                <span className='text-[#222222] text-[14px]'>{message}</span>
-                {
-                    !isRead ? <div className='absolute bottom-[-6px] text-[6px] text-[#222222] flex gap-2'>
-                        <span>isRead: false</span>
-                        <span>
-                            {new Date(sentAt).toLocaleTimeString("en-US", {
-                                hour: "2-digit",
-                                minute: "2-digit",
-                                second: "2-digit",
-                            })}
-                        </span>
+    const { user } = useUser();
+    const isMyMessage = msg?.sender?.clerkID === user?.id;
+    const { message, sentAt, isRead, sender, receiver } = msg;
+
+
+
+    return (
+        <div
+            className={`my-4 px-4 flex items-end gap-3 ${isMyMessage ? 'justify-end' : 'justify-start'
+                }`}
+        >
+            {/* รูปโปรไฟล์ฝั่งซ้าย (ถ้าไม่ใช่ข้อความของตัวเอง) */}
+            {!isMyMessage && (
+                <div className="w-10 h-10 rounded-full overflow-hidden">
+                    <img
+                        src={
+                            sender?.imageUrl ||
+                            'https://i.ibb.co/p6jNPQD5/Screenshot-2025-03-08-112025.png'
+                        }
+                        alt="sender"
+                        className="w-full h-full object-cover"
+                    />
+                </div>
+            )}
+
+            {/* ข้อความ */}
+            <div>
+                <div
+                    className={`relative max-w-[300px] px-3 py-2 rounded-lg text-sm ${isMyMessage
+                        ? 'bg-orange-600 text-white rounded-br-none'
+                        : 'bg-gray-200 text-black rounded-bl-none'
+                        }`}
+                >
+                    {message}
+
+                </div>
+                {!isMyMessage && (
+                    <div className='text-[12px] text-gray-400'>{new Date(sentAt).toLocaleTimeString()}</div>
+                )}
+                {isMyMessage && (
+                    <div className='text-[12px] text-gray-400 flex gap-2 justify-end'>
+                        <span>{isRead ? '✔✔' : '✔'}</span>
+                        <span>{new Date(sentAt).toLocaleTimeString()}</span>
                     </div>
-                        : <div className='absolute bottom-[-6px] text-[6px] text-[#222222] flex gap-2'>
-                            <span>isRead: true</span>
-                            <span>
-                                {new Date(sentAt).toLocaleTimeString("en-US", {
-                                    hour: "2-digit",
-                                    minute: "2-digit",
-                                    second: "2-digit",
-                                })}
-                            </span>
-                        </div>
-                }
-            </div>
-            <div className='w-10 h-10 rounded-full overflow-hidden relative'>
-                <img
-                    src={sender?.imageUrl || "https://i.ibb.co/p6jNPQD5/Screenshot-2025-03-08-112025.png"}
-                    alt={"sender"}
-                    className='w-full h-full object-cover absolute top-[-2px] left-[-2px] rounded-full'
-                />
+                )}
             </div>
 
-        </div>
-
-    </>
-    )
+            {/* รูปโปรไฟล์ฝั่งขวา (ถ้าเป็นข้อความของตัวเอง) */}
+            {
+                isMyMessage && (
+                    <div className="w-10 h-10 rounded-full overflow-hidden">
+                        <img
+                            src={
+                                sender?.imageUrl ||
+                                'https://i.ibb.co/p6jNPQD5/Screenshot-2025-03-08-112025.png'
+                            }
+                            alt="me"
+                            className="w-full h-full object-cover"
+                        />
+                    </div>
+                )
+            }
+        </div >
+    );
 }
 
-export default MessageIDITEM
+export default MessageIDITEM;

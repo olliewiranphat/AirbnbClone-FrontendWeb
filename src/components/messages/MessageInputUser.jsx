@@ -33,7 +33,9 @@ const MessageInputUser = () => {
 
         // ✅ 2. ฟังข้อความที่ถูกส่งมา
         socket.on("receiveMessage", (data) => {
-            setChat((prev) => [...prev, data]);
+            //ฝั่ง Frontend (React) มีการฟังเหตุการณ์ (socket.on()) 
+            // ที่จะรับข้อความใหม่จากเซิร์ฟเวอร์และอัพเดท UI แบบ real-time
+            setChat((prev) => [...prev, data]); //CHAT HISTORY
         });
 
         return () => {
@@ -84,11 +86,11 @@ const MessageInputUser = () => {
             socket.emit("sendMessage", newMsg);
 
             // บันทึกลง DB
-            await axios.post(
-                `http://localhost:8081/user/messages/send/${chatConversationIDData.conversationID}`,
-                newMsg,
-                { withCredentials: true }
-            );
+            // await axios.post(
+            //     `http://localhost:8081/user/messages/send/${chatConversationIDData.conversationID}`,
+            //     newMsg,
+            //     { withCredentials: true }
+            // );
             const token = await getToken()
             actionGetChatConversationID(token, chatConversationIDData.conversationID)
             setChat((prev) => [...prev, newMsg]);

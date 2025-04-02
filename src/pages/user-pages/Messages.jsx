@@ -6,6 +6,7 @@ import { useAuth } from '@clerk/clerk-react'
 import useUserAllChatsStore from '../../store/message/useUserAllChatStore'
 import ChatRoomContainer from '../../components/messages/ChatRoomContainer'
 import ChatContainer from '../../components/messages/ChatContainer'
+import ChatAI from '../../aichat/ChatAI'
 
 function Messages() {
 
@@ -15,6 +16,7 @@ function Messages() {
     useEffect(() => {
         const fetchMyAllChats = async () => {
             const token = await getToken()
+            // console.log('token >>>', token);
             actionGetMyAllChats(token)
         }
         fetchMyAllChats()
@@ -29,7 +31,7 @@ function Messages() {
 
 
     return (
-        <div className='py-[50px] px-[40px] flex gap-6 min-h-[500px]'>
+        <div className='py-[50px] px-[40px] flex gap-6 h-[500px] mb-12 relative'>
             <div className='w-[30%]'>
 
                 <div className='flex justify-between items-center py-5'>
@@ -73,8 +75,7 @@ function Messages() {
             {
                 showChatRoom && <ChatRoomContainer setShowChatRoom={setShowChatRoom} />
             }
-            {/* USER-HOSTING */}
-            {/* USER-ADMIN */}
+            <ChatAI />
         </div>
     )
 }

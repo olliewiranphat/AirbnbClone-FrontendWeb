@@ -7,10 +7,10 @@ import MessageInputUser from './MessageInputUser';
 import { useAuth, useUser } from '@clerk/clerk-react';
 
 function ChatRoomContainer({ setShowChatRoom }) {
-    const { chatConversationIDData, actionGetChatConversationID } = useUserAllChatsStore()
-    console.log('chatConversationIDData', chatConversationIDData);
+    const { chatConversationIDData } = useUserAllChatsStore()
+    // console.log('chatConversationIDData', chatConversationIDData);
     const { Message, conversationID, participant1, participant2, participant1ID, participant2ID } = chatConversationIDData
-    console.log('Message', Message);
+    // console.log('Message', Message);
 
     const { user } = useUser()
 
@@ -21,7 +21,7 @@ function ChatRoomContainer({ setShowChatRoom }) {
 
 
     return (
-        <div className='flex-1 border border-[#222222] rounded-2xl overflow-hidden '>
+        <div className='flex-1 border border-[#222222] rounded-2xl overflow-hidden flex flex-col justify-between h-[450px]'>
             {
                 user?.id === participant1ID ? <ChatRoomHeader setShowChatRoom={setShowChatRoom} participant={participant2} /> : <ChatRoomHeader setShowChatRoom={setShowChatRoom} participant={participant1} />
             }

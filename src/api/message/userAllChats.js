@@ -1,6 +1,8 @@
 import axios from "axios";
 
 export const APIGetMyAllChats = async (token) => {
+    console.log('API');
+
     return await axios(`http://localhost:8081/user/messages/get-my/allchats`, {
         headers: {
             Authorization: `Bearer ${token}`

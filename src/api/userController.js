@@ -18,21 +18,21 @@ const getHeaders = (token) => ({
 });
 
 export const getMyAccount = async (token) => {
-    console.log("Token used in getMyAccount:", token);
+    // console.log("Token used in getMyAccount:", token);
     return await axios.get(`${BASE_URL}/get`, getHeaders(token));
 };
 
 export const updateImageUrl = async (token, data) => {
-    console.log("Token used in updateImageUrl:", token);
+    // console.log("Token used in updateImageUrl:", token);
     return await axios.patch(`${BASE_URL}/update-imageurl`, data, getHeaders(token));
 };
 
 export const createUpdateAccount = async (token, updateData) => {
-    console.log("Token used in createUpdateAccount:", token);
+    // console.log("Token used in createUpdateAccount:", token);
     return await axios.patch(`${BASE_URL}/create-update`, updateData, getHeaders(token));
 };
 
 export const inactiveAccount = async (token) => {
-    console.log("Token used in inactiveAccount:", token);
-    return await axios.patch(`${BASE_URL}/inactive`, null,getHeaders(token));
+    // console.log("Token used in inactiveAccount:", token);
+    return await axios.patch(`${BASE_URL}/inactive`, null, getHeaders(token));
 };

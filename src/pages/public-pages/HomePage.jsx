@@ -14,9 +14,12 @@ function HomePage() {
     const actionGetMyAccount = useUserStore(state => state.actionGetMyAccount)
     const actionGetAllAccommodations = useAdminStore(state => state.actionGetAllAccommodations)
     const allAccommodatons = useAdminStore(state => state.allAccommodatons)
-    console.log('allAccommodatons', allAccommodatons);
+    // console.log('allAccommodatons', allAccommodatons);
     const userData = useUserStore(state => state.userData)
-    console.log('.role', userData?.role);
+    // console.log('.role', userData?.role);
+    const { user } = useUser()
+    // console.log('user', user);
+
 
 
     // const displayAccom = filteredAcccom.length > 0 ? filteredAcccom : allAccommodatons
@@ -31,7 +34,11 @@ function HomePage() {
             }
         }
         fetchData()
-    }, [isSignedIn, getToken, actionGetMyAccount, actionGetAllAccommodations]); 
+<<<<<<< HEAD
+    }, [isSignedIn, getToken, actionGetMyAccount, actionGetAllAccommodations]);
+=======
+    }, [isSignedIn, getToken, actionGetMyAccount, actionGetAllAccommodations]);
+>>>>>>> e19b8cc (Change Repo)
 
 
     return (

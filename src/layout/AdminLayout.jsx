@@ -7,10 +7,7 @@ import { Outlet } from 'react-router'
 function AdminLayout() {
     return (
         <>
-            <div className='fixed w-full z-50'>
-                <MainNavBar />
-            </div>
-            <div className='mx-2 pt-[13%] w-full flex gap-6'>
+            <div className='mx-2 w-full flex gap-6'>
                 <AdminSidebar />
                 <div className='w-full'>
                     <Outlet />

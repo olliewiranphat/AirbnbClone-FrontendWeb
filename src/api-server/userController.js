@@ -12,7 +12,7 @@ export const createUpdateAccount = async (token, value) => {
 
 
 export const getMyAccount = async (token) => {
-    console.log('api',token)
+    // console.log('api',token)
     return await axios.get('http://localhost:8081/user/my-account/get',
         {
             headers: {
